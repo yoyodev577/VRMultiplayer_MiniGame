@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/LoginScene.unity
+    guid: b3049d4882a276f4dbae81c84962e9ed
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/LoadingScene.unity
+    guid: 56173444b936aa44c9bc2dd215d8f70e
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/HomeScene.unity
+    guid: 59fe88bcec22b054ba717c2b27d030ab
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/ShootingGame.unity
+    guid: a61faccd0a5861e4b9bbf2e22d395d93
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/Yoyo/HoopsArcade_update.unity
+    guid: 866578c806862484e812a18ed41ac25f
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/Multispin.unity
+    guid: 1112a734f237c7442a8dfc20dc24bf43
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/GoneWithTheFire.unity
+    guid: 7a2205e1c0ab28b4097e1ca3dd0109ef
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/Yoyo/AngryMouse.unity
+    guid: fdbf07db84e36bb42b33d2a2eec55f74
+  m_configObjects:
+    Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 3235bec8251cb7c42b33edef251b00b9, type: 2}
+    Unity.XR.OpenVR.Settings: {fileID: 0}
+    com.htc.upm.wave.xrsdk.xrsettings: {fileID: 11400000, guid: 5c1a4d37a03403043824ac51d5ebb89f, type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 19e6fddd35fc9324a8137299ad600718, type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b4bfdfc0272a61648990b8f24ed4daa0, type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: a634003d478b29846ab2d71143bab66f, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 0}
