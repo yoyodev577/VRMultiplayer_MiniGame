@@ -60,7 +60,8 @@ using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
-    public Transform spawnPosition;
+    public bool isMultispin = false;
+    public Transform spawnPosition, spawnPosition_2;
 
     public List<GameObject> spawnList = new List<GameObject>();
 
@@ -80,12 +81,38 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom == null)
             return;
-
-        GameObject g = PhotonNetwork.Instantiate("NetworkedVRPlayerPrefab", spawnPosition.position, spawnPosition.localRotation, 0);
-        
-        if (!spawnList.Contains(g))
+        if (!isMultispin)
         {
-            spawnList.Add(g);
+            GameObject g = PhotonNetwork.Instantiate("NetworkedVRPlayerPrefab", spawnPosition.position, spawnPosition.localRotation, 0);
+
+            if (!spawnList.Contains(g))
+            {
+                spawnList.Add(g);
+            }
+        }
+        else {
+            if (spawnList.Count ==0)
+            {
+                GameObject g = PhotonNetwork.Instantiate("NetworkedVRPlayerPrefab", spawnPosition.position, spawnPosition.localRotation, 0);
+
+                if (!spawnList.Contains(g))
+                {
+                    spawnList.Add(g);
+                }
+
+            }
+            else if(spawnList.Count ==1) {
+                GameObject g = PhotonNetwork.Instantiate("NetworkedVRPlayerPrefab", spawnPosition_2.position, spawnPosition_2.localRotation, 0);
+
+                if (!spawnList.Contains(g))
+                {
+                    spawnList.Add(g);
+                }
+
+            }
+
+
+
         }
 
     }

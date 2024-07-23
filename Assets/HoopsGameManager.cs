@@ -227,7 +227,8 @@ public class HoopsGameManager : MonoBehaviour
         if (!IsResetCoroutine)
             StartCoroutine(ResetCoroutine());
 
-        UpdateBoardText("Press Ready to start the game.");
+        string text = "Press Ready to start the game.";
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
     }
 
 
@@ -250,18 +251,21 @@ public class HoopsGameManager : MonoBehaviour
     {
         isPlayer1Win = _machines[0].GetScore() > _machines[1].GetScore() ? true : false;
 
-        questionBoard.text = "The game has ended.\n" +
+
+        string resultText = "The game has ended.\n" +
                         "Player 1 Score:" + _machines[0].GetScore() +"\n" +
                         "Player 2 Score: " + _machines[1].GetScore() +"\n";
 
 
         if (isPlayer1Win)
-            questionBoard.text += "Player 1 Wins";
+            resultText += "Player 1 Wins";
         else
-            questionBoard.text += "Player 2 Wins";
+            resultText += "Player 2 Wins";
+
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, resultText);
 
     }
-
+    [PunRPC]
     private void UpdateBoardText(string text) { 
         questionBoard.text= text;
     
@@ -277,7 +281,8 @@ public class HoopsGameManager : MonoBehaviour
     private void ShowQuestion()
     {
         currentQuestion = questions[currentIndex];
-        questionBoard.text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+        string questionText = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, questionText);
     }
 
     IEnumerator SetQuestionBoardCoroutine()
@@ -300,12 +305,14 @@ public class HoopsGameManager : MonoBehaviour
 
         IsReadyTimerCoroutine = true;
         currentSec = seconds;
-        UpdateBoardText(currentSec.ToString());
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
+        //UpdateBoardText(currentSec.ToString());
 
         while (currentSec >= 0)
         {
             _sfxSource.PlayOneShot(_audioClip);
-            UpdateBoardText(currentSec.ToString());
+            _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
+            //UpdateBoardText(currentSec.ToString());
             yield return new WaitForSeconds(1f);
             currentSec -= 1;
         }

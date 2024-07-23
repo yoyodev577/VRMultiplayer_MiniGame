@@ -71,24 +71,33 @@ public class TableButton : MonoBehaviour
 
     #region Button Transform Detection
     //ref.:https://www.youtube.com/watch?v=HFNzVMi5MSQ
-    private float GetValue()
-    {
+
+    [PunRPC]
+    private void DetectEvents(){
+
         var value = Vector3.Distance(startPos, transform.localPosition) / joint.linearLimit.limit;
         if (Math.Abs(value) < deadZone)
         {
             value = 0;
         }
-        return Math.Clamp(value, -1f, 1f);
+        value = Math.Clamp(value, -1f, 1f);
+
+        if (value + threshold >= 1f) {
+            isPressed = !isPressed;
+            onPressed.Invoke();
+        }
+
     }
+
+
     #endregion
 
     // recording the action of pressing button within 0.5 seconds
     IEnumerator ButtonCoroutine() {
         IsButtonCoroutine = true;
-        if (GetValue() + threshold >= 1f) {
-            isPressed = !isPressed;
-            onPressed.Invoke();
-        }
+
+         _view.RPC("DetectEvents", RpcTarget.AllBuffered, isPressed);
+
         if (PhotonNetwork.IsConnected)
             _view.RPC("FlashButton", RpcTarget.AllBuffered, isPressed);
 

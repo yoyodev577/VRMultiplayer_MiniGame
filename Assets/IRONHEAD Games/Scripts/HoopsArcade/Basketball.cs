@@ -21,9 +21,9 @@ public class Basketball : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor") {
             if (PhotonNetwork.IsConnected)
-                view.RPC("ResetPosition", RpcTarget.All);
+                view.RPC("ResetPosition", RpcTarget.AllBuffered);
 
-            ResetPosition();
+            //ResetPosition();
         }
     }
 
