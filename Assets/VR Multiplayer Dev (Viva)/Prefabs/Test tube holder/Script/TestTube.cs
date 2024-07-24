@@ -8,6 +8,7 @@ public class TestTube : MonoBehaviour
 {
     public MultiSpin multispin;
     [SerializeField] private Vector3 startPos;
+    [SerializeField] private Quaternion startRot;
     [SerializeField] private GameObject cap, body;
     public bool grabbed  = false; //player grabbing the testtube or not
     // Start is called before the first frame update
@@ -17,6 +18,7 @@ public class TestTube : MonoBehaviour
     {
         View = GetComponent<PhotonView>();
         startPos= transform.position;
+        startRot = transform.rotation;
         rb = GetComponent<Rigidbody>();
     }
 
@@ -53,6 +55,7 @@ public class TestTube : MonoBehaviour
            Destroy(GetComponent<ParentConstraint>());
 
         transform.position = startPos;
+        transform.rotation = startRot;
     
     }
 
