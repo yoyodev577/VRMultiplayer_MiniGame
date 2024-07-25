@@ -94,6 +94,7 @@ MonoBehaviour:
   - RandomPickMoes
   - StartEngine
   - HideAllMoes
+  - SetStatus
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

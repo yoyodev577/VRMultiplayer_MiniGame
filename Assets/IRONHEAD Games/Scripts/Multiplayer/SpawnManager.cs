@@ -61,19 +61,23 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
     public Transform spawnPosition;
+    public List<Transform> spawnTransforms = new List<Transform>();
 
     public List<GameObject> spawnList = new List<GameObject>();
 
+    public bool isTesting = false;
     #region Unity Methods
     // Start is called before the first frame update
     void Start()
     {
         spawnList.Clear();
-        SpawnPlayer();
+
+        if(isTesting)
+            SpawnTestingPlayer();
+        else
+            SpawnPlayer();
     }
     #endregion
-
-
 
     #region Private Methods
     private void SpawnPlayer()
@@ -81,13 +85,23 @@ public class SpawnManager : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom == null)
             return;
 
-        GameObject g = PhotonNetwork.Instantiate("NetworkedVRPlayerPrefab", spawnPosition.position, spawnPosition.localRotation, 0);
-        
-        if (!spawnList.Contains(g))
-        {
-            spawnList.Add(g);
-        }
+        PhotonNetwork.Instantiate("NetworkedVRPlayerPrefab", spawnPosition.position, spawnPosition.localRotation, 0);
 
+        /*        if (!spawnList.Contains(g))
+                {
+                    spawnList.Add(g);
+                }
+        */
+    }
+
+    public void SpawnTestingPlayer()
+    {
+        if (PhotonNetwork.CurrentRoom == null)
+            return;
+
+        int r = Random.Range(0,spawnTransforms.Count);
+
+        PhotonNetwork.Instantiate("TestPhotonPrefab", spawnTransforms[r].localPosition, spawnTransforms[r].localRotation, 0);
     }
     #endregion
 }
