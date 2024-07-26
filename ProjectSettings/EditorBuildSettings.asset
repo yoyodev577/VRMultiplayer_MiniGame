@@ -5,37 +5,37 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/LoginScene.unity
     guid: b3049d4882a276f4dbae81c84962e9ed
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/LoadingScene.unity
     guid: 56173444b936aa44c9bc2dd215d8f70e
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/HomeScene.unity
     guid: 59fe88bcec22b054ba717c2b27d030ab
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/ShootingGame.unity
     guid: a61faccd0a5861e4b9bbf2e22d395d93
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/Yoyo/HoopsArcade_update.unity
     guid: 866578c806862484e812a18ed41ac25f
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/Multispin.unity
     guid: 1112a734f237c7442a8dfc20dc24bf43
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/GoneWithTheFire.unity
     guid: 7a2205e1c0ab28b4097e1ca3dd0109ef
-  - enabled: 0
+  - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/Yoyo/AngryMouse.unity
     guid: fdbf07db84e36bb42b33d2a2eec55f74
-  - enabled: 1
+  - enabled: 0
     path: Assets/IRONHEAD Games/Scenes/Yoyo/NetworkTestScene/PhotonNetworkTest_Login.unity
     guid: 2ea26d8c3384db24291815d2df89590e
-  - enabled: 1
+  - enabled: 0
     path: Assets/IRONHEAD Games/Scenes/Yoyo/NetworkTestScene/PhotonNetworkTest_Home.unity
     guid: 5a3cceb63fc08ac488b9f0af34874606
-  - enabled: 1
+  - enabled: 0
     path: Assets/IRONHEAD Games/Scenes/Yoyo/NetworkTestScene/PhotonNetworkTest_Game.unity
     guid: aba1a2a6f6812454ba91ce78717a6f4a
   m_configObjects:

@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using Photon.Pun;
 using System.Text.RegularExpressions;
+using TMPro;
 
 public class TableButton : MonoBehaviour
 {
@@ -41,6 +42,8 @@ public class TableButton : MonoBehaviour
 
     [SerializeField] private bool IsButtonCoroutine = false;
 
+    public TextMeshPro debugText;
+
     #endregion
 
     #region Unity Methods
@@ -65,7 +68,7 @@ public class TableButton : MonoBehaviour
     // Update is called on every frame
     public virtual void Update()
     {
-
+      
     }
     #endregion
 
@@ -113,6 +116,9 @@ public class TableButton : MonoBehaviour
     public void FlashButton(bool isPressed) {
 
         if (buttonMaterials.Count < 1) return;
+
+        if(debugText!=null)
+        debugText.text = isPressed.ToString();
 
         if (isPressed)
             buttonRenderer.material = buttonMaterials[1];
