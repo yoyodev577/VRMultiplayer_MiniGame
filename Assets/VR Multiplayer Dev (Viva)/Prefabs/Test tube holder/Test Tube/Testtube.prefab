@@ -290,6 +290,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d4ef3d5ae655cd4e900e6567dda7df9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multispin: {fileID: 0}
+  startPos: {x: 0, y: 0, z: 0}
+  startRot: {x: 0, y: 0, z: 0, w: 0}
   cap: {fileID: 0}
   body: {fileID: 0}
   grabbed: 0
@@ -504,8 +507,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 0
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!114 &7353315948632254224
 MonoBehaviour:
   m_ObjectHideFlags: 0

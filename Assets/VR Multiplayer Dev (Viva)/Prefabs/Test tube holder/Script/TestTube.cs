@@ -8,7 +8,9 @@ public class TestTube : MonoBehaviour
 {
     public MultiSpin multispin;
     [SerializeField] private Vector3 startPos;
+    [SerializeField] private Quaternion startRot;
     [SerializeField] private GameObject cap, body;
+    public bool isReset = false;
     public bool grabbed  = false; //player grabbing the testtube or not
     // Start is called before the first frame update
     PhotonView View;
@@ -17,7 +19,17 @@ public class TestTube : MonoBehaviour
     {
         View = GetComponent<PhotonView>();
         startPos= transform.position;
+        startRot= transform.rotation;
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (isReset) {
+            View.RPC("PhotonReset", RpcTarget.AllBuffered);
+           //PhotonReset();
+            isReset = false;
+        }
     }
 
     public void grab(){
@@ -48,19 +60,30 @@ public class TestTube : MonoBehaviour
     [PunRPC]
     public void PhotonOnCollision()
     {
-        Debug.Log("--Reset testtube position--");
+
         if(GetComponent<ParentConstraint>() != null)
            Destroy(GetComponent<ParentConstraint>());
 
+        Debug.Log("--Reset testtube position--");
         transform.position = startPos;
+        transform.rotation = startRot;
     
+    }
+
+    [PunRPC]
+    public void PhotonReset() {
+
+        if (GetComponent<ParentConstraint>() != null)
+            Destroy(GetComponent<ParentConstraint>());
+
+        grabbed = false;
+        transform.position = startPos;
+        transform.rotation = startRot;
     }
 
     public void OnReset() {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonOnCollision", RpcTarget.AllBuffered);
+            View.RPC("PhotonReset", RpcTarget.AllBuffered);
         
-        grabbed = false;
-        //transform.position = startPos;
     }
 }

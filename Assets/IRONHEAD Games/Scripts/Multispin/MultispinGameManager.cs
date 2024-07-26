@@ -163,11 +163,12 @@ public class MultispinGameManager : MonoBehaviour
     {
         _gameState = GameState.ResetGame;
         IsReset = true;
-
+        if (PhotonNetwork.IsConnected)
+            _view.RPC("PhotonResetGame", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
-    private void PhotonResetGame()
+    public void PhotonResetGame()
     {
         Debug.Log("---Game Reset---");
         if(!IsResetCoroutine)
@@ -249,7 +250,7 @@ public class MultispinGameManager : MonoBehaviour
 
         foreach(MultiSpin m in _multiSpins)
         {
-            m.ResetMultiSpin(); 
+            m.ResetMultispin();
         }
         //InitGame();
         yield return new WaitForSeconds(2f);

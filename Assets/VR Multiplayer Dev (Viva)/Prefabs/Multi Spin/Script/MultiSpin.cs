@@ -106,12 +106,13 @@ public class MultiSpin : MonoBehaviour
 
             }
         }
+
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if (gameManager.IsGameStart && other.gameObject.tag == "Hand") {
+        if (gameManager.IsGameStart && other.gameObject.tag == "Hand" && !isSpinning && !hasResult) {
 
             if (PhotonNetwork.IsConnected)
                 View.RPC("PhotonSetLid", RpcTarget.AllBuffered);
@@ -284,7 +285,12 @@ public class MultiSpin : MonoBehaviour
 
     }
 
-    public void ResetMultiSpin()
+    public void ResetMultispin()
+    {
+        View.RPC("PhotonResetMultiSpin", RpcTarget.AllBuffered);
+    }
+    [PunRPC]
+    public void PhotonResetMultiSpin()
     {
         Debug.Log("---Reset Spin----");
 
@@ -301,16 +307,16 @@ public class MultiSpin : MonoBehaviour
         lid.transform.localEulerAngles = new Vector3(-165, 0, -90); //close
 
         // reset the test tube's position
-        foreach (TestTube testTube in lockedTestTube)
+        foreach (TestTube testTube in testTubeList)
         {
             Debug.Log("---Reset TestTube---" + testTube.name);
-            testTube.OnReset();
+            testTube.isReset = true;
         }
         //reset the lock's status
-        foreach (MultiSpinTestTubeLock testTubeLock in testTubeLocks) {
+/*        foreach (MultiSpinTestTubeLock testTubeLock in testTubeLocks) {
             Debug.Log("---Reset TestTube Lock---");
             testTubeLock.OnReset();
-        }
+        }*/
 
         correctImage.enabled = false;
 
