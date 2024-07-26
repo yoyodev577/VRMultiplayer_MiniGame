@@ -58,8 +58,10 @@ using Photon.Realtime;
 using ExitGames.Client.Photon;
 using UnityEngine.SceneManagement;
 using UnityEngine.XR.Interaction.Toolkit;
+using Unity.VisualScripting;
 public class SpawnManager : MonoBehaviourPunCallbacks
 {
+    public PhotonView view;
     public Transform spawnPosition;
     public List<Transform> spawnTransforms = new List<Transform>();
 
@@ -70,7 +72,7 @@ public class SpawnManager : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        spawnList.Clear();
+        view = GetComponent<PhotonView>();
 
         if(isTesting)
             SpawnTestingPlayer();
@@ -101,7 +103,8 @@ public class SpawnManager : MonoBehaviourPunCallbacks
 
         int r = Random.Range(0,spawnTransforms.Count);
 
-        PhotonNetwork.Instantiate("TestPhotonPrefab", spawnTransforms[r].localPosition, spawnTransforms[r].localRotation, 0);
+       PhotonNetwork.Instantiate("TestPhotonPrefab", spawnTransforms[r].localPosition, spawnTransforms[r].localRotation, 0);
+ 
     }
     #endregion
 }

@@ -95,6 +95,12 @@ MonoBehaviour:
   - StartEngine
   - HideAllMoes
   - SetStatus
+  - SetColorBlue
+  - SetColor
+  - SetBlueColor
+  - SetOrangeColor
+  - UpdatePlayerLists
+  - UpdateList
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -11,60 +11,29 @@ namespace SyncTest
 {
     public class TestManager : MonoBehaviourPunCallbacks
     {
+        public PhotonView view;
+        public SpawnManager spawnManager;
         public string roomName = "Test";
         public TextMeshProUGUI roomText;
-        [SerializeField] private bool isJoined = false;
 
-        [SerializeField] private List<RoomInfo> currentRoomList;
         // Start is called before the first frame update
         void Start()
         {
-            PhotonNetwork.AutomaticallySyncScene = true;
+            view = GetComponent<PhotonView>();
+            spawnManager = GetComponent<SpawnManager>();
+        }
 
-            if (!PhotonNetwork.IsConnectedAndReady)
+        public void Update()
+        {
+            roomText.text = "Player : " + PhotonNetwork.PlayerList.Length.ToString(); ;
+
+            foreach (Player player in PhotonNetwork.PlayerList)
             {
-                PhotonNetwork.ConnectUsingSettings();
+                roomText.text += "\n" + player.NickName;
+               // print(player.NickName);
             }
-            else
-            {
-                PhotonNetwork.JoinLobby();
-            }
+ 
 
-        }
-
-        private void Update()
-        {
-
-           // roomText.text = "Room :"+ PhotonNetwork.CountOfRooms.ToString();
-        }
-
-        public void CreateRoom() {
-            RoomOptions roomOptions = new RoomOptions();
-            roomOptions.MaxPlayers = 8;
-            PhotonNetwork.CreateRoom(roomName, roomOptions, null);
-            Debug.Log("CreateRoom");
-        }
-
-        public void JoinRoom()
-        {
-            PhotonNetwork.JoinRandomRoom();
-            isJoined = true;
-        }
-
-        public override void OnCreateRoomFailed(short returnCode, string message)
-        {
-            Debug.LogErrorFormat("Room creation failed with error code {0} and error message {1}", returnCode, message);
-        }
-
-        public override void OnJoinedRoom()
-        {
-            PhotonNetwork.LoadLevel("PhotonNetworkTest_Game");
-            Debug.Log("Join Room ");
-        }
-
-        public override void OnJoinRandomFailed(short returnCode, string message)
-        {
-            CreateRoom();
         }
 
     }
