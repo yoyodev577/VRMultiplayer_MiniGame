@@ -55,19 +55,21 @@ public class HandsAnimationController : MonoBehaviour
         if (WhichHand == "Left") {
             animL.SetTrigger("Fist");
 
-            if (obj.ReadValue<float>() - currentPressed_trigger > 0) {
+            if (obj.ReadValue<float>() - currentPressed_trigger > 0)
+            {
 
-                 if (PhotonNetwork.IsConnected)
-                View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered, "trigger", 0.6f);
+                if (PhotonNetwork.IsConnected)
+                    View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered, "trigger", 0.6f);
+                else
+                    PhotonSetFloatL("trigger", 0.6f);
+            }
+            else
+            {
 
-                //PhotonSetFloatL("trigger", 0.6f);
-            } else {
-
-                 if (PhotonNetwork.IsConnected)
-                View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered, "trigger", 0.4f);
-
-
-                //PhotonSetFloatL("trigger", 0.4f);
+                if (PhotonNetwork.IsConnected)
+                    View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered, "trigger", 0.4f);
+                else
+                    PhotonSetFloatL("trigger", 0.4f);
             }
             currentPressed_trigger = obj.ReadValue<float>();
             // animL.SetFloat("grab",obj.ReadValue<float>());
@@ -77,18 +79,16 @@ public class HandsAnimationController : MonoBehaviour
             // RightHandAnimator.SetFloat("grip",obj.ReadValue<float>());
             if(obj.ReadValue<float>() - currentPressed_triggerR >0){
 
-                    if (PhotonNetwork.IsConnected)
-                    View.RPC("PhotonSetFloatR", RpcTarget.AllBuffered,"trigger",0.6f);
-
-
-                //PhotonSetFloatR("trigger", 0.6f);
+                if (PhotonNetwork.IsConnected)
+                    View.RPC("PhotonSetFloatR", RpcTarget.AllBuffered, "trigger", 0.6f);
+                else
+                    PhotonSetFloatR("trigger", 0.6f);
             }else{
 
-                    if (PhotonNetwork.IsConnected)
-                    View.RPC("PhotonSetFloatR", RpcTarget.AllBuffered,"trigger",0.4f);
-
-
-                //PhotonSetFloatR("trigger", 0.4f);
+                if (PhotonNetwork.IsConnected)
+                    View.RPC("PhotonSetFloatR", RpcTarget.AllBuffered, "trigger", 0.4f);
+                else
+                    PhotonSetFloatR("trigger", 0.4f);
             }
            // Debug.Log("Right Hand Pressed " + obj.ReadValue<float>());
 
@@ -116,12 +116,18 @@ public class HandsAnimationController : MonoBehaviour
 
             if(obj.ReadValue<float>() - currentPressed >0){
 
-                //if(PhotonNetwork.IsConnected)
-                View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered,"grab",0.6f);
-            }else{
+                if (PhotonNetwork.IsConnected)
+                    View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered, "grab", 0.6f);
+                else
+                    PhotonSetFloatL("grab", 0.6f);
 
-               // if (PhotonNetwork.IsConnected)
+            }
+            else{
+
+                if (PhotonNetwork.IsConnected)
                  View.RPC("PhotonSetFloatL", RpcTarget.AllBuffered,"grab",0.4f);
+                else
+                    PhotonSetFloatL("grab", 0.4f);
             }
             currentPressed=obj.ReadValue<float>();
             
@@ -130,12 +136,17 @@ public class HandsAnimationController : MonoBehaviour
             if(obj.ReadValue<float>() - currentPressedR >0){
 
 
-                //if (PhotonNetwork.IsConnected)
+                if (PhotonNetwork.IsConnected)
                     View.RPC("PhotonSetFloatR", RpcTarget.AllBuffered,"grab",0.6f);
-            }else{
+                else
+                    PhotonSetFloatR("grab", 0.6f);
+            }
+            else{
 
-                //if (PhotonNetwork.IsConnected)
+                if (PhotonNetwork.IsConnected)
                     View.RPC("PhotonSetFloatR", RpcTarget.AllBuffered,"grab",0.4f);
+                else
+                    PhotonSetFloatR("grab", 0.4f);
             }
             currentPressedR=obj.ReadValue<float>();
         }

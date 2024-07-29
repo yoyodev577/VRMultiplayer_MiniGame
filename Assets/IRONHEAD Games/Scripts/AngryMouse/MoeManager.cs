@@ -4,6 +4,8 @@ using UnityEngine;
 using Photon.Pun;
 using System.Linq;
 using AngryMouse;
+using HTC.UnityPlugin.Vive;
+using TMPro;
 
 public class MoeManager : MonoBehaviour
 {
@@ -15,8 +17,12 @@ public class MoeManager : MonoBehaviour
     public string[] answerList = { "A", "B", "C", "D" };
     public bool isEnabled = false;
     public int maxMoes = 4;
-
+    public int score = 0;
+    public bool isScored = false;
     public bool isCoroutine = false;
+    public bool isResetScoreCoroutine = false;
+    public TextMeshProUGUI scoreText;
+    public int playerNum = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +41,11 @@ public class MoeManager : MonoBehaviour
 
     }
 
+    public void PhotonSetEngine(bool _isEnabled) {
+        view.RPC("SetEngine", RpcTarget.AllBuffered, _isEnabled);
+    }
+
+    [PunRPC]
     public void SetEngine(bool _isEnabled) {
 
         isEnabled = _isEnabled;
@@ -47,8 +58,9 @@ public class MoeManager : MonoBehaviour
         {
             StopAllCoroutines();
         }
-
     }
+
+
     [PunRPC]
     public void RandomPickMoes()
     {
@@ -62,7 +74,7 @@ public class MoeManager : MonoBehaviour
             int r = Random.Range(0, temp.Count);
             if (!popList.Contains(temp[r]))
             {
-                Debug.Log("Pop " + temp[r].name);
+               // Debug.Log("Pop " + temp[r].name);
                 popList.Add(temp[r]);
                 temp.RemoveAt(r);
             }
@@ -80,7 +92,6 @@ public class MoeManager : MonoBehaviour
             popList[i].SetCurrentAns(answerList[i]);
             popList[i].SetPop(true);
         }
-
     }
 
     [PunRPC]
@@ -94,23 +105,52 @@ public class MoeManager : MonoBehaviour
     
     }
 
+    public void CheckScore(string _answer) {
+        view.RPC("PhotonScore", RpcTarget.AllBuffered,_answer);
+    }
+
+    [PunRPC]
+    public void PhotonScore(string _answer) {
+        if (manager.CheckAnswer(_answer))
+        {
+            if (!isScored)
+            {
+                score++;
+                isScored = true;
+                if(!isResetScoreCoroutine)
+                {
+                    StartCoroutine(ResetScoreCoroutine());
+                }
+            }
+            scoreText.text = "Score: " + score.ToString();
+        }
+        
+    }
+
     public IEnumerator MoeCoroutine() {
         isCoroutine = true;
         while (isEnabled)
         {
-            RandomPickMoes();
-            //view.RPC("RandomPickMoes", RpcTarget.AllBuffered);
+            //RandomPickMoes();
+            view.RPC("RandomPickMoes", RpcTarget.AllBuffered);
             yield return new WaitForFixedUpdate();
 
-            PopMoes();
-            //view.RPC("PopMoes", RpcTarget.AllBuffered);
+            //PopMoes();
+            view.RPC("PopMoes", RpcTarget.AllBuffered);
 
             yield return new WaitForSeconds(3);
-            HideAllMoes();
-            //view.RPC("HideAllMoes", RpcTarget.AllBuffered);
+            //HideAllMoes();
+            view.RPC("HideAllMoes", RpcTarget.AllBuffered);
         }
         isCoroutine = false;
 
+    }
+
+    IEnumerator ResetScoreCoroutine() {
+        isResetScoreCoroutine = true;
+        yield return new WaitForFixedUpdate();
+        isScored = false;
+        isResetScoreCoroutine = false;
     }
 
 }

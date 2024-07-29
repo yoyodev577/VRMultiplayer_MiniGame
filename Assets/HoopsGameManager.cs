@@ -22,7 +22,7 @@ public enum GameState
 public class HoopsGameManager : MonoBehaviour
 {
     public static HoopsGameManager _instance;
-    private PhotonView _view;
+    private PhotonView view;
     [SerializeField] private List<HoopsMachine> _machines;
     [SerializeField] private List<PlayerButton> _playerButtons;
 
@@ -66,7 +66,7 @@ public class HoopsGameManager : MonoBehaviour
     void Start()
     {
         _instance = this;
-        _view = GetComponent<PhotonView>();
+        view = GetComponent<PhotonView>();
         _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
        _audioSource = GetComponent<AudioSource>();
         InitQuestions();
@@ -78,7 +78,7 @@ public class HoopsGameManager : MonoBehaviour
     void Update()
     {
         if (PhotonNetwork.IsConnected)
-            _view.RPC("PhotonUpdate", RpcTarget.AllBuffered);
+            view.RPC("PhotonUpdate", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
@@ -104,7 +104,7 @@ public class HoopsGameManager : MonoBehaviour
     }
     void InitGame() {
         _gameState = GameState.Default;
-        UpdateBoardText("Press Ready to start the game.");
+        view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
     }
 
 
@@ -137,9 +137,7 @@ public class HoopsGameManager : MonoBehaviour
     //Function for Ready Button
     public void HoopsPlayerReady() {
         if (PhotonNetwork.IsConnected)
-            _view.RPC("PhotonHoopsPlayerReady", RpcTarget.AllBuffered);
-
-        //PhotonHoopsPlayerReady();
+            view.RPC("PhotonHoopsPlayerReady", RpcTarget.AllBuffered);
     }
 
     [PunRPC]
@@ -159,9 +157,8 @@ public class HoopsGameManager : MonoBehaviour
     public void HoopsReadyToStart()
     {
         if (PhotonNetwork.IsConnected)
-            _view.RPC("PhotonHoopsReadyToStart", RpcTarget.AllBuffered);
+            view.RPC("PhotonHoopsReadyToStart", RpcTarget.AllBuffered);
 
-        //PhotonHoopsReadyToStart();
     }
 
     [PunRPC]
@@ -181,7 +178,7 @@ public class HoopsGameManager : MonoBehaviour
     public void HoopsStart()
     {
         if (PhotonNetwork.IsConnected)
-            _view.RPC("PhotonHoopsStart", RpcTarget.AllBuffered);
+            view.RPC("PhotonHoopsStart", RpcTarget.AllBuffered);
 
     }
 
@@ -199,7 +196,7 @@ public class HoopsGameManager : MonoBehaviour
     public void HoopsReset()
     {
         if(PhotonNetwork.IsConnected)
-        _view.RPC("PhotonHoopsReset", RpcTarget.AllBuffered);
+        view.RPC("PhotonHoopsReset", RpcTarget.AllBuffered);
 
     }
 
@@ -227,14 +224,14 @@ public class HoopsGameManager : MonoBehaviour
         if (!IsResetCoroutine)
             StartCoroutine(ResetCoroutine());
 
-        UpdateBoardText("Press Ready to start the game.");
+        view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
     }
 
 
     public void StartTimer() {
 
         if (PhotonNetwork.IsConnected)
-            _view.RPC("PhotonStartTimer", RpcTarget.AllBuffered);
+            view.RPC("PhotonStartTimer", RpcTarget.AllBuffered);
 
     }
 
@@ -248,29 +245,34 @@ public class HoopsGameManager : MonoBehaviour
 
     private void ShowResult()
     {
+        string text = "";
         isPlayer1Win = _machines[0].GetScore() > _machines[1].GetScore() ? true : false;
 
-        questionBoard.text = "The game has ended.\n" +
+        text = "The game has ended.\n" +
                         "Player 1 Score:" + _machines[0].GetScore() +"\n" +
                         "Player 2 Score: " + _machines[1].GetScore() +"\n";
 
 
         if (isPlayer1Win)
-            questionBoard.text += "Player 1 Wins";
+            text += "Player 1 Wins";
         else
-            questionBoard.text += "Player 2 Wins";
+            text += "Player 2 Wins";
+
+        view.RPC("UpdateBoardText", RpcTarget.AllBuffered,text);
 
     }
 
-    private void UpdateBoardText(string text) { 
+    [PunRPC]
+    public void UpdateBoardText(string text) { 
         questionBoard.text= text;
     
     }
     public void UpdateQuestionBoard(int playerNumber)
     {
-        questionBoard.text = "Player " + playerNumber + 
+        String text = "Player " + playerNumber +
             " has got it correct. The correct answer is " + questions[currentIndex].answerText;
 
+        view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
         StartCoroutine(SetQuestionBoardCoroutine());
     }
 
@@ -300,12 +302,12 @@ public class HoopsGameManager : MonoBehaviour
 
         IsReadyTimerCoroutine = true;
         currentSec = seconds;
-        UpdateBoardText(currentSec.ToString());
+        view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
 
         while (currentSec >= 0)
         {
             _sfxSource.PlayOneShot(_audioClip);
-            UpdateBoardText(currentSec.ToString());
+            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
             yield return new WaitForSeconds(1f);
             currentSec -= 1;
         }
