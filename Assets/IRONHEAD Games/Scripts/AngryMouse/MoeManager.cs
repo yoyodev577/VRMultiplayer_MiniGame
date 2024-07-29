@@ -27,6 +27,7 @@ public class MoeManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        manager = FindObjectOfType<GameManager>();
         view = GetComponent<PhotonView>();
         HideAllMoes();
     }
@@ -111,8 +112,10 @@ public class MoeManager : MonoBehaviour
 
     [PunRPC]
     public void PhotonScore(string _answer) {
-        if (manager.CheckAnswer(_answer))
+        if (manager.CheckAnswer(_answer) && !manager.IsCorrect)
         {
+            // find the correct answer, and start to the next question.
+            manager.IsCorrect = true;
             if (!isScored)
             {
                 score++;

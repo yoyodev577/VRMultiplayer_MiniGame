@@ -31,7 +31,9 @@ namespace AngryMouse
 
         public float currentSec = 0f;
         public float timerSec = 3f;
+
         public bool IsReadyTimerCoroutine = false;
+        public bool IsQuestionCoroutine = false;
 
         public TMP_Text board;
         private AudioSource _audioSource;
@@ -58,9 +60,11 @@ namespace AngryMouse
         {
             if (IsCorrect)
             {
-                currentIndex++;
-                StartCoroutine(SetQuestionBoardCoroutine());
-                IsCorrect = false;
+                if (!IsQuestionCoroutine)
+                {
+                    StartCoroutine(SetQuestionBoardCoroutine());
+                    IsCorrect = false;
+                }
             }
 
             // when players get ready, the timer starts.
@@ -157,6 +161,7 @@ namespace AngryMouse
             }
         }
 
+
         public void StartGame()
         {
             if (PhotonNetwork.IsConnected)
@@ -234,7 +239,7 @@ namespace AngryMouse
                 text = "The game has ended.\nPlayer :" + moeManagers[1].playerNum + " wins";
             }
             else {
-                text = "The game has ended. It is a deuce";
+                text = "The game has ended";
             }
 
             view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
@@ -243,8 +248,8 @@ namespace AngryMouse
 
         IEnumerator SetQuestionBoardCoroutine()
         {
-            yield return new WaitForSeconds(2f);
-            currentIndex += 1;
+            IsQuestionCoroutine =true;
+            yield return new WaitForSeconds(3f);        
             if (currentIndex > questions.Count)
             {
                 IsGameEnd = true;
@@ -252,8 +257,10 @@ namespace AngryMouse
             }
             else
             {
+                currentIndex += 1;
                 ShowQuestion();
             }
+            IsQuestionCoroutine = false;
         }
 
         IEnumerator SetReadyTimerCoroutine(float seconds)
