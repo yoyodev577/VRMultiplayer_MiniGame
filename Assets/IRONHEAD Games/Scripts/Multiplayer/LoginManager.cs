@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class LoginManager : MonoBehaviourPunCallbacks
 {
+    public bool isTesting = false;
     public TMP_InputField PlayerName_InputField;
     
 
@@ -42,7 +44,10 @@ public class LoginManager : MonoBehaviourPunCallbacks
         Debug.Log("Connected to the Master Server with player name: "+PhotonNetwork.NickName);
         DebugUIManager.instance.FinishDebugUIMessage();
 
-        SceneLoader.instance.LoadScene("HomeScene", false);
+        if (!isTesting)
+            SceneLoader.instance.LoadScene("HomeScene", false);
+        else
+            SceneManager.LoadSceneAsync(1);
        
         // if (MultiplayerVRConstants.USE_FINALIK)
         // {

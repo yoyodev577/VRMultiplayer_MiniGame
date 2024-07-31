@@ -13,7 +13,7 @@ public class PlayerBaseInfo : MonoBehaviour
     void Start()
     {
         nameStr = "auto";
-
+        photonView = GetComponent<PhotonView>();
         if (photonView != null && photonView.Owner.NickName != null)
             nameStr = photonView.Owner.NickName;
 

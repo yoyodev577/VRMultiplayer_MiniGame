@@ -9,14 +9,24 @@ public class SceneButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if(this.gameObject.name == "MiniGame1"){
+        if (this.gameObject.name == "MiniGame1")
+        {
             scene_number = 1;
-        }else if(this.gameObject.name == "MiniGame2"){
+        }
+        else if (this.gameObject.name == "MiniGame2")
+        {
             scene_number = 2;
-        }else if (this.gameObject.name == "MiniGame3"){
+        }
+        else if (this.gameObject.name == "MiniGame3")
+        {
             scene_number = 3;
-        }else if(this.gameObject.name == "MiniGame4"){
+        }
+        else if (this.gameObject.name == "MiniGame4")
+        {
             scene_number = 4;
+        }
+        else if (this.gameObject.name == "MiniGame5") {
+            scene_number = 5;
         }
         click = 0;
     }

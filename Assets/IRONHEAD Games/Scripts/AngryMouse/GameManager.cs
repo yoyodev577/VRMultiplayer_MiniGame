@@ -10,6 +10,7 @@ namespace AngryMouse
 {
     public class GameManager : MonoBehaviour
     {
+        public static GameManager instance;
         public PhotonView view;
         public List<MoeManager> moeManagers;
 
@@ -24,27 +25,64 @@ namespace AngryMouse
         public bool IsReadyToStart = false;
         public bool IsGameStart = false;
         public bool IsGameEnd = false;
+        public bool IsCorrect = false;
         public bool IsReset = false;
         public bool IsResetCoroutine = false;
 
         public float currentSec = 0f;
         public float timerSec = 3f;
+
         public bool IsReadyTimerCoroutine = false;
+        public bool IsQuestionCoroutine = false;
 
-        public TMP_Text questionBoard;
-
+        public TMP_Text board;
+        private AudioSource _audioSource;
+        [SerializeField] private AudioClip _audioClip;
 
         // Start is called before the first frame update
         void Start()
         {
+            instance = this;
             view = GetComponent<PhotonView>();
+            _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
             moeManagers = FindObjectsOfType<MoeManager>().ToList();
+            _audioSource = GetComponent<AudioSource>();
             InitQuestions();
+            Init();
+        }
+        void Init() {
+            if (PhotonNetwork.IsConnected)
+                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
         }
 
         // Update is called once per frame
         void Update()
         {
+            if (IsCorrect)
+            {
+                if (!IsQuestionCoroutine)
+                {
+                    StartCoroutine(SetQuestionBoardCoroutine());
+                    IsCorrect = false;
+                }
+            }
+
+            // when players get ready, the timer starts.
+            if (isPlayersReady && IsReadyToStart && !IsReadyTimerCoroutine)
+            {
+                StartCoroutine(SetReadyTimerCoroutine(timerSec));
+            }
+            // start the game after the count down.
+            if (IsGameStart && !IsGameEnd)
+            {
+                StartGame();
+            }
+
+            //end the game when it is the last question.
+            if (IsGameStart && IsGameEnd)
+            {
+                EndGame();
+            }
 
         }
 
@@ -75,18 +113,24 @@ namespace AngryMouse
         private void ShowQuestion()
         {
             currentQuestion = questions[currentIndex];
-            questionBoard.text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+            string text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
         }
 
-        public void HoopsPlayerReady()
+        [PunRPC]
+        public void UpdateBoardText(string _text) {
+            board.text = _text;
+        }
+
+        public void PlayerReady()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonHoopsPlayerReady", RpcTarget.AllBuffered);
+                view.RPC("PhotonPlayerReady", RpcTarget.AllBuffered);
 
         }
 
         [PunRPC]
-        private void PhotonHoopsPlayerReady()
+        public void PhotonPlayerReady()
         {
             Debug.Log("---Waiting For Players Ready---");
             foreach (PlayerButton button in _playerButtons)
@@ -97,16 +141,15 @@ namespace AngryMouse
                 }
             }
         }
-        public void HoopsReadyToStart()
+        public void ReadyToStart()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonHoopsReadyToStart", RpcTarget.AllBuffered);
+                view.RPC("PhotonReadyToStart", RpcTarget.AllBuffered);
 
-            //PhotonHoopsReadyToStart();
         }
 
         [PunRPC]
-        private void PhotonHoopsReadyToStart()
+        public void PhotonReadyToStart()
         {
             Debug.Log("---Game Ready To Start---");
             if (isPlayersReady && !IsReadyToStart)
@@ -118,36 +161,139 @@ namespace AngryMouse
             }
         }
 
-        public void HoopsStart()
+
+        public void StartGame()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonHoopsStart", RpcTarget.AllBuffered);
+                view.RPC("PhotonStartGame", RpcTarget.AllBuffered);
 
         }
 
         [PunRPC]
-        private void PhotonHoopsStart()
+        public void PhotonStartGame()
         {
-            foreach(MoeManager m in  moeManagers)
+            Debug.Log("---Game Start---");
+            foreach (MoeManager m in moeManagers)
             {
-                m.SetEngine(true);
+                m.PhotonSetEngine(true);
             }
+            answer = currentQuestion.answerText;
+            ShowQuestion();
+            
+        }
+
+
+        public void EndGame() {
+            if (PhotonNetwork.IsConnected)
+                view.RPC("PhotonEndGame", RpcTarget.AllBuffered);
+        }
+
+        [PunRPC]
+        public void PhotonEndGame() {
+            Debug.Log("---Game End---");
+            foreach (MoeManager m in moeManagers)
+            {
+                m.PhotonSetEngine(false);
+            }
+        }
+
+        public void ResetGame()
+        {
+            if (PhotonNetwork.IsConnected)
+                view.RPC("PhotonResetGame", RpcTarget.AllBuffered);
+        }
+
+        [PunRPC]
+        public void PhotonResetGame() {
+            Debug.Log("---Game Reset---");
+            currentIndex = 0;
+            currentQuestion = null;
+            isPlayersReady = false;
+            IsReadyToStart = false;
+            IsGameStart = false;
+            IsGameEnd = false;
+            IsReset = true;
+
+
+            if (!IsResetCoroutine)
+                StartCoroutine(ResetCoroutine());
+
+            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
+        }
+        public bool CheckAnswer(string _text) { 
+            if(_text ==answer)
+                return true;
+            else
+                return false;
+        }
+
+        public void ShowResult() {
+            string text = "";
+            
+            if (moeManagers[0].score > moeManagers[1].score)
+            {
+                text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
+            }
+            else if (moeManagers[0].score < moeManagers[1].score)
+            {
+                text = "The game has ended.\nPlayer :" + moeManagers[1].playerNum + " wins";
+            }
+            else {
+                text = "The game has ended";
+            }
+
+            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
         }
 
 
         IEnumerator SetQuestionBoardCoroutine()
         {
-            yield return new WaitForSeconds(2f);
-            currentIndex += 1;
+            IsQuestionCoroutine =true;
+            yield return new WaitForSeconds(3f);        
             if (currentIndex > questions.Count)
             {
                 IsGameEnd = true;
-               // ShowResult();
+                ShowResult();
             }
             else
             {
+                currentIndex += 1;
                 ShowQuestion();
             }
+            IsQuestionCoroutine = false;
+        }
+
+        IEnumerator SetReadyTimerCoroutine(float seconds)
+        {
+            IsReadyTimerCoroutine = true;
+            currentSec = seconds;
+            view.RPC("UpdateBoardText",RpcTarget.AllBuffered, currentSec.ToString());
+            while (currentSec >= 0)
+            {
+                _audioSource.PlayOneShot(_audioClip);
+                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
+                yield return new WaitForSeconds(1f);
+                currentSec -= 1;
+
+            }
+
+            if (currentSec <= 0)
+            {
+                _audioSource.Stop();
+                IsReadyToStart = false;
+                IsGameStart = true;
+                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Game Starts");
+            }
+            yield return null;
+            IsReadyTimerCoroutine = false;
+        }
+
+        IEnumerator ResetCoroutine()
+        {
+            IsResetCoroutine = true;
+            yield return new WaitForSeconds(2f);
+            IsReset = false;
+            IsResetCoroutine = false;
         }
     }
 }

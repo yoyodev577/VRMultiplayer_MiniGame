@@ -94,6 +94,23 @@ MonoBehaviour:
   - RandomPickMoes
   - StartEngine
   - HideAllMoes
+  - SetStatus
+  - SetColorBlue
+  - SetColor
+  - SetBlueColor
+  - SetOrangeColor
+  - UpdatePlayerLists
+  - UpdateList
+  - PhotonResetPosition
+  - PhotonResetMultiSpin
+  - AddScore
+  - PhotonsReadyToStart
+  - SetEngine
+  - Hide
+  - Pop
+  - UpdateBoardText
+  - CheckScore
+  - PhotonScore
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
