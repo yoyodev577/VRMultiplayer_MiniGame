@@ -24,8 +24,14 @@ public class Hammer : MonoBehaviour
 
     }
 
+    public void ResetPos()
+    {
+        if (PhotonNetwork.IsConnected)
+            view.RPC("PhotonResetPosition", RpcTarget.All);
+    }
+
     [PunRPC]
-    public void ResetPosition()
+    public void PhotonResetPosition()
     {
         transform.position = startPos;
         transform.rotation = startRot;
@@ -35,10 +41,8 @@ public class Hammer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            //ResetPosition();
-            if (PhotonNetwork.IsConnected)
-               view.RPC("ResetPosition", RpcTarget.All);
-
+            ResetPos();
+            //PhotonResetPosition();
         }
     }
 }

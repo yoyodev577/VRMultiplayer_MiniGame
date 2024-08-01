@@ -22,6 +22,7 @@ namespace AngryMouse
         public string answer = "";
 
         [SerializeField] private List<PlayerButton> _playerButtons;
+        [SerializeField] private TableButton _resetButton;
         public bool isPlayersReady = false;
         public bool IsReadyToStart = false;
         public bool IsGameStart = false;
@@ -72,7 +73,7 @@ namespace AngryMouse
             }
 
             //end the game when it is the last question.
-            if (IsGameStart && !IsGameEnd)
+            if (IsGameStart && IsGameEnd && !IsReset)
             {
                 EndGame();
             }
@@ -108,6 +109,7 @@ namespace AngryMouse
             string text = "";
             if(currentIndex < questions.Count)
             {
+                Debug.Log("--Question:" + currentIndex);
                 currentQuestion = questions[currentIndex];
 
                 answer = currentQuestion.answerText;
@@ -195,12 +197,17 @@ namespace AngryMouse
         public void PhotonEndGame() {
             Debug.Log("---Game End---");
 
-            ShowResult();
-
             foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(false);
             }
+
+            if (IsQuestionCoroutine)
+            {
+                StopAllCoroutines();
+            }
+            ShowResult();
+
         }
 
         public void ResetGame()
@@ -212,12 +219,13 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
-
+            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
+            IsReset = true;
             foreach (MoeManager m in moeManagers)
             {
+                Debug.Log("---Reset moes---");
                 m.ResetMachine();
             }
-
 
             currentIndex = 0;
             currentQuestion = null;
@@ -227,14 +235,11 @@ namespace AngryMouse
             IsCorrect = false;
             IsGameStart = false;
             IsGameEnd = false;
-            IsReset = true;
-
-
+            IsQuestionCoroutine = false;
+            IsReadyTimerCoroutine = false; 
 
             if (!IsResetCoroutine)
                 StartCoroutine(ResetCoroutine());
-
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
         }
         public bool CheckAnswer(string _text) { 
             if(_text ==answer)
@@ -324,6 +329,7 @@ namespace AngryMouse
         {
             IsResetCoroutine = true;
             yield return new WaitForSeconds(2f);
+            _resetButton.ResetButton();
             IsReset = false;
             IsResetCoroutine = false;
         }

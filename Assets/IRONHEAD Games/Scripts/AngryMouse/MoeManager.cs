@@ -11,6 +11,7 @@ public class MoeManager : MonoBehaviour
 {
     public PhotonView view;
     public GameManager manager;
+    public Hammer hammer;
     public List<Moe> moes;
     public List<Moe> temp;
     public List<Moe> popList = new List<Moe>();
@@ -28,6 +29,7 @@ public class MoeManager : MonoBehaviour
     void Start()
     {
         manager = FindObjectOfType<GameManager>();
+        hammer = GetComponentInChildren<Hammer>();
         view = GetComponent<PhotonView>();
         view.RPC("HideAllMoes", RpcTarget.AllBuffered);
     }
@@ -120,7 +122,7 @@ public class MoeManager : MonoBehaviour
             manager.IsCorrect = true;
        /*     if (!isScored)
             {*/
-                score++;
+                this.score++;
                // isScored = true;
 /*                if(!isResetScoreCoroutine)
                 {
@@ -140,11 +142,13 @@ public class MoeManager : MonoBehaviour
 
     [PunRPC]
     public void PhotonResetMachine() {
+        hammer.ResetPos();
         isEnabled = false;
         isScored = false;
         isResetScoreCoroutine = false;
         score = 0;
-        view.RPC("RandomPickMoes", RpcTarget.AllBuffered);
+        scoreText.text = "Score: " + score.ToString();
+        view.RPC("HideAllMoes", RpcTarget.AllBuffered);
     }
 
     public IEnumerator MoeCoroutine() {
