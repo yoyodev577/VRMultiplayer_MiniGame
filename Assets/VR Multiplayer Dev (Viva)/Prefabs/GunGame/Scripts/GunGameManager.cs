@@ -148,7 +148,7 @@ public class GunGameManager : MonoBehaviour
     void InitGame()
     {
         _gameState = GameState.Default;
-        UpdateBoardText("Press Ready to start the game.");
+        View.RPC("PhotonUpdate", RpcTarget.AllBuffered, "Press Ready to start the game.");
     }
 
     void InitQuestions()
@@ -307,7 +307,8 @@ public class GunGameManager : MonoBehaviour
             StartCoroutine(SetReadyTimerCoroutine(timerSec));
     }
 
-    private void UpdateBoardText(string text)
+    [PunRPC]
+    public void UpdateBoardText(string text)
     {
         uiBoard.text = text;
 
@@ -349,7 +350,7 @@ public class GunGameManager : MonoBehaviour
 
 
         }
-        UpdateBoardText(resultText);
+        View.RPC("PhotonUpdate", RpcTarget.AllBuffered, resultText);
     }
 
 
@@ -376,7 +377,7 @@ public class GunGameManager : MonoBehaviour
             Debug.Log("---Start Question---" + currentIndex);
 
             currentQuestion = questions[currentIndex];
-            UpdateBoardText(currentQuestion.questionText);
+            View.RPC("PhotonUpdate", RpcTarget.AllBuffered, currentQuestion.questionText);
 
             yield return new WaitForSeconds(5);
         }
@@ -388,12 +389,12 @@ public class GunGameManager : MonoBehaviour
     {
         IsReadyTimerCoroutine = true;
         currentSec = seconds;
-        UpdateBoardText(currentSec.ToString());
+        View.RPC("PhotonUpdate", RpcTarget.AllBuffered, currentSec.ToString());
 
         while (currentSec >= 0)
         {
             audioSource.PlayOneShot(countSound);
-            UpdateBoardText(currentSec.ToString());
+            View.RPC("PhotonUpdate", RpcTarget.AllBuffered, currentSec.ToString());
             yield return new WaitForSeconds(1f);
             currentSec -= 1;
         }
@@ -403,7 +404,7 @@ public class GunGameManager : MonoBehaviour
             audioSource.Stop();
             isReadyToStart = false;
             isGameStart = true;
-            UpdateBoardText("Game Starts");
+            View.RPC("PhotonUpdate", RpcTarget.AllBuffered, "Game Starts");
         }
        
         IsReadyTimerCoroutine = false;

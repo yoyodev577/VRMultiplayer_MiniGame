@@ -78,7 +78,7 @@ public class MultispinGameManager : MonoBehaviour
     void InitGame() {
 
         _gameState = GameState.Default;
-        UpdateBoardText("Press Ready to start the game.");
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
     }
 
     public void WaitForPlayersReady()
@@ -196,12 +196,11 @@ public class MultispinGameManager : MonoBehaviour
             text = "The game has ended.Both players lose :(!";
         }
 
-
-        UpdateBoardText(text);
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered,text);
     }
 
-
-    private void UpdateBoardText(string text)
+    [PunRPC]
+    public void UpdateBoardText(string text)
     {
         uiBoard.text = text;
 
@@ -211,11 +210,11 @@ public class MultispinGameManager : MonoBehaviour
     {
         IsReadyTimerCoroutine = true;
         currentSec = seconds;
-        UpdateBoardText(currentSec.ToString());
+        _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
         while (currentSec >= 0)
         {
             _audioSource.PlayOneShot(_audioClip);
-            UpdateBoardText(currentSec.ToString());
+            _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
             yield return new WaitForSeconds(1f);
             currentSec -= 1;
 
@@ -226,7 +225,7 @@ public class MultispinGameManager : MonoBehaviour
             _audioSource.Stop();
             IsReadyToStart = false;
             IsGameStart = true;
-            UpdateBoardText("Game Starts");
+            _view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Game Starts");
         }
         yield return null;
         IsReadyTimerCoroutine = false;

@@ -72,7 +72,7 @@ namespace AngryMouse
                 StartGame();
             }
 
-            //end the game when it is the last question.
+            //end the game
             if (IsGameStart && IsGameEnd && !IsReset)
             {
                 EndGame();

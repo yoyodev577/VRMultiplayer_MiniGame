@@ -25,6 +25,7 @@ public class HoopsGameManager : MonoBehaviour
     private PhotonView view;
     [SerializeField] private List<HoopsMachine> _machines;
     [SerializeField] private List<PlayerButton> _playerButtons;
+    [SerializeField] private TableButton _resetButton;
 
     //Questions
     public List<Question> questions;
@@ -278,8 +279,12 @@ public class HoopsGameManager : MonoBehaviour
 
     private void ShowQuestion()
     {
+        String text = "";
         currentQuestion = questions[currentIndex];
-        questionBoard.text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+        
+        text= "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+
+        view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
     }
 
     IEnumerator SetQuestionBoardCoroutine()
@@ -317,6 +322,7 @@ public class HoopsGameManager : MonoBehaviour
             _sfxSource.Stop();
             IsReadyToStart = false;
             IsGameStart = true;
+            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Game Starts");
         }
         yield return null;
         IsReadyTimerCoroutine = false;
@@ -326,6 +332,7 @@ public class HoopsGameManager : MonoBehaviour
     IEnumerator ResetCoroutine() {
         IsResetCoroutine = true;
         yield return new WaitForSeconds(2f);
+        //_resetButton.ResetButton();
         IsReset = false;
         IsResetCoroutine = false;
     }

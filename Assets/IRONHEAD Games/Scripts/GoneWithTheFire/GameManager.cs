@@ -159,8 +159,8 @@ namespace GoneWithTheFire
             boardPanel.SetActive(false);
         }
 
-
-        void UpdateBoardText(string txt)
+        [PunRPC]
+        public void UpdateBoardText(string txt)
         {
             boardText.text = txt;
         }
@@ -179,12 +179,13 @@ namespace GoneWithTheFire
         {
             isReadyTimerCoroutine = true;
             currentSec = seconds;
-            UpdateBoardText(currentSec.ToString());
+            view.RPC("PhotonResetGame", RpcTarget.AllBuffered,currentSec.ToString());
+
 
             while (currentSec >= 0)
             {
                 sfxSource.PlayOneShot(countDownClip);
-                UpdateBoardText(currentSec.ToString());
+                view.RPC("PhotonResetGame", RpcTarget.AllBuffered, currentSec.ToString());
                 yield return new WaitForSeconds(1f);
                 currentSec -= 1;
             }
@@ -194,7 +195,7 @@ namespace GoneWithTheFire
                 sfxSource.Stop();
                 isReadyToStart = true;
                 isGameStart = true;
-                UpdateBoardText("Game Starts");
+                view.RPC("PhotonResetGame", RpcTarget.AllBuffered, "Game Starts");
             }
 
             isReadyTimerCoroutine = false;

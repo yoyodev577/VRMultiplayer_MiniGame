@@ -86,14 +86,17 @@ public class TableButton : MonoBehaviour
     #endregion
 
     // recording the action of pressing button within 0.5 seconds
-    IEnumerator ButtonCoroutine() {
+    public IEnumerator ButtonCoroutine() {
         IsButtonCoroutine = true;
         if (GetValue() + threshold >= 1f) {
             isPressed = !isPressed;
             onPressed.Invoke();
         }
+
+        _view.RPC("SyncPressState", RpcTarget.All, isPressed);
+
         if (PhotonNetwork.IsConnected)
-            _view.RPC("FlashButton", RpcTarget.AllBuffered, isPressed);
+            _view.RPC("FlashButton", RpcTarget.All, isPressed);
 
        // FlashButton(isPressed);
 
@@ -125,13 +128,17 @@ public class TableButton : MonoBehaviour
         else
             buttonRenderer.material = buttonMaterials[0];
     }
+    [PunRPC]
+    public void SyncPressState(bool _state) {
+        isPressed = _state;
+    }
 
     public void ResetButton()
     {
         isPressed = false;
         IsButtonCoroutine = false;
         if (PhotonNetwork.IsConnected)
-            _view.RPC("FlashButton", RpcTarget.AllBuffered, isPressed);
+            _view.RPC("FlashButton", RpcTarget.All, isPressed);
 
     }
 
