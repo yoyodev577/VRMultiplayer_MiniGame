@@ -35,7 +35,7 @@ public class Hammer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            ResetPosition();
+            //ResetPosition();
             if (PhotonNetwork.IsConnected)
                view.RPC("ResetPosition", RpcTarget.All);
 

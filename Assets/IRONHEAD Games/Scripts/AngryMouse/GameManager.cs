@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using System.Linq;
 using HTC.UnityPlugin.Vive.VIUExample;
+using Unity.Collections.LowLevel.Unsafe;
 
 namespace AngryMouse
 {
@@ -25,6 +26,7 @@ namespace AngryMouse
         public bool IsReadyToStart = false;
         public bool IsGameStart = false;
         public bool IsGameEnd = false;
+        public bool canScore = false;
         public bool IsCorrect = false;
         public bool IsReset = false;
         public bool IsResetCoroutine = false;
@@ -58,15 +60,6 @@ namespace AngryMouse
         // Update is called once per frame
         void Update()
         {
-            if (IsCorrect)
-            {
-                if (!IsQuestionCoroutine)
-                {
-                    StartCoroutine(SetQuestionBoardCoroutine());
-                    IsCorrect = false;
-                }
-            }
-
             // when players get ready, the timer starts.
             if (isPlayersReady && IsReadyToStart && !IsReadyTimerCoroutine)
             {
@@ -79,7 +72,7 @@ namespace AngryMouse
             }
 
             //end the game when it is the last question.
-            if (IsGameStart && IsGameEnd)
+            if (IsGameStart && !IsGameEnd)
             {
                 EndGame();
             }
@@ -110,10 +103,17 @@ namespace AngryMouse
                     , "D"));
         }
 
-        private void ShowQuestion()
+        private void SetQuestion()
         {
-            currentQuestion = questions[currentIndex];
-            string text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+            string text = "";
+            if(currentIndex < questions.Count)
+            {
+                currentQuestion = questions[currentIndex];
+
+                answer = currentQuestion.answerText;
+                text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+            }
+           
             view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
         }
 
@@ -172,14 +172,17 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonStartGame()
         {
+            IsGameStart = true;
             Debug.Log("---Game Start---");
             foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(true);
             }
-            answer = currentQuestion.answerText;
-            ShowQuestion();
-            
+            if (!IsQuestionCoroutine)
+            {
+                StartCoroutine(SetQuestionBoardCoroutine());
+            }
+
         }
 
 
@@ -191,6 +194,9 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonEndGame() {
             Debug.Log("---Game End---");
+
+            ShowResult();
+
             foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(false);
@@ -206,13 +212,23 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
+
+            foreach (MoeManager m in moeManagers)
+            {
+                m.ResetMachine();
+            }
+
+
             currentIndex = 0;
             currentQuestion = null;
             isPlayersReady = false;
             IsReadyToStart = false;
+            canScore = false;
+            IsCorrect = false;
             IsGameStart = false;
             IsGameEnd = false;
             IsReset = true;
+
 
 
             if (!IsResetCoroutine)
@@ -229,7 +245,8 @@ namespace AngryMouse
 
         public void ShowResult() {
             string text = "";
-            
+
+            Debug.Log("---Show game result---");
             if (moeManagers[0].score > moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
@@ -249,16 +266,31 @@ namespace AngryMouse
         IEnumerator SetQuestionBoardCoroutine()
         {
             IsQuestionCoroutine =true;
-            yield return new WaitForSeconds(3f);        
-            if (currentIndex > questions.Count)
+            currentIndex = 0;
+            canScore = true;
+            while (IsGameStart)
             {
-                IsGameEnd = true;
-                ShowResult();
-            }
-            else
-            {
-                currentIndex += 1;
-                ShowQuestion();
+                if (IsCorrect) {
+                    canScore = false;
+                    currentIndex++;
+
+                    if (currentIndex >= questions.Count)
+                    {
+                        IsGameEnd = true;
+                    }
+
+/*                    foreach (MoeManager m in moeManagers)
+                    {
+                        m.isScored = false;
+                    }*/
+                    IsCorrect = false;
+                }
+                //if correct answer is found
+                yield return new WaitForSeconds(1);
+                SetQuestion();
+                canScore = true;
+
+
             }
             IsQuestionCoroutine = false;
         }
