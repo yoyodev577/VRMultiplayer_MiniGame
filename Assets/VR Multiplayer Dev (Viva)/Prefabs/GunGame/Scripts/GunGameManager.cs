@@ -95,7 +95,7 @@ public class GunGameManager : MonoBehaviour
     void Update()
     {
         if(PhotonNetwork.IsConnected)
-        View.RPC("PhotonUpdate", RpcTarget.AllBuffered);
+        View.RPC("PhotonUpdate", RpcTarget.All);
     }
 
     [PunRPC]
@@ -148,7 +148,7 @@ public class GunGameManager : MonoBehaviour
     void InitGame()
     {
         _gameState = GameState.Default;
-        UpdateBoardText("Press Ready to start the game.");
+        View.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
     }
 
     void InitQuestions()
@@ -171,11 +171,11 @@ public class GunGameManager : MonoBehaviour
     public void WaitForPlayersReady()
     {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonWaitForPlayersReady", RpcTarget.AllBuffered);
+            View.RPC("PhotonWaitForPlayersReady", RpcTarget.All);
     }
 
     [PunRPC]
-    private void PhotonWaitForPlayersReady()
+    public void PhotonWaitForPlayersReady()
     {
         Debug.Log("---Waiting For Players Ready---");
         foreach (PlayerButton button in _playerButtons)
@@ -196,11 +196,11 @@ public class GunGameManager : MonoBehaviour
     public void ReadyToStart()
     {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonReadyToStart", RpcTarget.AllBuffered);
+            View.RPC("PhotonReadyToStart", RpcTarget.All);
     }
 
     [PunRPC]
-    private void PhotonReadyToStart()
+    public void PhotonReadyToStart()
     {
         Debug.Log("---Game Ready To Start---");
         if (isPlayersReady && !isReadyToStart)
@@ -217,11 +217,11 @@ public class GunGameManager : MonoBehaviour
     public void StartGame()
     {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonStartGame", RpcTarget.AllBuffered);
+            View.RPC("PhotonStartGame", RpcTarget.All);
 
     }
     [PunRPC]
-    private void PhotonStartGame()
+    public void PhotonStartGame()
     {
         Debug.Log("---Start the game---");
 
@@ -239,11 +239,11 @@ public class GunGameManager : MonoBehaviour
     public void EndGame()
     {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonEndGame", RpcTarget.AllBuffered);
+            View.RPC("PhotonEndGame", RpcTarget.All);
     }
 
     [PunRPC]
-    private void PhotonEndGame()
+    public void PhotonEndGame()
     {
 
         _gameState = GameState.EndGame;
@@ -252,13 +252,13 @@ public class GunGameManager : MonoBehaviour
 
     public void ResetGame() {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonResetGame", RpcTarget.AllBuffered);
+            View.RPC("PhotonResetGame", RpcTarget.All);
 
     }
 
 
     [PunRPC]
-    private void PhotonResetGame()
+    public void PhotonResetGame()
     {
         _gameState = GameState.ResetGame;
         isGameEnd = false;
@@ -296,18 +296,19 @@ public class GunGameManager : MonoBehaviour
     public void StartTimer()
     {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonStartTimer", RpcTarget.AllBuffered);
+            View.RPC("PhotonStartTimer", RpcTarget.All);
 
     }
 
     [PunRPC]
-    private void PhotonStartTimer()
+    public void PhotonStartTimer()
     {
         if (!IsReadyTimerCoroutine)
             StartCoroutine(SetReadyTimerCoroutine(timerSec));
     }
 
-    private void UpdateBoardText(string text)
+    [PunRPC]
+    public void UpdateBoardText(string text)
     {
         uiBoard.text = text;
 
@@ -349,7 +350,7 @@ public class GunGameManager : MonoBehaviour
 
 
         }
-        UpdateBoardText(resultText);
+        View.RPC("UpdateBoardText", RpcTarget.All, resultText);
     }
 
 
@@ -376,7 +377,7 @@ public class GunGameManager : MonoBehaviour
             Debug.Log("---Start Question---" + currentIndex);
 
             currentQuestion = questions[currentIndex];
-            UpdateBoardText(currentQuestion.questionText);
+            View.RPC("UpdateBoardText", RpcTarget.All, currentQuestion.questionText);
 
             yield return new WaitForSeconds(5);
         }
@@ -388,12 +389,12 @@ public class GunGameManager : MonoBehaviour
     {
         IsReadyTimerCoroutine = true;
         currentSec = seconds;
-        UpdateBoardText(currentSec.ToString());
+        View.RPC("UpdateBoardText", RpcTarget.All, currentSec.ToString());
 
         while (currentSec >= 0)
         {
             audioSource.PlayOneShot(countSound);
-            UpdateBoardText(currentSec.ToString());
+            View.RPC("UpdateBoardText", RpcTarget.All, currentSec.ToString());
             yield return new WaitForSeconds(1f);
             currentSec -= 1;
         }
@@ -403,7 +404,7 @@ public class GunGameManager : MonoBehaviour
             audioSource.Stop();
             isReadyToStart = false;
             isGameStart = true;
-            UpdateBoardText("Game Starts");
+            View.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
         }
        
         IsReadyTimerCoroutine = false;
@@ -449,7 +450,7 @@ public class GunGameManager : MonoBehaviour
         player1.transform.GetChild(0).GetComponent<MeshRenderer>().material = player1.buttonLight[0];
         player2.transform.GetChild(0).GetComponent<MeshRenderer>().material = player2.buttonLight[0];
         gunGameStart = false;
-        // View.RPC("PhotonResetGame", RpcTarget.AllBuffered);
+        // View.RPC("PhotonResetGame", RpcTarget.All);
     }
 
 
@@ -460,7 +461,7 @@ public class GunGameManager : MonoBehaviour
         gunPlayer2.gameObject.transform.position = new Vector3(75.880279f,1.130567f,25.880285f);
         gunPlayer2.gameObject.transform.rotation = new Quaternion(0,0,0,0);
    
-        // View.RPC("PhotonResetTheGun", RpcTarget.AllBuffered);
+        // View.RPC("PhotonResetTheGun", RpcTarget.All);
 
     }
 /*
@@ -470,7 +471,7 @@ public class GunGameManager : MonoBehaviour
             CountDownCanva.SetActive(true);
             StartCoroutine(coroutineForCountDown());
         }
-        // View.RPC("PhotonCountDownForStartGunGame", RpcTarget.AllBuffered);
+        // View.RPC("PhotonCountDownForStartGunGame", RpcTarget.All);
     }*/
 /*
     IEnumerator coroutineForCountDown(){
@@ -513,7 +514,7 @@ public class GunGameManager : MonoBehaviour
     int roundWinner = -1; // 0 = player1 1 = player2
     bool updateWinner = false;
     public void checkAnswer1(string playerAns){
-        View.RPC("PhotonCheckAnswer1", RpcTarget.AllBuffered,playerAns);
+        View.RPC("PhotonCheckAnswer1", RpcTarget.All,playerAns);
     }
     [PunRPC]
     public void PhotonCheckAnswer1(string playerAns2){
@@ -530,7 +531,7 @@ public class GunGameManager : MonoBehaviour
     }
 
     public void checkAnswer2(string playerAns){
-        View.RPC("PhotonCheckAnswer2", RpcTarget.AllBuffered,playerAns);
+        View.RPC("PhotonCheckAnswer2", RpcTarget.All,playerAns);
     }
     [PunRPC]
     public void PhotonCheckAnswer2(string playerAns){

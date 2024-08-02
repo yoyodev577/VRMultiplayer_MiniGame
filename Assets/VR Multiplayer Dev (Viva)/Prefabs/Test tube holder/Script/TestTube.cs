@@ -26,14 +26,14 @@ public class TestTube : MonoBehaviour
     private void Update()
     {
         if (isReset) {
-            View.RPC("PhotonReset", RpcTarget.AllBuffered);
+            View.RPC("PhotonReset", RpcTarget.All);
            //PhotonReset();
             isReset = false;
         }
     }
 
     public void grab(){
-        View.RPC("PhotonGrab", RpcTarget.AllBuffered);
+        View.RPC("PhotonGrab", RpcTarget.All);
     }
     [PunRPC]
     public void PhotonGrab(){
@@ -53,7 +53,7 @@ public class TestTube : MonoBehaviour
             //PhotonOnCollision();
 
             if(PhotonNetwork.IsConnected) 
-            View.RPC("PhotonOnCollision", RpcTarget.AllBuffered);
+            View.RPC("PhotonOnCollision", RpcTarget.All);
         }
     }
 
@@ -83,7 +83,7 @@ public class TestTube : MonoBehaviour
 
     public void OnReset() {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonReset", RpcTarget.AllBuffered);
+            View.RPC("PhotonReset", RpcTarget.All);
         
     }
 }

@@ -36,7 +36,7 @@ public class MultiSpinTestTubeLock : MonoBehaviour
                 occupiedTestTube = testTube.GetComponent<TestTube>(); 
                 PhotonView testTubePhotonView = occupiedTestTube.GetComponent<PhotonView>();
                 multiSpin.SetLockedTestTube(occupiedTestTube, true);
-                View.RPC("PhotonTriggerEnter", RpcTarget.AllBuffered,testTubePhotonView.ViewID);
+                View.RPC("PhotonTriggerEnter", RpcTarget.All,testTubePhotonView.ViewID);
                 
             }
             
@@ -74,7 +74,7 @@ public class MultiSpinTestTubeLock : MonoBehaviour
                 testTube = other.gameObject;
                 testTubePhotonView = testTube.GetComponent<PhotonView>();
                 multiSpin.SetLockedTestTube(occupiedTestTube, false);
-                View.RPC("PhotonOnTriggerExit", RpcTarget.AllBuffered,testTubePhotonView.ViewID);
+                View.RPC("PhotonOnTriggerExit", RpcTarget.All,testTubePhotonView.ViewID);
                 occupiedTestTube = null;
             }
             
@@ -97,7 +97,7 @@ public class MultiSpinTestTubeLock : MonoBehaviour
         
         if(PhotonNetwork.IsConnected)
         {
-            View.RPC("PhotonReset", RpcTarget.AllBuffered);
+            View.RPC("PhotonReset", RpcTarget.All);
         }
     }
 

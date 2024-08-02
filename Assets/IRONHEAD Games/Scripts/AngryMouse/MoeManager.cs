@@ -11,10 +11,11 @@ public class MoeManager : MonoBehaviour
 {
     public PhotonView view;
     public GameManager manager;
+    public Hammer hammer;
     public List<Moe> moes;
     public List<Moe> temp;
     public List<Moe> popList = new List<Moe>();
-    public string[] answerList = { "A", "B", "C", "D" };
+    public string[] answerList = { "A", "B", "C", "D", "E" };
     public bool isEnabled = false;
     public int maxMoes = 4;
     public int score = 0;
@@ -28,8 +29,9 @@ public class MoeManager : MonoBehaviour
     void Start()
     {
         manager = FindObjectOfType<GameManager>();
+        hammer = GetComponentInChildren<Hammer>();
         view = GetComponent<PhotonView>();
-        HideAllMoes();
+        view.RPC("HideAllMoes", RpcTarget.All);
     }
 
     // Update is called once per frame
@@ -43,7 +45,7 @@ public class MoeManager : MonoBehaviour
     }
 
     public void PhotonSetEngine(bool _isEnabled) {
-        view.RPC("SetEngine", RpcTarget.AllBuffered, _isEnabled);
+        view.RPC("SetEngine", RpcTarget.All, _isEnabled);
     }
 
     [PunRPC]
@@ -55,9 +57,10 @@ public class MoeManager : MonoBehaviour
         {
             StartCoroutine(MoeCoroutine());
         }
-        else if( !_isEnabled && isCoroutine )
+        else if( !_isEnabled )
         {
-            StopAllCoroutines();
+            if (isCoroutine)
+                StopCoroutine(MoeCoroutine());
         }
     }
 
@@ -107,27 +110,45 @@ public class MoeManager : MonoBehaviour
     }
 
     public void CheckScore(string _answer) {
-        view.RPC("PhotonScore", RpcTarget.AllBuffered,_answer);
+        view.RPC("PhotonScore", RpcTarget.All,_answer);
     }
 
     [PunRPC]
     public void PhotonScore(string _answer) {
-        if (manager.CheckAnswer(_answer) && !manager.IsCorrect)
+        if (manager.CheckAnswer(_answer) 
+            && manager.canScore &&!manager.IsCorrect)
         {
             // find the correct answer, and start to the next question.
             manager.IsCorrect = true;
-            if (!isScored)
-            {
-                score++;
-                isScored = true;
-                if(!isResetScoreCoroutine)
+       /*     if (!isScored)
+            {*/
+                this.score++;
+               // isScored = true;
+/*                if(!isResetScoreCoroutine)
                 {
                     StartCoroutine(ResetScoreCoroutine());
-                }
-            }
+                }*/
+            //}
             scoreText.text = "Score: " + score.ToString();
         }
         
+
+    }
+
+    public void ResetMachine()
+    {
+        view.RPC("PhotonResetMachine", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void PhotonResetMachine() {
+        hammer.ResetPos();
+        isEnabled = false;
+        isScored = false;
+        isResetScoreCoroutine = false;
+        score = 0;
+        scoreText.text = "Score: " + score.ToString();
+        view.RPC("HideAllMoes", RpcTarget.All);
     }
 
     public IEnumerator MoeCoroutine() {
@@ -135,15 +156,15 @@ public class MoeManager : MonoBehaviour
         while (isEnabled)
         {
             //RandomPickMoes();
-            view.RPC("RandomPickMoes", RpcTarget.AllBuffered);
+            view.RPC("RandomPickMoes", RpcTarget.All);
             yield return new WaitForFixedUpdate();
 
             //PopMoes();
-            view.RPC("PopMoes", RpcTarget.AllBuffered);
+            view.RPC("PopMoes", RpcTarget.All);
 
             yield return new WaitForSeconds(3);
             //HideAllMoes();
-            view.RPC("HideAllMoes", RpcTarget.AllBuffered);
+            view.RPC("HideAllMoes", RpcTarget.All);
         }
         isCoroutine = false;
 

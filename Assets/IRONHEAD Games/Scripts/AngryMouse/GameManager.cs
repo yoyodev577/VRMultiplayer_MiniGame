@@ -5,6 +5,7 @@ using Photon.Pun;
 using TMPro;
 using System.Linq;
 using HTC.UnityPlugin.Vive.VIUExample;
+using Unity.Collections.LowLevel.Unsafe;
 
 namespace AngryMouse
 {
@@ -21,10 +22,12 @@ namespace AngryMouse
         public string answer = "";
 
         [SerializeField] private List<PlayerButton> _playerButtons;
+        [SerializeField] private TableButton _resetButton;
         public bool isPlayersReady = false;
         public bool IsReadyToStart = false;
         public bool IsGameStart = false;
         public bool IsGameEnd = false;
+        public bool canScore = false;
         public bool IsCorrect = false;
         public bool IsReset = false;
         public bool IsResetCoroutine = false;
@@ -52,21 +55,12 @@ namespace AngryMouse
         }
         void Init() {
             if (PhotonNetwork.IsConnected)
-                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
+                view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (IsCorrect)
-            {
-                if (!IsQuestionCoroutine)
-                {
-                    StartCoroutine(SetQuestionBoardCoroutine());
-                    IsCorrect = false;
-                }
-            }
-
             // when players get ready, the timer starts.
             if (isPlayersReady && IsReadyToStart && !IsReadyTimerCoroutine)
             {
@@ -78,8 +72,8 @@ namespace AngryMouse
                 StartGame();
             }
 
-            //end the game when it is the last question.
-            if (IsGameStart && IsGameEnd)
+            //end the game
+            if (IsGameStart && IsGameEnd && !IsReset)
             {
                 EndGame();
             }
@@ -110,11 +104,19 @@ namespace AngryMouse
                     , "D"));
         }
 
-        private void ShowQuestion()
+        private void SetQuestion()
         {
-            currentQuestion = questions[currentIndex];
-            string text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
+            string text = "";
+            if(currentIndex < questions.Count)
+            {
+                Debug.Log("--Question:" + currentIndex);
+                currentQuestion = questions[currentIndex];
+
+                answer = currentQuestion.answerText;
+                text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+            }
+           
+            view.RPC("UpdateBoardText", RpcTarget.All, text);
         }
 
         [PunRPC]
@@ -125,7 +127,7 @@ namespace AngryMouse
         public void PlayerReady()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonPlayerReady", RpcTarget.AllBuffered);
+                view.RPC("PhotonPlayerReady", RpcTarget.All);
 
         }
 
@@ -144,7 +146,7 @@ namespace AngryMouse
         public void ReadyToStart()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonReadyToStart", RpcTarget.AllBuffered);
+                view.RPC("PhotonReadyToStart", RpcTarget.All);
 
         }
 
@@ -165,60 +167,79 @@ namespace AngryMouse
         public void StartGame()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonStartGame", RpcTarget.AllBuffered);
+                view.RPC("PhotonStartGame", RpcTarget.All);
 
         }
 
         [PunRPC]
         public void PhotonStartGame()
         {
+            IsGameStart = true;
             Debug.Log("---Game Start---");
             foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(true);
             }
-            answer = currentQuestion.answerText;
-            ShowQuestion();
-            
+            if (!IsQuestionCoroutine)
+            {
+                StartCoroutine(SetQuestionBoardCoroutine());
+            }
+
         }
 
 
         public void EndGame() {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonEndGame", RpcTarget.AllBuffered);
+                view.RPC("PhotonEndGame", RpcTarget.All);
         }
 
         [PunRPC]
         public void PhotonEndGame() {
             Debug.Log("---Game End---");
+
             foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(false);
             }
+
+            if (IsQuestionCoroutine)
+            {
+                StopAllCoroutines();
+            }
+            ShowResult();
+
         }
 
         public void ResetGame()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonResetGame", RpcTarget.AllBuffered);
+                view.RPC("PhotonResetGame", RpcTarget.All);
         }
 
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
+            view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
+            IsReset = true;
+            foreach (MoeManager m in moeManagers)
+            {
+                Debug.Log("---Reset moes---");
+                m.ResetMachine();
+            }
+
             currentIndex = 0;
             currentQuestion = null;
             isPlayersReady = false;
             IsReadyToStart = false;
+            canScore = false;
+            IsCorrect = false;
             IsGameStart = false;
             IsGameEnd = false;
-            IsReset = true;
-
+            IsQuestionCoroutine = false;
+            IsReadyTimerCoroutine = false; 
 
             if (!IsResetCoroutine)
                 StartCoroutine(ResetCoroutine());
-
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
         }
         public bool CheckAnswer(string _text) { 
             if(_text ==answer)
@@ -229,7 +250,8 @@ namespace AngryMouse
 
         public void ShowResult() {
             string text = "";
-            
+
+            Debug.Log("---Show game result---");
             if (moeManagers[0].score > moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
@@ -242,23 +264,38 @@ namespace AngryMouse
                 text = "The game has ended";
             }
 
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
+            view.RPC("UpdateBoardText", RpcTarget.All, text);
         }
 
 
         IEnumerator SetQuestionBoardCoroutine()
         {
             IsQuestionCoroutine =true;
-            yield return new WaitForSeconds(3f);        
-            if (currentIndex > questions.Count)
+            currentIndex = 0;
+            canScore = true;
+            while (IsGameStart)
             {
-                IsGameEnd = true;
-                ShowResult();
-            }
-            else
-            {
-                currentIndex += 1;
-                ShowQuestion();
+                if (IsCorrect) {
+                    canScore = false;
+                    currentIndex++;
+
+                    if (currentIndex >= questions.Count)
+                    {
+                        IsGameEnd = true;
+                    }
+
+/*                    foreach (MoeManager m in moeManagers)
+                    {
+                        m.isScored = false;
+                    }*/
+                    IsCorrect = false;
+                }
+                //if correct answer is found
+                yield return new WaitForSeconds(1);
+                SetQuestion();
+                canScore = true;
+
+
             }
             IsQuestionCoroutine = false;
         }
@@ -267,11 +304,11 @@ namespace AngryMouse
         {
             IsReadyTimerCoroutine = true;
             currentSec = seconds;
-            view.RPC("UpdateBoardText",RpcTarget.AllBuffered, currentSec.ToString());
+            view.RPC("UpdateBoardText",RpcTarget.All, currentSec.ToString());
             while (currentSec >= 0)
             {
                 _audioSource.PlayOneShot(_audioClip);
-                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
+                view.RPC("UpdateBoardText", RpcTarget.All, currentSec.ToString());
                 yield return new WaitForSeconds(1f);
                 currentSec -= 1;
 
@@ -282,7 +319,7 @@ namespace AngryMouse
                 _audioSource.Stop();
                 IsReadyToStart = false;
                 IsGameStart = true;
-                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Game Starts");
+                view.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
             }
             yield return null;
             IsReadyTimerCoroutine = false;
@@ -292,6 +329,7 @@ namespace AngryMouse
         {
             IsResetCoroutine = true;
             yield return new WaitForSeconds(2f);
+            _resetButton.ResetButton();
             IsReset = false;
             IsResetCoroutine = false;
         }

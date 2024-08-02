@@ -78,7 +78,7 @@ public class MultiSpin : MonoBehaviour
     void Update()
     {
         if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonUpdate", RpcTarget.AllBuffered);
+            View.RPC("PhotonUpdate", RpcTarget.All);
     }
 
     void InitGame() {
@@ -115,7 +115,7 @@ public class MultiSpin : MonoBehaviour
         if (gameManager.IsGameStart && other.gameObject.tag == "Hand" && !isSpinning && !hasResult) {
 
             if (PhotonNetwork.IsConnected)
-                View.RPC("PhotonSetLid", RpcTarget.AllBuffered);
+                View.RPC("PhotonSetLid", RpcTarget.All);
 
             Debug.Log(other.gameObject.name + "Collides");
             isLidOpened = !isLidOpened;
@@ -287,7 +287,7 @@ public class MultiSpin : MonoBehaviour
 
     public void ResetMultispin()
     {
-        View.RPC("PhotonResetMultiSpin", RpcTarget.AllBuffered);
+        View.RPC("PhotonResetMultiSpin", RpcTarget.All);
     }
     [PunRPC]
     public void PhotonResetMultiSpin()

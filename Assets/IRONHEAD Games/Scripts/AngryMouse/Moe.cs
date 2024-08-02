@@ -31,7 +31,7 @@ public class Moe : MonoBehaviour
     void FixedUpdate()
     {
         if (PhotonNetwork.IsConnected)
-            view.RPC("PhotonUpdate", RpcTarget.AllBuffered);
+            view.RPC("PhotonUpdate", RpcTarget.All);
 
     }
 
@@ -39,11 +39,11 @@ public class Moe : MonoBehaviour
     public void PhotonUpdate() {
         if (isPop)
         {
-            view.RPC("Pop", RpcTarget.AllBuffered);
+            view.RPC("Pop", RpcTarget.All);
         }
         else
         {
-            view.RPC("Hide", RpcTarget.AllBuffered);
+            view.RPC("Hide", RpcTarget.All);
         }
     }
 
