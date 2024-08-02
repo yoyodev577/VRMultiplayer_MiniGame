@@ -142,7 +142,7 @@ public class HoopsGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonHoopsPlayerReady() {
+    public void PhotonHoopsPlayerReady() {
         Debug.Log("---Waiting For Players Ready---");
         foreach (PlayerButton button in _playerButtons)
         {
@@ -163,7 +163,7 @@ public class HoopsGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonHoopsReadyToStart()
+    public void PhotonHoopsReadyToStart()
     {
         Debug.Log("---Game Ready To Start---");
         if (isPlayersReady && !IsReadyToStart) {
@@ -184,7 +184,7 @@ public class HoopsGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonHoopsStart()
+    public void PhotonHoopsStart()
     {
         Debug.Log("---Start the game---");
 
@@ -202,7 +202,7 @@ public class HoopsGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonHoopsReset()
+    public void PhotonHoopsReset()
     {
         Debug.Log("---Game Reset---");
         foreach (HoopsMachine m in _machines)
@@ -237,14 +237,14 @@ public class HoopsGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonStartTimer()
+    public void PhotonStartTimer()
     {
         if(!IsReadyTimerCoroutine)
         StartCoroutine(SetReadyTimerCoroutine(timerSec));
     }
 
 
-    private void ShowResult()
+    public void ShowResult()
     {
         string text = "";
         isPlayer1Win = _machines[0].GetScore() > _machines[1].GetScore() ? true : false;
@@ -277,7 +277,7 @@ public class HoopsGameManager : MonoBehaviour
         StartCoroutine(SetQuestionBoardCoroutine());
     }
 
-    private void ShowQuestion()
+    public void ShowQuestion()
     {
         String text = "";
         currentQuestion = questions[currentIndex];
