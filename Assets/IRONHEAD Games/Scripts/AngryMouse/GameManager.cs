@@ -55,7 +55,7 @@ namespace AngryMouse
         }
         void Init() {
             if (PhotonNetwork.IsConnected)
-                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
+                view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
         }
 
         // Update is called once per frame
@@ -116,7 +116,7 @@ namespace AngryMouse
                 text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
             }
            
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
+            view.RPC("UpdateBoardText", RpcTarget.All, text);
         }
 
         [PunRPC]
@@ -127,7 +127,7 @@ namespace AngryMouse
         public void PlayerReady()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonPlayerReady", RpcTarget.AllBuffered);
+                view.RPC("PhotonPlayerReady", RpcTarget.All);
 
         }
 
@@ -146,7 +146,7 @@ namespace AngryMouse
         public void ReadyToStart()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonReadyToStart", RpcTarget.AllBuffered);
+                view.RPC("PhotonReadyToStart", RpcTarget.All);
 
         }
 
@@ -167,7 +167,7 @@ namespace AngryMouse
         public void StartGame()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonStartGame", RpcTarget.AllBuffered);
+                view.RPC("PhotonStartGame", RpcTarget.All);
 
         }
 
@@ -190,7 +190,7 @@ namespace AngryMouse
 
         public void EndGame() {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonEndGame", RpcTarget.AllBuffered);
+                view.RPC("PhotonEndGame", RpcTarget.All);
         }
 
         [PunRPC]
@@ -213,13 +213,13 @@ namespace AngryMouse
         public void ResetGame()
         {
             if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonResetGame", RpcTarget.AllBuffered);
+                view.RPC("PhotonResetGame", RpcTarget.All);
         }
 
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Press Ready to start the game.");
+            view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
             IsReset = true;
             foreach (MoeManager m in moeManagers)
             {
@@ -264,7 +264,7 @@ namespace AngryMouse
                 text = "The game has ended";
             }
 
-            view.RPC("UpdateBoardText", RpcTarget.AllBuffered, text);
+            view.RPC("UpdateBoardText", RpcTarget.All, text);
         }
 
 
@@ -304,11 +304,11 @@ namespace AngryMouse
         {
             IsReadyTimerCoroutine = true;
             currentSec = seconds;
-            view.RPC("UpdateBoardText",RpcTarget.AllBuffered, currentSec.ToString());
+            view.RPC("UpdateBoardText",RpcTarget.All, currentSec.ToString());
             while (currentSec >= 0)
             {
                 _audioSource.PlayOneShot(_audioClip);
-                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, currentSec.ToString());
+                view.RPC("UpdateBoardText", RpcTarget.All, currentSec.ToString());
                 yield return new WaitForSeconds(1f);
                 currentSec -= 1;
 
@@ -319,7 +319,7 @@ namespace AngryMouse
                 _audioSource.Stop();
                 IsReadyToStart = false;
                 IsGameStart = true;
-                view.RPC("UpdateBoardText", RpcTarget.AllBuffered, "Game Starts");
+                view.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
             }
             yield return null;
             IsReadyTimerCoroutine = false;

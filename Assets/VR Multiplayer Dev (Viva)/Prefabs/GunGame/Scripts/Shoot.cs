@@ -89,7 +89,7 @@ public class Shoot : MonoBehaviour
     public void ShootBullet(){
 
         if (PhotonNetwork.IsConnected)
-        View.RPC("PhotonShootBullet", RpcTarget.AllBuffered);
+        View.RPC("PhotonShootBullet", RpcTarget.All);
 
     }
     [PunRPC]
@@ -183,7 +183,7 @@ public class Shoot : MonoBehaviour
     }
    /*     public void ShowBoardName1(){
 
-            View.RPC("PhotonShowBoardName1", RpcTarget.AllBuffered);
+            View.RPC("PhotonShowBoardName1", RpcTarget.All);
         }
 
         [PunRPC]
@@ -202,7 +202,7 @@ public class Shoot : MonoBehaviour
         }
 
         public void ShowBoardName2(){
-             View.RPC("PhotonShowBoardName2", RpcTarget.AllBuffered);
+             View.RPC("PhotonShowBoardName2", RpcTarget.All);
         }
 
         [PunRPC]

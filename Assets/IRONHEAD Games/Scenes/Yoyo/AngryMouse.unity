@@ -5662,6 +5662,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 98301875338034680, guid: 47e42dfc33ff95746ac5bbe3b263112e, type: 3}
+      propertyPath: maxMoes
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98301875338034680, guid: 47e42dfc33ff95746ac5bbe3b263112e, type: 3}
+      propertyPath: playerNum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 98301875338034680, guid: 47e42dfc33ff95746ac5bbe3b263112e, type: 3}
+      propertyPath: answerList.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 98301875338034680, guid: 47e42dfc33ff95746ac5bbe3b263112e, type: 3}
+      propertyPath: answerList.Array.data[4]
+      value: E
+      objectReference: {fileID: 0}
     - target: {fileID: 242206965046053234, guid: 47e42dfc33ff95746ac5bbe3b263112e, type: 3}
       propertyPath: m_Enabled
       value: 0
