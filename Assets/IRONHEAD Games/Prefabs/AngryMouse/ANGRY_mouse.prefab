@@ -3835,6 +3835,7 @@ GameObject:
   - component: {fileID: 6229902939514269677}
   - component: {fileID: 2373362124449718045}
   - component: {fileID: 5616438025414181634}
+  - component: {fileID: 1219891537403021564}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: hammer
@@ -3929,6 +3930,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6229902939514269677}
+  - {fileID: 1219891537403021564}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -4178,6 +4180,22 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
   networkedGrabbing: {fileID: 0}
+--- !u!114 &1219891537403021564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4731564310503306570}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &4914706621869686883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4897,6 +4915,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   view: {fileID: 0}
   manager: {fileID: 0}
+  hammer: {fileID: 0}
   moes:
   - {fileID: 6878915870930894225}
   - {fileID: 4062963050055162649}
