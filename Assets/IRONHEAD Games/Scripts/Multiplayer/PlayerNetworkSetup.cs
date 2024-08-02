@@ -111,8 +111,8 @@ public class PlayerNetworkSetup : MonoBehaviourPun
 
     void SetAvatarUI()
     {
-        if(photonView!=null && photonView.Owner.NickName!=null)
-        playerName_Text.text = photonView.Owner.NickName;
+        //if(photonView!=null && photonView.Owner.NickName!=null)
+       // playerName_Text.text = photonView.Owner.NickName;
     }
 
 
