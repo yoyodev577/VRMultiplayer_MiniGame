@@ -1,9 +1,11 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+    public PhotonView view;
     public bool IsOpen = false;
     [SerializeField] private bool IsRotatingDoor = true;
     [SerializeField] private float Speed = 1f;
@@ -18,11 +20,17 @@ public class Door : MonoBehaviour
 
     private void Awake()
     {
+        view = GetComponent<PhotonView>();
         StartRotation = transform.rotation.eulerAngles;
         Forward = transform.right;
     }
 
-    public void Open(Vector3 UserPosition)
+    public void Open(Vector3 UserPosition) {
+        view.RPC("PhotonOpen", RpcTarget.All, UserPosition);
+    }
+
+    [PunRPC]
+    public void PhotonOpen(Vector3 UserPosition)
     {
         if (!IsOpen)
         {
@@ -64,8 +72,13 @@ public class Door : MonoBehaviour
             time += Time.deltaTime * Speed;
         }
     }
-    
-    public void Close()
+
+    public void Close() {
+        view.RPC("PhotonClose", RpcTarget.All);
+    }
+
+    [PunRPC]
+    public void PhotonClose()
     {
         if (IsOpen)
         {
