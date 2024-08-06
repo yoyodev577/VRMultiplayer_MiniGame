@@ -18,7 +18,6 @@ GameObject:
   - component: {fileID: 2273203513637062115}
   - component: {fileID: 1172327432422861144}
   - component: {fileID: 5257425075379157197}
-  - component: {fileID: 8174056592656313491}
   m_Layer: 0
   m_Name: basketball (9)
   m_TagString: B
@@ -280,7 +279,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -318,8 +317,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &1172327432422861144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,7 +339,6 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 2273203513637062115}
-  - {fileID: 8174056592656313491}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -357,22 +355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &8174056592656313491
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 38501813986764112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &96961949334587361
 GameObject:
   m_ObjectHideFlags: 0
@@ -910,7 +892,6 @@ GameObject:
   - component: {fileID: 1219614287927220293}
   - component: {fileID: 2587339775351869106}
   - component: {fileID: 4268122409054736155}
-  - component: {fileID: 423414524262985137}
   m_Layer: 0
   m_Name: basketball (7)
   m_TagString: Basketball
@@ -1172,7 +1153,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -1210,8 +1191,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &2587339775351869106
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1248,22 +1229,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &423414524262985137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277092737010228799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &1321406437767193102
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1247,6 @@ GameObject:
   - component: {fileID: 7007711604913663146}
   - component: {fileID: 5723148052262227821}
   - component: {fileID: 3676357822377542914}
-  - component: {fileID: 5779681461501513775}
   m_Layer: 0
   m_Name: basketball (10)
   m_TagString: C
@@ -1544,7 +1508,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -1582,8 +1546,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &5723148052262227821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1620,22 +1584,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &5779681461501513775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1321406437767193102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &1371469970876061219
 GameObject:
   m_ObjectHideFlags: 0
@@ -2526,7 +2474,6 @@ GameObject:
   - component: {fileID: 3370554681780090569}
   - component: {fileID: 2724746755233013110}
   - component: {fileID: 2009958525776769749}
-  - component: {fileID: 6869581581415876071}
   m_Layer: 0
   m_Name: basketball (2)
   m_TagString: B
@@ -2788,7 +2735,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -2826,8 +2773,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &2724746755233013110
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2864,22 +2811,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &6869581581415876071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4263013750741975653}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &4417996906835553282
 GameObject:
   m_ObjectHideFlags: 0
@@ -3601,7 +3532,6 @@ GameObject:
   - component: {fileID: 1632583316351695944}
   - component: {fileID: 3522021823392518785}
   - component: {fileID: 1752196538917490150}
-  - component: {fileID: 9107017932381988063}
   m_Layer: 0
   m_Name: basketball (8)
   m_TagString: A
@@ -3863,7 +3793,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -3901,8 +3831,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &3522021823392518785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3939,22 +3869,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &9107017932381988063
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4994176720125021756}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &5127876124946717437
 GameObject:
   m_ObjectHideFlags: 0
@@ -4548,7 +4462,6 @@ GameObject:
   - component: {fileID: 6143447526026296277}
   - component: {fileID: 7314373107144971039}
   - component: {fileID: 5779474082722281340}
-  - component: {fileID: 898652418461488321}
   m_Layer: 0
   m_Name: basketball (6)
   m_TagString: Basketball
@@ -4810,7 +4723,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -4848,8 +4761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &7314373107144971039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4886,22 +4799,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &898652418461488321
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6521539314097696281}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &6539563202944129785
 GameObject:
   m_ObjectHideFlags: 0
@@ -4920,7 +4817,6 @@ GameObject:
   - component: {fileID: 4152180895677504600}
   - component: {fileID: 827287273482859503}
   - component: {fileID: 6081461969551132492}
-  - component: {fileID: 1334710259597529213}
   m_Layer: 0
   m_Name: basketball (3)
   m_TagString: C
@@ -5182,7 +5078,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -5220,8 +5116,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &827287273482859503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5258,22 +5154,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &1334710259597529213
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6539563202944129785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &6750464784009918234
 GameObject:
   m_ObjectHideFlags: 0
@@ -5676,7 +5556,6 @@ GameObject:
   - component: {fileID: 6881776220159947547}
   - component: {fileID: 9003225973981768603}
   - component: {fileID: 8652361987231159349}
-  - component: {fileID: 2848138761205601590}
   m_Layer: 0
   m_Name: basketball (4)
   m_TagString: D
@@ -5938,7 +5817,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -5976,8 +5855,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &9003225973981768603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6014,22 +5893,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &2848138761205601590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7558347153362569061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &7709721641226243253
 GameObject:
   m_ObjectHideFlags: 0
@@ -6206,7 +6069,6 @@ GameObject:
   - component: {fileID: 6943871288568066052}
   - component: {fileID: 8125820509180772369}
   - component: {fileID: 6424178250355417454}
-  - component: {fileID: 8978679374326050547}
   m_Layer: 0
   m_Name: basketball (1)
   m_TagString: A
@@ -6468,7 +6330,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -6506,8 +6368,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &8125820509180772369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6544,22 +6406,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &8978679374326050547
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8068684550938213214}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &8465974308869405228
 GameObject:
   m_ObjectHideFlags: 0
@@ -6578,7 +6424,6 @@ GameObject:
   - component: {fileID: 1270466388503705981}
   - component: {fileID: 8911497325707262776}
   - component: {fileID: 823717966408945422}
-  - component: {fileID: 4623199952243635484}
   m_Layer: 0
   m_Name: basketball (5)
   m_TagString: Basketball
@@ -6762,10 +6607,46 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7199740059531243032, guid: cb728b2b4816f794c812a5632f9c8a3e, type: 3}
+        m_TargetAssemblyTypeName: NetworkedGrabbing, Assembly-CSharp
+        m_MethodName: OnSelectEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3842272149488066403, guid: cb728b2b4816f794c812a5632f9c8a3e, type: 3}
+        m_TargetAssemblyTypeName: TestTube, Assembly-CSharp
+        m_MethodName: grab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7199740059531243032, guid: cb728b2b4816f794c812a5632f9c8a3e, type: 3}
+        m_TargetAssemblyTypeName: NetworkedGrabbing, Assembly-CSharp
+        m_MethodName: OnSelectExit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_FirstFocusEntered:
     m_PersistentCalls:
       m_Calls: []
@@ -6840,7 +6721,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -6856,7 +6737,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 3
+  m_ThrowVelocityScale: 1.5
   m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
@@ -6878,8 +6759,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &8911497325707262776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6916,22 +6797,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &4623199952243635484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8465974308869405228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &8467463032915507852
 GameObject:
   m_ObjectHideFlags: 0
@@ -6950,7 +6815,6 @@ GameObject:
   - component: {fileID: 7924141652161806367}
   - component: {fileID: 8980618146645113089}
   - component: {fileID: 8847364925879173838}
-  - component: {fileID: 4187728824906756681}
   m_Layer: 0
   m_Name: basketball (11)
   m_TagString: D
@@ -7212,7 +7076,7 @@ MonoBehaviour:
   m_SmoothScaleAmount: 8
   m_TightenScale: 0.1
   m_ThrowOnDetach: 1
-  m_ThrowSmoothingDuration: 0.4
+  m_ThrowSmoothingDuration: 0.25
   m_ThrowSmoothingCurve:
     serializedVersion: 2
     m_Curve:
@@ -7250,8 +7114,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
-  m_UseLocal: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 0
 --- !u!114 &8980618146645113089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7288,22 +7152,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPos: {x: 0, y: 0, z: 0}
---- !u!114 &4187728824906756681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8467463032915507852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &8562824257045174005
 GameObject:
   m_ObjectHideFlags: 0

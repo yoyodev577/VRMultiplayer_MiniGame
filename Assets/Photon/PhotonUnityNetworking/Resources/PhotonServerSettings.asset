@@ -118,6 +118,14 @@ MonoBehaviour:
   - ShowResult
   - TubeCorrectSequence
   - PhotonEnablePanel
+  - SetCurrentAns
+  - SetHitStatus
+  - SetPop
+  - PhotonSetCurrentAns
+  - PhotonSetHitStatus
+  - PhotonSetPop
+  - PhotonClose
+  - PhotonOpen
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
