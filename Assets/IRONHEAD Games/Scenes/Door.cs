@@ -11,8 +11,8 @@ public class Door : MonoBehaviour
     [SerializeField] private float RotationAmount = 90f;
     [SerializeField] private float ForwardDirection = 0;
 
-    private Vector3 StartRotation;
-    private Vector3 Forward;
+    [SerializeField] private Vector3 StartRotation;
+    [SerializeField] private Vector3 Forward;
 
     private Coroutine AnimationCoroutine;
 

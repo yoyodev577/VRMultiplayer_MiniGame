@@ -92,7 +92,7 @@ namespace GoneWithTheFire
         }
 
         [PunRPC]
-        private void PhotonPlayAnimation() {
+        public void PhotonPlayAnimation() {
 
             bottleObj.SetActive(true);
             bottleAnimator = bottleObj.GetComponent<Animator>();
@@ -110,7 +110,7 @@ namespace GoneWithTheFire
         }
 
         [PunRPC]
-        private void PhotonStartGame()
+        public void PhotonStartGame()
         {
             if (!isVideoPlayed)
             {
@@ -130,7 +130,7 @@ namespace GoneWithTheFire
         }
 
         [PunRPC]
-        private void PhotonEndGame()
+        public void PhotonEndGame()
         {
             isGameEnd = true;
         }
@@ -144,7 +144,7 @@ namespace GoneWithTheFire
 
 
         [PunRPC]
-        private void PhotonResetGame()
+        public void PhotonResetGame()
         {
             isAnimationPlayed = false;
             isReadyTimerCoroutine = false;
@@ -179,13 +179,13 @@ namespace GoneWithTheFire
         {
             isReadyTimerCoroutine = true;
             currentSec = seconds;
-            view.RPC("PhotonResetGame", RpcTarget.All,currentSec.ToString());
+            view.RPC("UpdateBoardText", RpcTarget.All,currentSec.ToString());
 
 
             while (currentSec >= 0)
             {
                 sfxSource.PlayOneShot(countDownClip);
-                view.RPC("PhotonResetGame", RpcTarget.All, currentSec.ToString());
+                view.RPC("UpdateBoardText", RpcTarget.All, currentSec.ToString());
                 yield return new WaitForSeconds(1f);
                 currentSec -= 1;
             }
@@ -195,7 +195,7 @@ namespace GoneWithTheFire
                 sfxSource.Stop();
                 isReadyToStart = true;
                 isGameStart = true;
-                view.RPC("PhotonResetGame", RpcTarget.All, "Game Starts");
+                view.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
             }
 
             isReadyTimerCoroutine = false;
