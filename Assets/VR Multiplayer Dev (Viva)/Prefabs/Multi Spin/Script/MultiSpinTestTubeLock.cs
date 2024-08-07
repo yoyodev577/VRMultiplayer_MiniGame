@@ -24,6 +24,7 @@ public class MultiSpinTestTubeLock : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("--Test Tube lock--" +  other.gameObject.name);
         if (!MultispinGameManager.instance.IsGameStart) return;
 
         if (multiSpin.isSpinning || multiSpin.isSpinningFinished || !multiSpin.isLidOpened) return;
@@ -102,7 +103,7 @@ public class MultiSpinTestTubeLock : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonReset()
+    public void PhotonReset()
     {
         isOccupied = false;
         occupiedTestTube = null;

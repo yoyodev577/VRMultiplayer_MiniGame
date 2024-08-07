@@ -30,6 +30,7 @@ public class MultiSpin : MonoBehaviour
     [SerializeField] private bool isMultispinCoroutine = false;
     [SerializeField] public bool isSpinnerTriggered = false;
     [SerializeField] public bool hasResult = false;
+    [SerializeField] public bool IsShowResult = false;
     [SerializeField] private bool isSpinCoroutine = false;
     [SerializeField] private bool isResultCoroutine = false;
 
@@ -59,9 +60,8 @@ public class MultiSpin : MonoBehaviour
 
     [SerializeField] private AudioClip correctClip, explodeClip;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private bool isExplodeCoroutine = false;
     #endregion
-
-    #region Unity Methods
     // Start is called before the first frame update
     void Start()
     {
@@ -70,24 +70,30 @@ public class MultiSpin : MonoBehaviour
         gameManager = FindObjectOfType<MultispinGameManager>();
         testTubeList.AddRange(testTubeParent.transform.GetComponentsInChildren<TestTube>());
         testTubeLocks.AddRange(spinner.transform.GetComponentsInChildren<MultiSpinTestTubeLock>());
+        spinnerPosCount = spinner.transform.childCount;
+        testTubePlaceholder = new bool[spinnerPosCount];
+        View.RPC("SetCorrectImageStatus", RpcTarget.All, false);
 
-        InitGame();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (PhotonNetwork.IsConnected)
-            View.RPC("PhotonUpdate", RpcTarget.All);
-    }
-
-    void InitGame() {
-        spinnerPosCount = spinner.transform.childCount;
-        testTubePlaceholder = new bool[spinnerPosCount];
-        TubeCorrectSequence(defaultTubeAmount);
-        SetCorrectPlacingText();
-        correctImage.enabled = false;
-        isLidOpened = false;
+        //after spin
+        if (isSpinningFinished)
+        {
+            if (!hasResult)
+            {
+                //check the result
+                View.RPC("CheckSpinnerBalance", RpcTarget.All);
+            }
+            else
+            {
+                //after having result, then show it
+                if(!IsShowResult)
+                View.RPC("ShowResult", RpcTarget.All);
+            }
+        }
     }
 
     [PunRPC]
@@ -97,12 +103,14 @@ public class MultiSpin : MonoBehaviour
         if (MultispinGameManager.instance.IsGameStart && !MultispinGameManager.instance.IsGameEnd) {
             if (!hasResult)
             {
-                Debug.Log("---Update---------");
-                SetSpinner();
                 CheckTestTubePos();
                 TubeCorrectSequence(CheckTestTubeAmount());
-                CheckSpinnerBalance();
-                ShowResult();
+
+                Debug.Log("---Game Update---------");
+                //SetSpinner();
+                //TubeCorrectSequence(CheckTestTubeAmount());
+                //CheckSpinnerBalance();
+               //View.RPC("ShowResult", RpcTarget.All);
 
             }
         }
@@ -110,39 +118,27 @@ public class MultiSpin : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (gameManager.IsGameStart && other.gameObject.tag == "Hand" && !isSpinning && !hasResult) {
+        if (gameManager.IsGameStart && other.gameObject.tag == "Hand"
+            && !isSpinning && !hasResult) {
+            Debug.Log(other.gameObject.name + "Collides");;
 
             if (PhotonNetwork.IsConnected)
-                View.RPC("PhotonSetLid", RpcTarget.All);
+                View.RPC("PhotonSetSpinner", RpcTarget.All);
 
-            Debug.Log(other.gameObject.name + "Collides");
-            isLidOpened = !isLidOpened;
-            //PhotonOnTriggerEnter();
-            // PhotonSetLid();
         }
     }
     [PunRPC]
-    public void PhotonSetLid() {
+    public void PhotonSetSpinner() {
+        isLidOpened = !isLidOpened;
 
         if (!isLidOpened)
         {
-            lid.transform.localEulerAngles = new Vector3(-270, 0, -90); //open
+            //close the cover
+            lid.transform.localEulerAngles = new Vector3(-165, 0, -90);
 
-        }
-        else
-        {
-            lid.transform.localEulerAngles = new Vector3(-165, 0, -90); //close
-        }
-        Debug.Log("--Lid Opens--" + isLidOpened);
-
-    }
-    public void SetSpinner() {
-
-
-        if (!isLidOpened)
-        {
+            // start spinning
             foreach (MultiSpinTestTubeLock testTubeLock in testTubeLocks)
             {
                 if (testTubeLock.isOccupied)
@@ -152,22 +148,29 @@ public class MultiSpin : MonoBehaviour
                         StartCoroutine(ActivateSpinner());
                     }
                 }
-
             }
+            //open cover
+
         }
-        else {
+        else
+        {
+            lid.transform.localEulerAngles = new Vector3(-270, 0, -90);
+
+            //stop the spinning
             if (isSpinCoroutine)
             {
                 StopCoroutine(ActivateSpinner());
                 isSpinCoroutine = false;
             }
         }
+        Debug.Log("--Lid Opens--" + isLidOpened);
     }
 
+    [PunRPC]
     public void ShowResult() {            
         
         Debug.Log("---Show Result---RESULT : " + hasResult);
-        if (isSpinningFinished && !isResultCoroutine)
+        if (!isResultCoroutine)
         {
             Debug.Log("--Result Coroutine---");
             StartCoroutine(ResultCoroutine());
@@ -175,26 +178,11 @@ public class MultiSpin : MonoBehaviour
 
     }
 
-    #endregion
-    /*
-        #region Coroutine Sequence
-        IEnumerator MultiSpinSequence()
-        {
-            isMultispinCoroutine = true;
-            //yield return StartCoroutine(ActivateSpinner());
-           // yield return StartCoroutine(LidTrigger());
-            //yield return StartCoroutine(SetSpinnerTubeActivate());
-            //yield return StartCoroutine(ActivateSpinner());
-            yield return new WaitForSeconds(3f);
-            if (!isBalanced) {  } //explode;
-            isMultispinCoroutine = false;
-            yield break;
+    [PunRPC]
+    public void SetCorrectImageStatus(bool canEnable) { 
+        correctImage.enabled = canEnable;
+    }
 
-        }
-        #endregion
-    */
-
-    #region Coroutine Methods
     IEnumerator ActivateSpinner()
     {
         isSpinCoroutine = true;
@@ -231,28 +219,12 @@ public class MultiSpin : MonoBehaviour
         isSpinCoroutine = false;
         yield break;
     }
-    /*
-        IEnumerator LidTrigger()
-        {
-
-            Debug.Log("--Lid Opens--" + isLidOpened);
-            if (isLidOpened)
-            {
-                lid.transform.localEulerAngles = new Vector3(-165, 0, -90); //close
-            }
-            else
-            {
-                lid.transform.localEulerAngles = new Vector3(-270, 0, -90); //open
-            }
-            yield break;
-        }*/
-
     IEnumerator ResultCoroutine()
     {
         isResultCoroutine = true;
-        if (!hasResult)
-        {
 
+        if (!IsShowResult)
+        {
             if (!isBalanced)
             {
                 Debug.Log("--Result : Exploded---");
@@ -261,11 +233,12 @@ public class MultiSpin : MonoBehaviour
             else
             {
                 Debug.Log("--Result : Correct---");
-                correctImage.enabled = true;
+                View.RPC("SetCorrectImageStatus", RpcTarget.All, true);
                 audioSource.PlayOneShot(correctClip);
             }
-            hasResult = true;
+            IsShowResult = true;
         }
+        
         isResultCoroutine = false;
         yield break;
 
@@ -273,7 +246,7 @@ public class MultiSpin : MonoBehaviour
 
     IEnumerator Explode()
     {
-
+        isExplodeCoroutine = true;
         //explosion.enableEmission = true;
         explosion.Play(true);
         audioSource.PlayOneShot(explodeClip);
@@ -281,7 +254,7 @@ public class MultiSpin : MonoBehaviour
         explosion.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         //explosion.enableEmission = false;
         yield return null;
-        //yield return StartCoroutine(MultiSpinSequence());
+        isExplodeCoroutine =false;
 
     }
 
@@ -293,7 +266,7 @@ public class MultiSpin : MonoBehaviour
     public void PhotonResetMultiSpin()
     {
         Debug.Log("---Reset Spin----");
-
+        StopAllCoroutines();
         isLidOpened = false;
         isBalanced = false;
         isSpinning = false;
@@ -301,6 +274,10 @@ public class MultiSpin : MonoBehaviour
         isSpinnerTriggered = false;
         isMultispinCoroutine = false;
         hasResult = false;
+        IsShowResult = false;
+        View.RPC("SetCorrectImageStatus", RpcTarget.All, false);
+
+
         spinSpeed = 0;
 
         //close the lid
@@ -318,12 +295,8 @@ public class MultiSpin : MonoBehaviour
             testTubeLock.OnReset();
         }*/
 
-        correctImage.enabled = false;
-
     }
-    #endregion
 
-    #region Self-defined Methods
     void TubeCorrectSequence(int tubeNumber)
     {
         correctArrangement = new List<bool[]>();
@@ -381,19 +354,7 @@ public class MultiSpin : MonoBehaviour
                 break;
         }
     }
-    /*
-        void CheckSpinning()
-        {
-            if (spinSpeed > 0)
-            {
-                isSpinning = true;
-            }
-            else
-            {
-                isSpinning = false;
-            }
-        }
-    */
+
     int CheckTestTubeAmount()
     {
         int value = 0;
@@ -446,9 +407,12 @@ public class MultiSpin : MonoBehaviour
         }
     }
 
-
-    void CheckSpinnerBalance()
+    [PunRPC]
+    public void CheckSpinnerBalance()
     {
+        CheckTestTubePos();
+        TubeCorrectSequence(CheckTestTubeAmount());
+
         int occupiedIndex = 0;
         foreach(MultiSpinTestTubeLock l in testTubeLocks)
         {
@@ -469,53 +433,11 @@ public class MultiSpin : MonoBehaviour
                     break;
                 }
             }
-            //hasResult = true;
+            hasResult = true;
             Debug.Log("----Check Balance---- : " + isBalanced);
         }
     }
 
-    void SetCorrectPlacingText()
-    {
-        currentSequence = "Correct Sequence(s):\n";
-        for (int i = 0; i < correctArrangement.Count; i++)
-        {
-            string sequence = "Sequence " + (i + 1) + ":\n";
-            for (int j = 0; j < correctArrangement[i].Length; j++)
-            {
-                sequence += "TestTube " + j + ": " + correctArrangement[i][j].ToString() + "\n";
-            }
-            currentSequence += sequence;
-        }
-        Debug.Log(currentSequence);
-    }
-
-    void SetSpinnerTubeActivate(bool canHold)
-    {
-        CapsuleCollider[] spinnerTubeHolder = spinner.GetComponentsInChildren<CapsuleCollider>(true);
-        for (int i = 0; i < spinnerTubeHolder.Length; i++)
-        {
-            spinnerTubeHolder[i].enabled = canHold;
-        }
-    }
-
-    void SetDebugText()
-    {
-        whichHasTestTube = "";
-        for (int i = 0; i < spinnerPosCount; i++)
-        {
-            whichHasTestTube += "TestTube " + i + ": " + testTubePlaceholder[i].ToString() + "\n";
-        }
-        String text = "Multispin variables:\n" +
-            "isLidOpened: " + isLidOpened.ToString() + "\n" +
-            "isMultispinCoroutine: " + isMultispinCoroutine.ToString() + "\n" +
-            "isSpinnerTriggered: " + isSpinnerTriggered.ToString() + "\n" +
-            "TestTube in machine: " + CheckTestTubeAmount().ToString() + "\n" +
-            "Which holes has test tube? \n" + whichHasTestTube + "\n" +
-            "Is the test tubes balanced? " + isBalanced.ToString();
-
-        Debug.Log(text);
-    }
-    #endregion
     private bool CompareBooleanArrays(bool[] boolA, bool[] boolB)
     {
         if (boolA.Length != boolB.Length) return false;

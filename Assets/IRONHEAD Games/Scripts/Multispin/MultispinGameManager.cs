@@ -88,7 +88,7 @@ public class MultispinGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonWaitForPlayersReady() {
+    public void PhotonWaitForPlayersReady() {
         Debug.Log("---Waiting For Players Ready---");
         foreach (PlayerButton button in _playerButtons)
         {
@@ -112,7 +112,7 @@ public class MultispinGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonReadyToStart()
+    public void PhotonReadyToStart()
     {
         Debug.Log("---Game Ready To Start---");
         if (isPlayersReady && !IsReadyToStart)
@@ -133,7 +133,7 @@ public class MultispinGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonStartGame()
+    public void PhotonStartGame()
     {
         Debug.Log("---Start the game---");
 
@@ -149,7 +149,7 @@ public class MultispinGameManager : MonoBehaviour
     }
 
     [PunRPC]
-    private void PhotonEndGame() {
+    public void PhotonEndGame() {
 
 
         _gameState = GameState.EndGame;
@@ -175,7 +175,7 @@ public class MultispinGameManager : MonoBehaviour
             StartCoroutine(ResetCoroutine());
     }
 
-    private void ShowResult() {
+    public void ShowResult() {
         string text = "";
 
         if (_multiSpins[0].isBalanced && !_multiSpins[1].isBalanced)
