@@ -58,19 +58,28 @@ namespace AngryMouse
                 view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Update()
         {
+            if (PhotonNetwork.IsConnected)
+                view.RPC("PhotonUpdate", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void PhotonUpdate()
+        {
+
             // when players get ready, the timer starts.
             if (isPlayersReady && IsReadyToStart && !IsReadyTimerCoroutine)
             {
                 StartCoroutine(SetReadyTimerCoroutine(timerSec));
             }
+
             // start the game after the count down.
             if (IsGameStart && !IsGameEnd)
             {
                 StartGame();
             }
+
 
             //end the game
             if (IsGameStart && IsGameEnd && !IsReset)
@@ -106,6 +115,7 @@ namespace AngryMouse
 
         private void SetQuestion()
         {
+            if (!IsGameStart || IsGameEnd) return;
             string text = "";
             if(currentIndex < questions.Count)
             {
@@ -114,9 +124,11 @@ namespace AngryMouse
 
                 answer = currentQuestion.answerText;
                 text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+
+
+                view.RPC("UpdateBoardText", RpcTarget.All, text);
             }
-           
-            view.RPC("UpdateBoardText", RpcTarget.All, text);
+
         }
 
         [PunRPC]
@@ -201,11 +213,11 @@ namespace AngryMouse
             {
                 m.PhotonSetEngine(false);
             }
-
-            if (IsQuestionCoroutine)
-            {
-                StopAllCoroutines();
+            if (IsQuestionCoroutine) {
+                StopCoroutine(SetQuestionBoardCoroutine());
+                IsQuestionCoroutine = false;
             }
+
             ShowResult();
 
         }
@@ -219,7 +231,6 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
-            view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
             IsReset = true;
             foreach (MoeManager m in moeManagers)
             {
@@ -236,10 +247,13 @@ namespace AngryMouse
             IsGameStart = false;
             IsGameEnd = false;
             IsQuestionCoroutine = false;
-            IsReadyTimerCoroutine = false; 
+            IsReadyTimerCoroutine = false;
 
             if (!IsResetCoroutine)
                 StartCoroutine(ResetCoroutine());
+
+            view.RPC("UpdateBoardText", RpcTarget.All, "Press Ready to start the game.");
+
         }
         public bool CheckAnswer(string _text) { 
             if(_text ==answer)
@@ -282,12 +296,8 @@ namespace AngryMouse
                     if (currentIndex >= questions.Count)
                     {
                         IsGameEnd = true;
-                    }
 
-/*                    foreach (MoeManager m in moeManagers)
-                    {
-                        m.isScored = false;
-                    }*/
+                    }
                     IsCorrect = false;
                 }
                 //if correct answer is found

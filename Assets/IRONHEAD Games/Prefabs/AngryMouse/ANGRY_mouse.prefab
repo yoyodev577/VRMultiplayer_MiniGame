@@ -562,7 +562,7 @@ GameObject:
   - component: {fileID: 242206965046053234}
   - component: {fileID: 5763207421962697573}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -598,7 +598,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 343000160546043217}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -768,7 +768,7 @@ Transform:
   m_GameObject: {fileID: 987124754633790918}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.1381303, y: 1.5680871, z: 2.8035183}
+  m_LocalPosition: {x: 1.1381303, y: 1.0199999, z: 2.8035183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -837,7 +837,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 1
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 1380230687624212621}
   textMeshProUGUI: {fileID: 2670106507646374981}
   currentAns: D
@@ -1121,7 +1121,7 @@ Transform:
   m_GameObject: {fileID: 1407265435780914065}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.492198, y: 1.5680871, z: 2.2425048}
+  m_LocalPosition: {x: 1.492198, y: 1.0199999, z: 2.2425048}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1190,7 +1190,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 8522841891581443017}
   textMeshProUGUI: {fileID: 8658086970088191051}
   currentAns: D
@@ -2344,7 +2344,7 @@ Transform:
   m_GameObject: {fileID: 2657989489349938523}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.4079214, y: 1.5680871, z: 2.8035178}
+  m_LocalPosition: {x: 0.4079214, y: 1.0199999, z: 2.8035178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2413,7 +2413,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 6154334423716899524}
   textMeshProUGUI: {fileID: 7791059858290314633}
   currentAns: B
@@ -3835,7 +3835,6 @@ GameObject:
   - component: {fileID: 6229902939514269677}
   - component: {fileID: 2373362124449718045}
   - component: {fileID: 5616438025414181634}
-  - component: {fileID: 1219891537403021564}
   m_Layer: 0
   m_Name: Hammer
   m_TagString: hammer
@@ -3851,14 +3850,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4731564310503306570}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.26, y: 0.978, z: 5.88}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: -0.732, y: 0.416, z: 3.344}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8320222218410235001}
   m_Father: {fileID: 7165453662695627094}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &401694078468065096
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3926,11 +3925,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 2
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6229902939514269677}
-  - {fileID: 1219891537403021564}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -3972,7 +3970,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 122
   m_CollisionDetection: 0
 --- !u!114 &7871133915550760539
 MonoBehaviour:
@@ -4180,22 +4178,6 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   startRot: {x: 0, y: 0, z: 0, w: 0}
   networkedGrabbing: {fileID: 0}
---- !u!114 &1219891537403021564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4731564310503306570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizeVelocity: 1
-  m_SynchronizeAngularVelocity: 0
-  m_TeleportEnabled: 0
-  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &4914706621869686883
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,7 +4209,7 @@ Transform:
   m_GameObject: {fileID: 4914706621869686883}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.76098716, y: 1.5680871, z: 2.2425046}
+  m_LocalPosition: {x: 0.76098716, y: 1.0199999, z: 2.2425046}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4296,7 +4278,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 1
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 1779625716258654306}
   textMeshProUGUI: {fileID: 3358241736643970435}
   currentAns: C
@@ -4395,7 +4377,7 @@ Transform:
   m_GameObject: {fileID: 4944345395213826737}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.492198, y: 1.5680871, z: 3.3735342}
+  m_LocalPosition: {x: 1.492198, y: 1.0199999, z: 3.3735342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4464,7 +4446,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 7626422667131336228}
   textMeshProUGUI: {fileID: 7694643035002889802}
   currentAns: D
@@ -4931,8 +4913,9 @@ MonoBehaviour:
   - B
   - C
   - D
+  - E
   isEnabled: 0
-  maxMoes: 4
+  maxMoes: 5
   score: 0
   isScored: 0
   isCoroutine: 0
@@ -5522,7 +5505,7 @@ GameObject:
   - component: {fileID: 6899689602873768090}
   - component: {fileID: 4620746832957281837}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5537,8 +5520,8 @@ Transform:
   m_GameObject: {fileID: 6401278403577556162}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.29, y: 0, z: 5.75}
-  m_LocalScale: {x: 1.3712, y: 1.3712, z: 1.3712}
+  m_LocalPosition: {x: -0.699, y: 0.235, z: 3.272}
+  m_LocalScale: {x: 0.74096906, y: 0.14605981, z: 0.74096906}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7165453662695627094}
@@ -5558,7 +5541,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6401278403577556162}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -6143,7 +6126,7 @@ Transform:
   m_GameObject: {fileID: 7117887361803633605}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.8539875, y: 1.5680871, z: 2.8035183}
+  m_LocalPosition: {x: 1.8539875, y: 1.0199999, z: 2.8035183}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6212,7 +6195,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 4645021674775912016}
   textMeshProUGUI: {fileID: 5604554332839393025}
   currentAns: A
@@ -7246,7 +7229,7 @@ Transform:
   m_GameObject: {fileID: 8312414792827830007}
   serializedVersion: 2
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0.76098716, y: 1.5680871, z: 3.3735337}
+  m_LocalPosition: {x: 0.76098716, y: 1.02, z: 3.3735337}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7315,7 +7298,7 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 1
   isHit: 0
-  speed: 0.3
+  speed: 0.9
   panelObj: {fileID: 2658611466236820339}
   textMeshProUGUI: {fileID: 225328008538194003}
   currentAns: B

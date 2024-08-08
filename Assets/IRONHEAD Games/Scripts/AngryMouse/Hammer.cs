@@ -18,12 +18,6 @@ public class Hammer : MonoBehaviour
         startRot = transform.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     public void ResetPos()
     {
         if (PhotonNetwork.IsConnected)
@@ -41,8 +35,8 @@ public class Hammer : MonoBehaviour
     {
         if (collision.gameObject.tag == "Floor")
         {
-            ResetPos();
-            //PhotonResetPosition();
+            if (PhotonNetwork.IsConnected)
+                view.RPC("PhotonResetPosition", RpcTarget.All);
         }
     }
 }

@@ -26,17 +26,25 @@ public class Moe : MonoBehaviour
         moeManager = GetComponentInParent<MoeManager>();
     }
 
-
-    // Update is called once per frame
-    void FixedUpdate()
+    public void SetPop(bool _pop)
     {
-        if (PhotonNetwork.IsConnected)
-            view.RPC("PhotonUpdate", RpcTarget.All);
-
+        view.RPC("PhotonSetPop", RpcTarget.All,_pop);
+    }
+    public void SetHitStatus(bool _isHit)
+    {
+        view.RPC("PhotonSetHitStatus", RpcTarget.All, _isHit);
+    }
+    public void SetCurrentAns(string s)
+    {
+        view.RPC("PhotonSetCurrentAns", RpcTarget.All, s);
     }
 
+
+
     [PunRPC]
-    public void PhotonUpdate() {
+    public void PhotonSetPop( bool pop) {
+        isPop = pop;
+
         if (isPop)
         {
             view.RPC("Pop", RpcTarget.All);
@@ -46,16 +54,12 @@ public class Moe : MonoBehaviour
             view.RPC("Hide", RpcTarget.All);
         }
     }
-
-
-    public void SetPop( bool pop) {
-        isPop = pop;
-    }
-
-    public void SetHitStatus(bool _isHit) {
+    [PunRPC]
+    public void PhotonSetHitStatus(bool _isHit) {
         isHit = _isHit;
     }
-    public void SetCurrentAns(string s) {
+    [PunRPC]
+    public void PhotonSetCurrentAns(string s) {
         currentAns = s;
     }
 
@@ -71,9 +75,7 @@ public class Moe : MonoBehaviour
     [PunRPC]
     public void Hide() {
         Vector3 targetPos = new Vector3(startPos.x, minHeight, startPos.z);
-       // Debug.Log(targetPos);
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed);
-
         panelObj.SetActive(false);
     }
 
@@ -82,15 +84,15 @@ public class Moe : MonoBehaviour
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "hammer")
         {
-            isHit = true;
-            isPop = false;
+            SetHitStatus(true);
+            SetPop(false);
             moeManager.CheckScore(currentAns);
         }
     }
     public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "hammer") {
-            isHit = false;
+            SetHitStatus(false);
         }
     }
 }
