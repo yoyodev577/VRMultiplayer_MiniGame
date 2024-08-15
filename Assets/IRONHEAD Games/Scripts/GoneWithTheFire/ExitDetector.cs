@@ -13,10 +13,6 @@ namespace GoneWithTheFire
             if(other != null && other.gameObject.name=="XR Origin")
             {
                 isInExit = true;
-                PlayerBaseInfo playerBaseInfo = other.gameObject.GetComponentInParent<PlayerBaseInfo>();
-                
-                if(playerBaseInfo != null )
-                Debug.Log(playerBaseInfo.nameStr + "is in exit!");
             }
             
         }

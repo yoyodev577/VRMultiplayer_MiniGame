@@ -13,6 +13,8 @@ namespace CaptainSafety
         private VideoPlayer videoPlayer;
         private SpawnManager spawnManager;
 
+        [SerializeField] private PlayerGameController[] playerGameControllers;
+
         public bool isVideoPlayed = false;
         public bool isVideoCoroutine = false;
         public bool isAnimationPlayed = false;
@@ -28,11 +30,6 @@ namespace CaptainSafety
         public GameObject videoPanel, boardPanel;
         public TMP_Text boardText;
 
-        public GameObject bottleObj;
-        public Animator bottleAnimator;
-        public GameObject fireObj;
-
-
         public AudioSource bgmSource, sfxSource;
         public AudioClip countDownClip, fallClip, fireClip;
         // Start is called before the first frame update
@@ -43,6 +40,7 @@ namespace CaptainSafety
             videoPlayer = FindObjectOfType<VideoPlayer>();
             videoPanel.SetActive(true);
             boardPanel.SetActive(false);
+            playerGameControllers = FindObjectsOfType<PlayerGameController>();
             //videoPlayer.Play();
 
         }
@@ -55,6 +53,14 @@ namespace CaptainSafety
                 view.RPC("PhotonUpdate", RpcTarget.All);
 
         }
+        [PunRPC]
+        public void EnableCameraVfx() {
+            if (playerGameControllers.Length == 0) return;
+
+            for (int i = 0; i < playerGameControllers.Length; i++) {
+                playerGameControllers[i].SetCameraEffectObj(true);
+            }
+        }
 
         [PunRPC]
         public void PhotonUpdate() {
@@ -66,15 +72,13 @@ namespace CaptainSafety
                     videoPanel.SetActive(false);
                     boardPanel.SetActive(true);
 
-                    view.RPC("PhotonPlayAnimation", RpcTarget.All);
+                    // activate eye hurt effect
+                    view.RPC("EnableCameraVfx", RpcTarget.All);
 
-                    if (isAnimationPlayed)
+                    isReadyToStart = true;
+                    if (!isReadyTimerCoroutine)
                     {
-                        isReadyToStart = true;
-                        if (!isReadyTimerCoroutine)
-                        {
-                            StartCoroutine(SetReadyTimerCoroutine(5));
-                        }
+                        StartCoroutine(SetReadyTimerCoroutine(5));
                     }
                 }
 
@@ -89,23 +93,6 @@ namespace CaptainSafety
                 view.RPC("PhotonStartGame", RpcTarget.All);
         }
 
-        [PunRPC]
-        public void PhotonPlayAnimation() {
-
-            bottleObj.SetActive(true);
-            bottleAnimator = bottleObj.GetComponent<Animator>();
-            bottleAnimator.SetTrigger("Fall");
-            if(!sfxSource.isPlaying)
-            sfxSource.PlayOneShot(fallClip);
-            if (bottleAnimator.GetAnimatorTransitionInfo(0).normalizedTime >0.5f) 
-            {
-                sfxSource.PlayOneShot(fireClip);
-                fireObj.SetActive(true);
-                isAnimationPlayed = true;
-            }
-
-        
-        }
 
         [PunRPC]
         public void PhotonStartGame()

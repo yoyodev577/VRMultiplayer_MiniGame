@@ -20,8 +20,6 @@ public class PlayerNetworkSetup : MonoBehaviourPun
     [SerializeField]
     GameObject nonNetworkedGameobjects;
 
-   
-
     // Start is called before the first frame update
     void Awake()
     {
