@@ -13,12 +13,6 @@ public class PlayerGameController : MonoBehaviour
         cameraEffectObj.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SetCameraEffectObj(bool _isEnable) {
         cameraEffectObj.SetActive(_isEnable);
     }

@@ -130,6 +130,11 @@ MonoBehaviour:
   - PhotonSetSpinner
   - SetResultStatus
   - SetCorrectImageStatus
+  - EnableCameraVfx
+  - SetWaterParticle
+  - SetWaterVFX
+  - SetPanelState
+  - SetLensState
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

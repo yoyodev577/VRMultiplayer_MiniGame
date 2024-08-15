@@ -25,15 +25,14 @@ public class SceneButton : MonoBehaviour
         {
             scene_number = 4;
         }
-        else if (this.gameObject.name == "MiniGame5") {
+        else if (this.gameObject.name == "MiniGame5")
+        {
             scene_number = 5;
         }
+        else if (this.gameObject.name == "MiniGame6")
+        {
+            scene_number = 6;
+        }
         click = 0;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -68,19 +68,6 @@ public class MiniGameManager : MonoBehaviourPunCallbacks
         // }
     }
 
-    void Update(){
-
-/*        foreach(RoomInfo roomInfo in currentRoomList){
-            for(int i =0; i<4; i++){
-                if (roomInfo.Name.Contains(RoomName[i])){
-                    sceneUserNumber[i].text = roomInfo.PlayerCount+"/ 8";
-                    break;
-                }
-            }
-        }*/
-        
-    }
-
     
     
 }

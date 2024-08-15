@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/IRONHEAD Games/Scenes/Yoyo/AngryMouse.unity
     guid: fdbf07db84e36bb42b33d2a2eec55f74
+  - enabled: 1
+    path: Assets/IRONHEAD Games/Scenes/CaptainSafety.unity
+    guid: 0d62b45ae3a45564a85d20f936bf91de
   - enabled: 0
     path: Assets/IRONHEAD Games/Scenes/Yoyo/NetworkTestScene/PhotonNetworkTest_Login.unity
     guid: 2ea26d8c3384db24291815d2df89590e

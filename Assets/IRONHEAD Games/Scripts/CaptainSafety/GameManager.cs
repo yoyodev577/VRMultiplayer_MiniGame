@@ -41,7 +41,6 @@ namespace CaptainSafety
             videoPanel.SetActive(true);
             boardPanel.SetActive(false);
             playerGameControllers = FindObjectsOfType<PlayerGameController>();
-            //videoPlayer.Play();
 
         }
 
