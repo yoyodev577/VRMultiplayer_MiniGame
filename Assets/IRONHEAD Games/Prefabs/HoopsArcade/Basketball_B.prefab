@@ -10,11 +10,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1266043752667104002, guid: 7c69a7e956b4dde44bfcabdb6023c60e, type: 3}
       propertyPath: m_Name
-      value: Basketball_B Variant
+      value: Basketball_B
       objectReference: {fileID: 0}
     - target: {fileID: 1266043752667104002, guid: 7c69a7e956b4dde44bfcabdb6023c60e, type: 3}
       propertyPath: m_TagString
       value: B
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312815509557144190, guid: 7c69a7e956b4dde44bfcabdb6023c60e, type: 3}
+      propertyPath: m_ThrowVelocityScale
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5312815509557144190, guid: 7c69a7e956b4dde44bfcabdb6023c60e, type: 3}
+      propertyPath: m_ThrowSmoothingDuration
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 6219854476753906321, guid: 7c69a7e956b4dde44bfcabdb6023c60e, type: 3}
       propertyPath: m_Materials.Array.data[0]
