@@ -61,6 +61,9 @@ public class MultiSpin : MonoBehaviour
     [SerializeField] private AudioClip correctClip, explodeClip;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private bool isExplodeCoroutine = false;
+
+    [SerializeField] private SphereCollider buttonCollider;
+    //[SerializeField] private Transform buttonPivot;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -68,6 +71,7 @@ public class MultiSpin : MonoBehaviour
         View = GetComponent<PhotonView>();
         audioSource = GetComponent<AudioSource>();
         gameManager = FindObjectOfType<MultispinGameManager>();
+        buttonCollider= GetComponent<SphereCollider>();
         testTubeList.AddRange(testTubeParent.transform.GetComponentsInChildren<TestTube>());
         testTubeLocks.AddRange(spinner.transform.GetComponentsInChildren<MultiSpinTestTubeLock>());
         spinnerPosCount = spinner.transform.childCount;
@@ -120,6 +124,7 @@ public class MultiSpin : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+
         if (gameManager.IsGameStart && other.gameObject.tag == "Hand"
             && !isSpinning && !hasResult) {
             Debug.Log(other.gameObject.name + "Collides");;
@@ -136,6 +141,7 @@ public class MultiSpin : MonoBehaviour
         if (!isLidOpened)
         {
             //close the cover
+            buttonCollider.center = new Vector3(0, -0.2f, 0.54f);
             lid.transform.localEulerAngles = new Vector3(-165, 0, -90);
 
             // start spinning
@@ -154,6 +160,7 @@ public class MultiSpin : MonoBehaviour
         }
         else
         {
+            buttonCollider.center = new Vector3(0, 0.65f, -0.9f);
             lid.transform.localEulerAngles = new Vector3(-270, 0, -90);
 
             //stop the spinning

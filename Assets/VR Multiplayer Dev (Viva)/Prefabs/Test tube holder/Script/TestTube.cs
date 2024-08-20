@@ -48,7 +48,7 @@ public class TestTube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Base")
         {
             //PhotonOnCollision();
 
