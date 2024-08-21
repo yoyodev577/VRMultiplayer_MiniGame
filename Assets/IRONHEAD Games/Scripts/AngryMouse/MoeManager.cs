@@ -25,6 +25,7 @@ public class MoeManager : MonoBehaviour
     public TextMeshProUGUI scoreText;
     public int playerNum = 0;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,15 +35,6 @@ public class MoeManager : MonoBehaviour
         view.RPC("HideAllMoes", RpcTarget.All);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            SetEngine(true);
-        }
-
-    }
 
     public void PhotonSetEngine(bool _isEnabled) {
         view.RPC("SetEngine", RpcTarget.All, _isEnabled);
@@ -110,6 +102,9 @@ public class MoeManager : MonoBehaviour
     }
 
     public void CheckScore(string _answer) {
+
+        if (!manager.IsGameStart || manager.IsGameEnd) return;
+
         view.RPC("PhotonScore", RpcTarget.All,_answer);
     }
 

@@ -231,7 +231,6 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
-            IsReset = true;
             foreach (MoeManager m in moeManagers)
             {
                 Debug.Log("---Reset moes---");
@@ -248,6 +247,9 @@ namespace AngryMouse
             IsGameEnd = false;
             IsQuestionCoroutine = false;
             IsReadyTimerCoroutine = false;
+
+
+            IsReset = true;
 
             if (!IsResetCoroutine)
                 StartCoroutine(ResetCoroutine());
