@@ -17,8 +17,6 @@ namespace CaptainSafety
 
         public bool isVideoPlayed = false;
         public bool isVideoCoroutine = false;
-        public bool isAnimationPlayed = false;
-        public bool isAnimationCoroutine = false;
         public bool isReadyTimerCoroutine = false;
         public bool isReadyToStart = false;
         public bool isGameStart = false;
@@ -31,7 +29,7 @@ namespace CaptainSafety
         public TMP_Text boardText;
 
         public AudioSource bgmSource, sfxSource;
-        public AudioClip countDownClip, fallClip, fireClip;
+        public AudioClip countDownClip;
         // Start is called before the first frame update
         void Start()
         {
@@ -47,7 +45,7 @@ namespace CaptainSafety
         // Update is called once per frame
         void Update()
         {
-           // PhotonUpdate();
+            PhotonUpdate();
             if (PhotonNetwork.IsConnected)
                 view.RPC("PhotonUpdate", RpcTarget.All);
 
@@ -71,22 +69,19 @@ namespace CaptainSafety
                     videoPanel.SetActive(false);
                     boardPanel.SetActive(true);
 
-                    // activate eye hurt effect
-                    view.RPC("EnableCameraVfx", RpcTarget.All);
-
                     isReadyToStart = true;
+
                     if (!isReadyTimerCoroutine)
                     {
                         StartCoroutine(SetReadyTimerCoroutine(5));
                     }
                 }
-
             }
         }
 
         public void StartGame()
         {
-           //PhotonStartGame();
+          // PhotonStartGame();
 
             if (PhotonNetwork.IsConnected)
                 view.RPC("PhotonStartGame", RpcTarget.All);
@@ -104,8 +99,6 @@ namespace CaptainSafety
             }
 
         }
-
-
 
         public void EndGame() {
 
@@ -130,7 +123,6 @@ namespace CaptainSafety
         [PunRPC]
         public void PhotonResetGame()
         {
-            isAnimationPlayed = false;
             isReadyTimerCoroutine = false;
             isVideoCoroutine = false;
             isReadyToStart = false;
@@ -180,6 +172,10 @@ namespace CaptainSafety
                 isReadyToStart = true;
                 isGameStart = true;
                 view.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
+
+                //EnableCameraVfx();
+                // activate eye hurt effect
+                view.RPC("EnableCameraVfx", RpcTarget.All);
             }
 
             isReadyTimerCoroutine = false;
