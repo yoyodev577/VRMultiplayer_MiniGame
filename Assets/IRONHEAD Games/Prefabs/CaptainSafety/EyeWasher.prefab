@@ -5476,6 +5476,7 @@ GameObject:
   - component: {fileID: 5369424224847528258}
   - component: {fileID: 9007047596349859232}
   - component: {fileID: 3252030745618934860}
+  - component: {fileID: 4133218591004968082}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Untagged
@@ -5541,6 +5542,28 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4133218591004968082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7064325204352073822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &7169920826623493642
 GameObject:
   m_ObjectHideFlags: 0
@@ -5948,11 +5971,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb108851d0301e74ba348c427c72b9f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   view: {fileID: 0}
   playerNum: 0
   isLensOpened: 0
   isInZone: 0
   isActivated: 0
+  isWashed: 0
   isEmitCoroutine: 0
   waterVfX: {fileID: 5362948442553851071}
   panelObj: {fileID: 8379911930372086170}

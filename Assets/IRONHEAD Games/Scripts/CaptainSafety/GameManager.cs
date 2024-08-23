@@ -45,7 +45,7 @@ namespace CaptainSafety
         // Update is called once per frame
         void Update()
         {
-            PhotonUpdate();
+            //PhotonUpdate();
             if (PhotonNetwork.IsConnected)
                 view.RPC("PhotonUpdate", RpcTarget.All);
 
@@ -173,7 +173,6 @@ namespace CaptainSafety
                 isGameStart = true;
                 view.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
 
-                //EnableCameraVfx();
                 // activate eye hurt effect
                 view.RPC("EnableCameraVfx", RpcTarget.All);
             }

@@ -28,10 +28,16 @@ public class EyeWasher : MonoBehaviour
 
     void Start()
     {
+        isLensOpened = false;
+        isInZone = false;
+        isActivated = false;
+        isWashed = false;
+        isEmitCoroutine = false;
+
         view = GetComponent<PhotonView>();
         gameManager = FindObjectOfType<GameManager>();
-        SetLensState(false);
-        SetPanelState(false);
+       // SetLensState(false);
+       // SetPanelState(false);
         view.RPC("SetLensState", RpcTarget.All, false);
         view.RPC("SetPanelState", RpcTarget.All, false);
     }
@@ -49,7 +55,7 @@ public class EyeWasher : MonoBehaviour
                 //only the fastest one win the game
                 if (!gameManager.isGameEnd)
                 {
-                    SetPanelState(true);
+                    view.RPC("SetPanelState", RpcTarget.All, true);
                     gameManager.EndGame();
                 }
             }
