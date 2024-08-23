@@ -584,9 +584,9 @@ MonoBehaviour:
   - {fileID: 7721384655036965162}
   - {fileID: 371976843}
   _playerButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  _resetButton: {fileID: 0}
+  - {fileID: 1295253392}
+  - {fileID: 1295253391}
+  _resetButton: {fileID: 1295253393}
   questions: []
   currentIndex: 0
   currentQuestion:
@@ -2165,7 +2165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5690937739351968543, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5690937739351968543, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
@@ -2306,13 +2306,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1882889259765857514, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5545861420696851676, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 2200012922336684737, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-    - targetCorrespondingSourceObject: {fileID: 5215030116529570551, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 0}
     - targetCorrespondingSourceObject: {fileID: 6264548210868592038, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
@@ -2339,6 +2333,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e75eb502b57fd444d9504a872d5c33b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1295253393 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5690937739351968543, guid: f3af5aa49e159ee47ba1df55db2a8d25, type: 3}
+  m_PrefabInstance: {fileID: 1295253390}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f597ddfb6ea89c94d8a7c295837b8bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1298149551

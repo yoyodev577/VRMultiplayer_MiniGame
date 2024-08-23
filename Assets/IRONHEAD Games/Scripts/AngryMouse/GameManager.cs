@@ -22,6 +22,7 @@ namespace AngryMouse
         public string answer = "";
 
         [SerializeField] private List<PlayerButton> _playerButtons;
+        [SerializeField] private List<Hammer> _hammers;
         [SerializeField] private TableButton _resetButton;
         public bool isPlayersReady = false;
         public bool IsReadyToStart = false;
@@ -37,6 +38,7 @@ namespace AngryMouse
 
         public bool IsReadyTimerCoroutine = false;
         public bool IsQuestionCoroutine = false;
+        public IEnumerator questionCoroutine;
 
         public TMP_Text board;
         private AudioSource _audioSource;
@@ -48,6 +50,7 @@ namespace AngryMouse
             instance = this;
             view = GetComponent<PhotonView>();
             _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
+            _hammers = FindObjectsOfType<Hammer>().ToList();
             moeManagers = FindObjectsOfType<MoeManager>().ToList();
             _audioSource = GetComponent<AudioSource>();
             InitQuestions();
@@ -113,7 +116,8 @@ namespace AngryMouse
                     , "D"));
         }
 
-        private void SetQuestion()
+        [PunRPC]
+        public void SetQuestion()
         {
             if (!IsGameStart || IsGameEnd) return;
             string text = "";
@@ -192,9 +196,10 @@ namespace AngryMouse
             {
                 m.PhotonSetEngine(true);
             }
-            if (!IsQuestionCoroutine)
+            if (!IsQuestionCoroutine && questionCoroutine==null)
             {
-                StartCoroutine(SetQuestionBoardCoroutine());
+                questionCoroutine = SetQuestionBoardCoroutine();
+                StartCoroutine(questionCoroutine);
             }
 
         }
@@ -209,17 +214,17 @@ namespace AngryMouse
         public void PhotonEndGame() {
             Debug.Log("---Game End---");
 
+            ShowResult();
+
             foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(false);
             }
             if (IsQuestionCoroutine) {
-                StopCoroutine(SetQuestionBoardCoroutine());
+                StopCoroutine(questionCoroutine);
+                questionCoroutine = null;
                 IsQuestionCoroutine = false;
             }
-
-            ShowResult();
-
         }
 
         public void ResetGame()
@@ -231,11 +236,18 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
+
             foreach (MoeManager m in moeManagers)
             {
                 Debug.Log("---Reset moes---");
                 m.ResetMachine();
             }
+
+            foreach(Hammer hammer in _hammers) {
+                Debug.Log("---Reset Hammer--");
+                hammer.ResetPos();
+            }
+
 
             currentIndex = 0;
             currentQuestion = null;
@@ -304,7 +316,7 @@ namespace AngryMouse
                 }
                 //if correct answer is found
                 yield return new WaitForSeconds(1);
-                SetQuestion();
+                view.RPC("SetQuestion", RpcTarget.All);
                 canScore = true;
 
 

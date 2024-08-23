@@ -211,6 +211,11 @@ public class HoopsGameManager : MonoBehaviour
             m.SetGate(true);
             m.ResetScore();
         }
+        foreach (PlayerButton button in _playerButtons)
+        {
+            button.ResetButton();
+        }
+
         currentIndex = 0;
         currentQuestion = null;
 
@@ -219,6 +224,8 @@ public class HoopsGameManager : MonoBehaviour
         IsGameStart = false;
         IsGameEnd = false;
         isPlayer1Win = false;
+
+        _resetButton.ResetButton();
 
         IsReset = true;
 

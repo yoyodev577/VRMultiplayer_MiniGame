@@ -259,7 +259,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1339360448}
         m_TargetAssemblyTypeName: CaptainSafety.GameManager, Assembly-CSharp
-        m_MethodName: PhotonStartGame
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
