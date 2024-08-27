@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.InputSystem.XR;
 
 public class Shoot : MonoBehaviour
 {
     [SerializeField] public int playerNum;
     private Vector3 startPos;
+    private Quaternion startRot;
 
     public float fireRate = 0.25f; // rate of the fire shooting 
     public float fireDistance = 50f; // distance that the fire can reach
@@ -53,6 +55,7 @@ public class Shoot : MonoBehaviour
     public AudioSource correctSource, wrongSource;
     public AudioClip correctClip, wrongClip;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,6 +68,7 @@ public class Shoot : MonoBehaviour
         effect = GameObject.Find(nameOfParticalEffect);
         View = GetComponent<PhotonView>();
         startPos = transform.position;
+        startRot = transform.rotation;
         gunGameManager = FindObjectOfType<GunGameManager>();
 
     }
@@ -164,8 +168,11 @@ public class Shoot : MonoBehaviour
 
         if (other.gameObject.tag == "Hand" && networkedGrabbing.isBeingHeld) {
 
-          /*  if (handsAnimationController.currentPressed > 0 || handsAnimationController.currentPressedR > 0)
-            {*/
+            HandsAnimationController controller = other.gameObject.GetComponentInParent<HandsAnimationController>();
+
+
+            if (controller.currentPressed_trigger > 0.8f || controller.currentPressed_triggerR > 0.8f)
+            {
                 Debug.Log("---Shooting---");
                 //start shooting
                 if (Physics.Raycast(gunFront.transform.position, gunFront.transform.forward, out hit, fireDistance))
@@ -178,7 +185,7 @@ public class Shoot : MonoBehaviour
                 {
                     redPoint.transform.position = gunFront.transform.position + (gunFront.transform.forward * fireDistance);
                 }
-            //}
+            }
         }
     }
    /*     public void ShowBoardName1(){
@@ -258,6 +265,7 @@ public class Shoot : MonoBehaviour
     public void ResetPosition()
     {
         transform.position = startPos;
+        transform.rotation = startRot;
     }
 
 

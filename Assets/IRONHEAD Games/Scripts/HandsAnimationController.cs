@@ -131,7 +131,8 @@ public class HandsAnimationController : MonoBehaviour
             }
             currentPressed=obj.ReadValue<float>();
             
-        }else{
+        }else if (WhichHand == "Right")
+        {
             // RightHandAnimator.SetFloat("grip",obj.ReadValue<float>());
             if(obj.ReadValue<float>() - currentPressedR >0){
 

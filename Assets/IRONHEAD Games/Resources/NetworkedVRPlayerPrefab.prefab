@@ -4104,19 +4104,19 @@ CharacterController:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 262144
+    m_Bits: 0
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.16
+  m_Radius: 0.3
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Center: {x: 0.59, y: 1, z: -0.66}
 --- !u!114 &1533696365294065995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4349,8 +4349,8 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
-      m_Id: e9e66fd1-87b5-4cc7-a97a-765fcec7c2af
-      m_Path: <XRController>{RightHand}/grip
+      m_Id: b6aba01c-5b09-40a6-962f-abc402d3334e
+      m_Path: <XRController>{RightHand}/trigger
       m_Interactions: 
       m_Processors: 
       m_Groups: 
