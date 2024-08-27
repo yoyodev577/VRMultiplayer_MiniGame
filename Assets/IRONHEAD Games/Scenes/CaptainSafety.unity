@@ -3184,6 +3184,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8338938878735101591, guid: 0355950bba55ae546afe38c6e5e86346, type: 3}
+      propertyPath: winClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d6bc0dc61afd2c846854021636799050, type: 3}
+    - target: {fileID: 8338938878735101591, guid: 0355950bba55ae546afe38c6e5e86346, type: 3}
       propertyPath: sfxSoure
       value: 
       objectReference: {fileID: 172809215}
@@ -4798,7 +4802,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2124166775}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 35249ed3a862e7644b8481e2ac73b4b2, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 519dc1f2a8db2cd49afa69ec46c7a488, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 0}

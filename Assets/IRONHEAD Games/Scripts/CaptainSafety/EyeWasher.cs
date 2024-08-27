@@ -24,6 +24,7 @@ public class EyeWasher : MonoBehaviour
     public PlayerGameController playerGameController;
 
     public AudioSource sfxSoure;
+    public AudioClip winClip;
     public AudioClip waterClip;
 
     void Start()
@@ -56,6 +57,7 @@ public class EyeWasher : MonoBehaviour
                 if (!gameManager.isGameEnd)
                 {
                     view.RPC("SetPanelState", RpcTarget.All, true);
+                    sfxSoure.PlayOneShot(winClip);
                     gameManager.EndGame();
                 }
             }
