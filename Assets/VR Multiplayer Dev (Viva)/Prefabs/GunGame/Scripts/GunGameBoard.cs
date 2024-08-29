@@ -35,8 +35,11 @@ public class GunGameBoard : MonoBehaviour
 
         if(other.gameObject.GetComponent<RightWall>() != null){
 
+            //PhotonChangeDirection(false);
             View.RPC("PhotonChangeDirection",RpcTarget.AllBuffered,false);
+
         }else if(other.gameObject.GetComponent<LeftWall>() != null){
+            //PhotonChangeDirection(true);
             View.RPC("PhotonChangeDirection",RpcTarget.AllBuffered,true);
         }
 
