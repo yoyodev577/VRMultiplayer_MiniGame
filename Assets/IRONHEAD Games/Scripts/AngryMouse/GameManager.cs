@@ -41,7 +41,7 @@ namespace AngryMouse
         public IEnumerator questionCoroutine;
 
         public TMP_Text board;
-        private AudioSource _audioSource;
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private AudioClip _audioClip;
 
         // Start is called before the first frame update
@@ -52,7 +52,6 @@ namespace AngryMouse
             _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
             _hammers = FindObjectsOfType<Hammer>().ToList();
             moeManagers = FindObjectsOfType<MoeManager>().ToList();
-            _audioSource = GetComponent<AudioSource>();
             InitQuestions();
             Init();
         }
