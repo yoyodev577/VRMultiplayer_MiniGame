@@ -128,7 +128,8 @@ public class MoeManager : MonoBehaviour
 
     [PunRPC]
     public void PhotonResetMachine() {
-        StopAllCoroutines();
+
+        StopCoroutine(MoeCoroutine());
         hammer.ResetPos();
         isEnabled = false;
         isScored = false;
