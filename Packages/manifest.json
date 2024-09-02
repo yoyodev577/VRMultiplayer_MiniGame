@@ -5,6 +5,7 @@
     "com.htc.upm.wave.native": "5.2.1-r.1",
     "com.htc.upm.wave.openxr": "1.0.5",
     "com.htc.upm.wave.xrsdk": "5.2.1-r.1",
+    "com.meta.xr.simulator": "file:C:/Users/mmlab/Downloads/com.meta.xr.simulator-68.0.0.tgz",
     "com.unity.ai.navigation": "1.1.5",
     "com.unity.collab-proxy": "2.3.1",
     "com.unity.feature.development": "1.0.1",
