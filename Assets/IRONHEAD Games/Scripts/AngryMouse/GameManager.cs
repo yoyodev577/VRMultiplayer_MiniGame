@@ -76,15 +76,14 @@ namespace AngryMouse
                 StartCoroutine(SetReadyTimerCoroutine(timerSec));
             }
 
-            // start the game after the count down.
-            if (IsGameStart && !IsGameEnd)
+
+            if (!IsGameStart && IsReadyToStart && !IsGameEnd)
             {
                 StartGame();
             }
 
-
             //end the game
-            if (IsGameStart && IsGameEnd && !IsReset)
+            if (IsGameStart && IsGameEnd)
             {
                 EndGame();
             }
@@ -221,7 +220,6 @@ namespace AngryMouse
             }
             if (IsQuestionCoroutine) {
                 StopCoroutine(questionCoroutine);
-                questionCoroutine = null;
                 IsQuestionCoroutine = false;
             }
         }
@@ -247,15 +245,16 @@ namespace AngryMouse
                 hammer.ResetPos();
             }
 
-
+            questionCoroutine = null;
             currentIndex = 0;
             currentQuestion = null;
             isPlayersReady = false;
             IsReadyToStart = false;
-            canScore = false;
-            IsCorrect = false;
             IsGameStart = false;
             IsGameEnd = false;
+
+            canScore = false;
+            IsCorrect = false;
             IsQuestionCoroutine = false;
             IsReadyTimerCoroutine = false;
 
