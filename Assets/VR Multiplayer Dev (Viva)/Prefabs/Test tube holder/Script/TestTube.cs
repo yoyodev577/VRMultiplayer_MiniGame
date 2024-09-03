@@ -51,8 +51,9 @@ public class TestTube : MonoBehaviour
         if (collision.gameObject.tag == "Floor" || collision.gameObject.tag == "Base")
         {
             //PhotonOnCollision();
-
-            if(PhotonNetwork.IsConnected) 
+            if (collision.gameObject.tag == "Base")
+                Debug.Log("testbae");
+            if (PhotonNetwork.IsConnected) 
             View.RPC("PhotonOnCollision", RpcTarget.All);
         }
     }

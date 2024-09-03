@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 1935029942532385257}
   serializedVersion: 2
   m_LocalRotation: {x: 0.39441702, y: 0.80115545, z: 0.37212953, w: 0.2531891}
-  m_LocalPosition: {x: -0.1401, y: -0.1298, z: 0.063}
+  m_LocalPosition: {x: -0.1027, y: -0.099, z: 0.1141}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -54,7 +54,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7203826992573677703
@@ -458,7 +458,7 @@ Transform:
   m_GameObject: {fileID: 2983607875149956728}
   serializedVersion: 2
   m_LocalRotation: {x: 0.57496715, y: 0.53304523, z: 0.5883644, w: 0.19774455}
-  m_LocalPosition: {x: -0.1339, y: 0.1332, z: 0.0503}
+  m_LocalPosition: {x: -0.0987, y: 0.0916, z: 0.1365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -484,7 +484,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &509699079545123563
@@ -636,7 +636,7 @@ Transform:
   m_GameObject: {fileID: 3637299848241851010}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5208059, y: 0.43370765, z: 0.66953737, w: 0.3039386}
-  m_LocalPosition: {x: -0.0066, y: 0.174, z: 0.0537}
+  m_LocalPosition: {x: -0.0006, y: 0.1353, z: 0.1292}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -662,7 +662,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &7456849193594762499
@@ -731,7 +731,7 @@ Transform:
   m_GameObject: {fileID: 4826570821317245714}
   serializedVersion: 2
   m_LocalRotation: {x: 0.28150782, y: 0.42782342, z: 0.47893906, w: 0.71297824}
-  m_LocalPosition: {x: 0.1075, y: -0.1085, z: 0.092}
+  m_LocalPosition: {x: 0.0952, y: -0.0979, z: 0.1227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -757,7 +757,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6486189241367282262
@@ -826,7 +826,7 @@ Transform:
   m_GameObject: {fileID: 4971738386303728647}
   serializedVersion: 2
   m_LocalRotation: {x: 0.55288714, y: 0.69360036, z: 0.42950135, w: 0.16959696}
-  m_LocalPosition: {x: -0.1935, y: -0.0017, z: 0.0646}
+  m_LocalPosition: {x: -0.1468, y: 0.0044, z: 0.1206}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -852,7 +852,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1310891096985429508
@@ -1044,6 +1044,7 @@ MonoBehaviour:
   isMultispinCoroutine: 0
   isSpinnerTriggered: 0
   hasResult: 0
+  IsShowResult: 0
   isSpinCoroutine: 0
   isResultCoroutine: 0
   testTubeParent: {fileID: 0}
@@ -1062,6 +1063,8 @@ MonoBehaviour:
   correctClip: {fileID: 0}
   explodeClip: {fileID: 0}
   audioSource: {fileID: 0}
+  isExplodeCoroutine: 0
+  buttonCollider: {fileID: 0}
 --- !u!135 &2163415747897650261
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1164,7 +1167,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6396978912446595953
@@ -1266,7 +1269,7 @@ Transform:
   m_GameObject: {fileID: 8617790766880550765}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3882812, y: 0.37472576, z: 0.70899385, w: 0.4540332}
-  m_LocalPosition: {x: 0.1226, y: 0.1168, z: 0.0668}
+  m_LocalPosition: {x: 0.1107, y: 0.1064, z: 0.1074}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1292,7 +1295,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1479010746901357746
@@ -1387,7 +1390,7 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.028
-  m_Height: 0.15
+  m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8132870934864957628

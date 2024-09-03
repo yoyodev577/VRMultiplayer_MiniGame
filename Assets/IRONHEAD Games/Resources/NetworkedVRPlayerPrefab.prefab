@@ -3805,7 +3805,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 95.85245
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -3941,6 +3941,7 @@ GameObject:
   - component: {fileID: 4951164431026607018}
   - component: {fileID: 1533696365294065995}
   - component: {fileID: 8225018487186363832}
+  - component: {fileID: 9164957699789559933}
   m_Layer: 10
   m_Name: XR Origin
   m_TagString: Untagged
@@ -4180,6 +4181,20 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.03
   m_Center: {x: 0, y: 1, z: -0.21}
+--- !u!114 &9164957699789559933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4951164431026607023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ebb53e5b4cebb449cb3b0110de2ff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterController: {fileID: 4951164431026607018}
+  Avatar: {fileID: 4951164431143567674}
 --- !u!1 &4951164431032722624
 GameObject:
   m_ObjectHideFlags: 0
