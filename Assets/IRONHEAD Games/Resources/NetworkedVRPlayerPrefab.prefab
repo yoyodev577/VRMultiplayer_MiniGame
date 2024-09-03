@@ -3805,7 +3805,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 60
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -4116,7 +4116,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0.59, y: 1, z: -0.66}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &1533696365294065995
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4268,11 +4268,20 @@ MonoBehaviour:
   AvatarBody: {fileID: 4951164431808584619}
   AvatarHand_Left: {fileID: 4951164431780686252}
   AvatarHand_Right: {fileID: 4951164430785454049}
+  XRRig: {fileID: 4951164431026607016}
   XRHead: {fileID: 4951164430969004867}
   XRHand_Left: {fileID: 4951164431672444256}
   XRHand_Right: {fileID: 4951164429883354523}
   headPositionOffset: {x: 0, y: -1, z: 0}
   handRotationOffset: {x: 0, y: 0, z: 0}
+  previousXRHead: {x: 0, y: 0, z: 0}
+  _cameraStartingPosition: {x: 0, y: 0, z: 0}
+  characterController: {fileID: 0}
+  IsGrounded: 0
+  GroundedLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  GroundedDistance: 0.02
 --- !u!1 &4951164431195237085
 GameObject:
   m_ObjectHideFlags: 0

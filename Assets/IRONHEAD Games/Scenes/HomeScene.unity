@@ -5097,7 +5097,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0.59, y: 1, z: -0.66}
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!114 &690864915
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5202,7 +5202,7 @@ Transform:
   m_GameObject: {fileID: 690864913}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.217, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5231,11 +5231,13 @@ MonoBehaviour:
   AvatarBody: {fileID: 8348240833383572975}
   AvatarHand_Left: {fileID: 8348240833383572974}
   AvatarHand_Right: {fileID: 8348240833383572973}
+  XRRig: {fileID: 690864919}
   XRHead: {fileID: 619017735}
   XRHand_Left: {fileID: 1621466622}
   XRHand_Right: {fileID: 2078634589}
   headPositionOffset: {x: 0, y: -1, z: 0}
   handRotationOffset: {x: 0, y: 0, z: 0}
+  previousXRHead: {x: 0, y: 0, z: 0}
 --- !u!114 &690864921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12854,7 +12856,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1880504514}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
