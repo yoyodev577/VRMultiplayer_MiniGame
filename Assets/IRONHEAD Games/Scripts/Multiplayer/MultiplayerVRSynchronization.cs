@@ -48,6 +48,10 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
 
     private Quaternion m_NetworkRotation_Head;
     private float m_Angle_Head;
+    //Head child Synch
+    //Rotation
+    private Quaternion m_NetworkRotation_HeadChild;
+    private float m_Angle_HeadChild;
 
     //Body Synch
     //Rotation
@@ -201,6 +205,7 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
 
             //Send Head rotation data
             stream.SendNext(headTransform.localRotation);
+            stream.SendNext(headTransform.GetChild(0).localRotation);
 
 
             ///////////////////////////////////////////////////////////////////
@@ -313,6 +318,21 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
             else
             {
                 this.m_Angle_Head = Quaternion.Angle(headTransform.localRotation, this.m_NetworkRotation_Head);
+            }
+
+            ///////////////////////////////////////////////////////////////////
+            //HeadChild rotation synch
+            //Get Head rotation data 
+            this.m_NetworkRotation_HeadChild = (Quaternion)stream.ReceiveNext();
+
+            if (m_firstTake)
+            {
+                this.m_Angle_HeadChild = 0f;
+                headTransform.GetChild(0).localRotation = this.m_NetworkRotation_HeadChild;
+            }
+            else
+            {
+                this.m_Angle_HeadChild = Quaternion.Angle(headTransform.GetChild(0).localRotation, this.m_NetworkRotation_HeadChild);
             }
 
             ///////////////////////////////////////////////////////////////////
