@@ -23,6 +23,7 @@ public class PlayerNetworkSetup : MonoBehaviourPun
     // Start is called before the first frame update
     void Awake()
     {
+        localXRRigGameobject = GameObject.FindGameObjectWithTag("Rig").transform.Find("PlayerController").gameObject;
         if (photonView.IsMine)
         {
             //If this is the case, the player is the local player

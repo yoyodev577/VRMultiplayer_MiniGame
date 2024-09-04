@@ -16,6 +16,13 @@ TagManager:
   - hammer
   - Machine
   - Base
+  - handCol
+  - Clickable
+  - Rig
+  - RigControl
+  - RigLeftHand
+  - RigRightHand
+  - RigCamera
   layers:
   - Default
   - TransparentFX

@@ -22,14 +22,20 @@ public class AvatarInputConverter : MonoBehaviour
     public Vector3 headPositionOffset;
     public Vector3 handRotationOffset;
 
-    
 
+    private void Start()
+    {
+        XRHead = GameObject.FindGameObjectWithTag("Rig").transform.Find("PlayerController");
+        XRHand_Left = GameObject.FindGameObjectWithTag("Rig").transform.Find("Physics LeftHand/LeftHandModel");
+        XRHand_Right = GameObject.FindGameObjectWithTag("Rig").transform.Find("Physics RightHand/RightHandModel");
+    }
     // Update is called once per frame
     void Update()
     {
         //Head and Body synch
-        MainAvatarTransform.position = Vector3.Lerp(MainAvatarTransform.position, XRHead.position + headPositionOffset, 0.5f);
+        MainAvatarTransform.position = Vector3.Lerp(MainAvatarTransform.position, XRHead.position + headPositionOffset+ XRHead.GetComponent<CharacterController>().center+new Vector3(0, XRHead.GetComponent<CharacterController>().height/2, 0), 0.5f);
         AvatarHead.rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.rotation, 0.5f);
+        AvatarHead.GetChild(0).rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").rotation, 0.5f);
         if (AvatarBody!=null)
         {
             AvatarBody.rotation = Quaternion.Lerp(AvatarBody.rotation, Quaternion.Euler(new Vector3(0, AvatarHead.rotation.eulerAngles.y, 0)), 0.05f);
