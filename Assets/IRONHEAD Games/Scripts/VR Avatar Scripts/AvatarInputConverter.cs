@@ -42,10 +42,16 @@ public class AvatarInputConverter : MonoBehaviour
         }
 
         //Hands synch
-        AvatarHand_Right.position = Vector3.Lerp(AvatarHand_Right.position,XRHand_Right.position,0.5f);
-        AvatarHand_Right.rotation = Quaternion.Lerp(AvatarHand_Right.rotation,XRHand_Right.rotation,0.5f)*Quaternion.Euler(handRotationOffset);
+        //AvatarHand_Right.position = Vector3.Lerp(AvatarHand_Right.position,XRHand_Right.position,0.5f);
+        //AvatarHand_Right.rotation = Quaternion.Lerp(AvatarHand_Right.rotation,XRHand_Right.rotation,0.5f)*Quaternion.Euler(handRotationOffset);
+        AvatarHand_Right.position = XRHand_Right.position;
+        AvatarHand_Right.eulerAngles = new Vector3(-XRHand_Right.eulerAngles.x, XRHand_Right.eulerAngles.y + 180f, XRHand_Right.eulerAngles.z-90);
+        XRHand_Right.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
 
-        AvatarHand_Left.position = Vector3.Lerp(AvatarHand_Left.position,XRHand_Left.position,0.5f);
-        AvatarHand_Left.rotation = Quaternion.Lerp(AvatarHand_Left.rotation,XRHand_Left.rotation,0.5f)*Quaternion.Euler(handRotationOffset);
+        //AvatarHand_Left.position = Vector3.Lerp(AvatarHand_Left.position,XRHand_Left.position,0.5f);
+        //AvatarHand_Left.rotation = Quaternion.Lerp(AvatarHand_Left.rotation,XRHand_Left.rotation,0.5f)*Quaternion.Euler(handRotationOffset);
+        AvatarHand_Left.position = XRHand_Left.position;
+        AvatarHand_Left.eulerAngles = new Vector3(-XRHand_Left.eulerAngles.x, XRHand_Left.eulerAngles.y + 180f,XRHand_Left.eulerAngles.z+90);
+        XRHand_Left.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
     }
 }
