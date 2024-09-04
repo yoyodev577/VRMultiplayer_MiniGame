@@ -65,7 +65,10 @@ public class PlayerNetworkSetup : MonoBehaviourPun
             //Else, the player is the remote player
             //So, certain actions must be done
             //For example, XRRig will be disabled for remote players
-            localXRRigGameobject.SetActive(false);
+
+            //the structure is different, the rig is local now, so no need to disable
+            //localXRRigGameobject.SetActive(false);
+            
             mainAvatarGamebject.SetActive(true);
 
             //Disabling AvatarInputConverter script
