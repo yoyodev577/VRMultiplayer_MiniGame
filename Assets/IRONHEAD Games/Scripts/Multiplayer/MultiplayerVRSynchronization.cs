@@ -155,6 +155,7 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
 
 
             headTransform.localRotation = Quaternion.RotateTowards(headTransform.localRotation, this.m_NetworkRotation_Head, this.m_Angle_Head * (1.0f / PhotonNetwork.SerializationRate));
+            headTransform.GetChild(0).localRotation = Quaternion.RotateTowards(headTransform.GetChild(0).localRotation, this.m_NetworkRotation_HeadChild, this.m_Angle_HeadChild * (1.0f / PhotonNetwork.SerializationRate));
             bodyTransform.localRotation = Quaternion.RotateTowards(bodyTransform.localRotation, this.m_NetworkRotation_Body, this.m_Angle_Body * (1.0f / PhotonNetwork.SerializationRate));
 
 
