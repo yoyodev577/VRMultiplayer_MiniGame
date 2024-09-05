@@ -55,15 +55,6 @@
       },
       "url": "https://npm-registry.vive.com"
     },
-<<<<<<< Updated upstream
-=======
-    "com.meta.xr.simulator": {
-      "version": "file:C:/Users/Yoyow/Downloads/com.meta.xr.simulator-68.0.0.tgz",
-      "depth": 0,
-      "source": "local-tarball",
-      "dependencies": {}
-    },
->>>>>>> Stashed changes
     "com.unity.ai.navigation": {
       "version": "1.1.5",
       "depth": 0,
