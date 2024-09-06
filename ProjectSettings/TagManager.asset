@@ -16,6 +16,7 @@ TagManager:
   - hammer
   - Machine
   - Base
+  - Mouse
   layers:
   - Default
   - TransparentFX

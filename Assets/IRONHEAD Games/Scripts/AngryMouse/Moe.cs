@@ -28,15 +28,18 @@ public class Moe : MonoBehaviour
 
     public void SetPop(bool _pop)
     {
+        if(view != null)
         view.RPC("PhotonSetPop", RpcTarget.All,_pop);
     }
     public void SetHitStatus(bool _isHit)
     {
-        view.RPC("PhotonSetHitStatus", RpcTarget.All, _isHit);
+        if (view != null)
+            view.RPC("PhotonSetHitStatus", RpcTarget.All, _isHit);
     }
     public void SetCurrentAns(string s)
     {
-        view.RPC("PhotonSetCurrentAns", RpcTarget.All, s);
+        if (view != null)
+            view.RPC("PhotonSetCurrentAns", RpcTarget.All, s);
     }
 
 

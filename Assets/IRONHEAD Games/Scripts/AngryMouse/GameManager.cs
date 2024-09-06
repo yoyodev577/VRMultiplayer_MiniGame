@@ -77,7 +77,7 @@ namespace AngryMouse
             }
 
 
-            if (!IsGameStart && IsReadyToStart && !IsGameEnd)
+            if (IsGameStart && !IsGameEnd)
             {
                 StartGame();
             }
@@ -299,7 +299,7 @@ namespace AngryMouse
             IsQuestionCoroutine =true;
             currentIndex = 0;
             canScore = true;
-            while (IsGameStart)
+            while (IsGameStart && !IsGameEnd)
             {
                 if (IsCorrect) {
                     canScore = false;
