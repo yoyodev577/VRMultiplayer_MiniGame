@@ -33,7 +33,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - Player
   - FIRSTPERSON_ONLY_LAYER
   - THIRDPERSON_ONLY_LAYER
   - LocalAvatarHead
@@ -44,8 +44,8 @@ TagManager:
   - TestTubeHolder
   - BlueHolder
   - Hand
-  - 
-  - 
+  - DynamicPose
+  - Grabbable
   - 
   - 
   - 
