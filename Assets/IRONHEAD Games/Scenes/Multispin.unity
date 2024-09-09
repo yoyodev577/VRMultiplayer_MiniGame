@@ -9126,6 +9126,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 142525854}
     m_Modifications:
+    - target: {fileID: 99002603297359955, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 186383114955272884, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
       value: 40
@@ -9230,6 +9234,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 42
       objectReference: {fileID: 0}
+    - target: {fileID: 1562128769662419215, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1982508472319193096, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
       value: 37
@@ -9249,6 +9257,10 @@ PrefabInstance:
     - target: {fileID: 2163415747897650261, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: m_Center.z
       value: 0.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 3309936244512081169, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3367816674708457354, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: m_RootOrder
@@ -9322,6 +9334,22 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 39
       objectReference: {fileID: 0}
+    - target: {fileID: 6931412812056994416, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6942941138846437822, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7127209425324548333, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7723718172070924503, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8041839799988868923, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: m_Name
       value: Multi Spin
@@ -9329,6 +9357,10 @@ PrefabInstance:
     - target: {fileID: 8041839799988868923, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: m_TagString
       value: Machine
+      objectReference: {fileID: 0}
+    - target: {fileID: 8590533543816050884, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: sceneViewId
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8761207819275652532, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: explosion
@@ -11523,6 +11555,14 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1037472750615074750, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 1935029942532385257, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 4971738386303728647, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 2983607875149956728, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 3637299848241851010, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 8617790766880550765, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 8054406884676619182, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 4826570821317245714, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+    - {fileID: 8972774706514184429, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3367816674708457354, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       insertIndex: -1
