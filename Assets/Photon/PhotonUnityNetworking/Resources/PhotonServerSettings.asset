@@ -136,6 +136,11 @@ MonoBehaviour:
   - SetPanelState
   - SetLensState
   - SetQuestion
+  - ForceReleaseServerRpc
+  - GrabPunRpc
+  - OnHoverGrabbableReleasedPunRpc
+  - SetGrabbableKinematicPunRpc
+  - UnSetGrabbableKinematicPunRpc
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
