@@ -373,7 +373,7 @@ MonoBehaviour:
   HandGrabbedClip: {fileID: 0}
   SocketGrabPoints: []
   Rigidbody: {fileID: 0}
-  AutoApplyLayer: 1
+  AutoApplyLayer: 0
   RequireOverlapClearance: 0
   OverlapTimeout: 0.1
   FinalJointMaxAngle: 15
