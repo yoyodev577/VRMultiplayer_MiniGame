@@ -26,7 +26,7 @@ public class NetworkChangeOwnership : MonoBehaviourPunCallbacks
     {
         //ChangeOwnershipPunRpc(new ServerRpcParams());
 
-        mNetworkObject.RequestOwnership();
+        mNetworkObject.TransferOwnership(PhotonNetwork.LocalPlayer);
 
         //mNetworkObject.gameObject.layer = LayerMask.NameToLayer("Grabbables");
         /*
