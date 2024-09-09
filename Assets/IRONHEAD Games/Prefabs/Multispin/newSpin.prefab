@@ -892,6 +892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 63.059
       objectReference: {fileID: 0}
+    - target: {fileID: 4901731087430418299, guid: 55652f8accbb12d478bd73e4c0674315, type: 3}
+      propertyPath: Tags.Tags
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 6923841315170378021, guid: 55652f8accbb12d478bd73e4c0674315, type: 3}
       propertyPath: m_Name
       value: Tube Placeholder (1)

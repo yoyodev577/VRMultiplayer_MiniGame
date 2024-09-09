@@ -23,6 +23,7 @@ TagManager:
   - RigLeftHand
   - RigRightHand
   - RigCamera
+  - TestTube
   layers:
   - Default
   - TransparentFX
