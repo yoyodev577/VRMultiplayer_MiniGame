@@ -39,7 +39,11 @@ public class AvatarInputConverter : MonoBehaviour
         //Head and Body synch
         
         AvatarHead.rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.rotation, 0.5f);
-        AvatarHead.GetChild(0).rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").rotation, 0.5f);
+        if(AvatarHead.GetChild(0) != null)
+        {
+            AvatarHead.GetChild(0).rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").rotation, 0.5f);
+        }
+        
         if (AvatarBody!=null)
         {
             AvatarBody.rotation = Quaternion.Lerp(AvatarBody.rotation, Quaternion.Euler(new Vector3(0, AvatarHead.rotation.eulerAngles.y, 0)), 0.05f);
