@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AvatarInputConverter : MonoBehaviour
 {
@@ -25,9 +26,13 @@ public class AvatarInputConverter : MonoBehaviour
 
     private void Start()
     {
-        XRHead = GameObject.FindGameObjectWithTag("Rig").transform.Find("PlayerController");
-        XRHand_Left = GameObject.FindGameObjectWithTag("Rig").transform.Find("Physics LeftHand/LeftHandModel");
-        XRHand_Right = GameObject.FindGameObjectWithTag("Rig").transform.Find("Physics RightHand/RightHandModel");
+        if (!SceneManager.GetActiveScene().name.Equals("HomeScene"))
+        {
+            XRHead = GameObject.FindGameObjectWithTag("Rig").transform.Find("PlayerController");
+            XRHand_Left = GameObject.FindGameObjectWithTag("Rig").transform.Find("Physics LeftHand/LeftHandModel");
+            XRHand_Right = GameObject.FindGameObjectWithTag("Rig").transform.Find("Physics RightHand/RightHandModel");
+        }
+        
     }
     // Update is called once per frame
     void Update()
