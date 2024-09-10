@@ -35,14 +35,12 @@ public class AvatarInputConverter : MonoBehaviour
         if(XRHead.TryGetComponent<CharacterController>(out CharacterController c))
         {
             MainAvatarTransform.position = Vector3.Lerp(MainAvatarTransform.position, XRHead.position + headPositionOffset + c.center + new Vector3(0, XRHead.GetComponent<CharacterController>().height / 2, 0), 0.5f);
+            AvatarHead.GetChild(0).rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").rotation, 0.5f);
+            AvatarHead.rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.rotation, 0.5f);
         }
         //Head and Body synch
         
-        AvatarHead.rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.rotation, 0.5f);
-        if(AvatarHead.GetChild(0) != null)
-        {
-            AvatarHead.GetChild(0).rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").rotation, 0.5f);
-        }
+        
         
         if (AvatarBody!=null)
         {
