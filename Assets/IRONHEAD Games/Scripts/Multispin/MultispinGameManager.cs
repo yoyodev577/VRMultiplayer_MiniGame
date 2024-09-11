@@ -35,8 +35,6 @@ public class MultispinGameManager : MonoBehaviour
     void Start()
     {
         instance = this;
-        PhotonNetwork.SendRate = 30;
-        PhotonNetwork.SerializationRate = 15;
         _view = GetComponent<PhotonView>();
         _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
         _multiSpins = FindObjectsOfType<MultiSpin>().ToList();

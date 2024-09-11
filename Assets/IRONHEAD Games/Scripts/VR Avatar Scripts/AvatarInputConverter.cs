@@ -39,9 +39,9 @@ public class AvatarInputConverter : MonoBehaviour
     {
         if(XRHead.TryGetComponent<CharacterController>(out CharacterController c))
         {
-            MainAvatarTransform.position = Vector3.Lerp(MainAvatarTransform.position, XRHead.position + headPositionOffset + c.center + new Vector3(0, XRHead.GetComponent<CharacterController>().height / 2, 0), 0.5f);
-            AvatarHead.GetChild(0).rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").rotation, 0.5f);
-            AvatarHead.rotation = Quaternion.Lerp(AvatarHead.rotation, XRHead.rotation, 0.5f);
+            MainAvatarTransform.position = XRHead.position + headPositionOffset + c.center + new Vector3(0, XRHead.GetComponent<CharacterController>().height / 2, 0);
+            AvatarHead.GetChild(0).eulerAngles = XRHead.Find("CameraRig/FloorOffset/CameraScale/Camera").eulerAngles;
+            AvatarHead.eulerAngles = XRHead.eulerAngles;
         }
         //Head and Body synch
         
@@ -49,7 +49,7 @@ public class AvatarInputConverter : MonoBehaviour
         
         if (AvatarBody!=null)
         {
-            AvatarBody.rotation = Quaternion.Lerp(AvatarBody.rotation, Quaternion.Euler(new Vector3(0, AvatarHead.rotation.eulerAngles.y, 0)), 0.05f);
+            AvatarBody.eulerAngles = new Vector3(0, AvatarHead.rotation.eulerAngles.y, 0);
         }
 
         //Hands synch
