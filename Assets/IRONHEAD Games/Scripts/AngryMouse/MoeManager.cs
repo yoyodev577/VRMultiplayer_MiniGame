@@ -64,7 +64,7 @@ public class MoeManager : MonoBehaviour
         temp.Clear();
 
         temp.AddRange(moes);
-
+        Debug.Log("---Random pick moes---");
         while (popList.Count < maxMoes)
         {
             int r = Random.Range(0, temp.Count);
@@ -82,7 +82,8 @@ public class MoeManager : MonoBehaviour
     public void PopMoes() {
         if (popList.Count == 0) return;
 
-        for(int i = 0; i < popList.Count; i++)
+        Debug.Log("---Pop moes---");
+        for (int i = 0; i < popList.Count; i++)
         {
             // first one = A, second one = B
             popList[i].SetCurrentAns(answerList[i]);
@@ -91,14 +92,25 @@ public class MoeManager : MonoBehaviour
     }
 
     [PunRPC]
+    // lerping
     public void HideAllMoes() 
-    { 
-        for(int i = 0; i < moes.Count; i++)
+    {
+        Debug.Log("---Hide all moes---");
+        for (int i = 0; i < moes.Count; i++)
         {
             moes[i].SetPop(false);
             moes[i].SetHitStatus(false);
         }
     
+    }
+    [PunRPC]
+    public void HideAllMoesNow() 
+    {
+        Debug.Log("---Hide all moes now!---");
+        for (int i = 0; i < moes.Count; i++)
+        {
+            moes[i].HideNow();
+        }
     }
 
     public void CheckScore(string _answer) {
@@ -137,22 +149,20 @@ public class MoeManager : MonoBehaviour
         isCoroutine =false;
         score = 0;
         scoreText.text = "Score: " + score.ToString();
-        view.RPC("HideAllMoes", RpcTarget.All);
+        view.RPC("HideAllMoesNow", RpcTarget.All);
     }
 
     public IEnumerator MoeCoroutine() {
         isCoroutine = true;
         while (isEnabled)
         {
-            //RandomPickMoes();
             view.RPC("RandomPickMoes", RpcTarget.All);
             yield return new WaitForFixedUpdate();
 
-            //PopMoes();
             view.RPC("PopMoes", RpcTarget.All);
 
             yield return new WaitForSeconds(3);
-            //HideAllMoes();
+
             view.RPC("HideAllMoes", RpcTarget.All);
             yield return new WaitForSeconds(1);
         }

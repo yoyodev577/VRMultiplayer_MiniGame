@@ -46,9 +46,8 @@ public class Moe : MonoBehaviour
 
     [PunRPC]
     public void PhotonSetPop( bool pop) {
-        isPop = pop;
 
-        if (isPop)
+        if (pop)
         {
             view.RPC("Pop", RpcTarget.All);
         }
@@ -79,6 +78,12 @@ public class Moe : MonoBehaviour
     public void Hide() {
         Vector3 targetPos = new Vector3(startPos.x, minHeight, startPos.z);
         transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed);
+        panelObj.SetActive(false);
+    }
+    [PunRPC]
+    public void HideNow() {
+        Vector3 targetPos = new Vector3(startPos.x, minHeight, startPos.z);
+        transform.localPosition = targetPos;
         panelObj.SetActive(false);
     }
 
