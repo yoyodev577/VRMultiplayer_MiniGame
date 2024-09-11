@@ -136,6 +136,9 @@ MonoBehaviour:
   - SetPanelState
   - SetLensState
   - SetQuestion
+  - HideImmiediately
+  - HideAllMoesNow
+  - HideNow
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
