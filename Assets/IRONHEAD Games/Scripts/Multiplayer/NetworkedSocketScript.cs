@@ -11,6 +11,7 @@ namespace MultiplayerKitForHVR.General
     {
         private SocketNetworkBehaviour mSocketNetworkBehaviour;
         public bool isStatic;
+        private PhotonView m_PhotonView;
 
 
 
@@ -18,13 +19,15 @@ namespace MultiplayerKitForHVR.General
         {
             base.Awake();
             mSocketNetworkBehaviour = GetComponent<SocketNetworkBehaviour>();
+            m_PhotonView = GetComponent<PhotonView>();
         }
 
 
         protected override void OnHoverGrabbableReleased(HVRGrabberBase grabber, HVRGrabbable grabbable)
         {
             int grabbableId = grabbable.GetComponent<PhotonView>().ViewID;
-            GetComponent<SocketNetworkBehaviour>().OnHoverGrabbableReleasedPunRpc(grabbableId);
+            //GetComponent<SocketNetworkBehaviour>().OnHoverGrabbableReleasedPunRpc(grabbableId);
+            m_PhotonView.RPC("OnHoverGrabbableReleasedPunRpc", RpcTarget.All, grabbableId);
         }
 
         public void BaseOnHoverGrabbableReleased(HVRGrabbable grabbable)
@@ -38,7 +41,8 @@ namespace MultiplayerKitForHVR.General
         {
             int grabbableId = grabbable.GetComponent<PhotonView>().ViewID;
 
-            mSocketNetworkBehaviour.GrabPunRpc(grabbableId);
+            m_PhotonView.RPC("GrabPunRpc", RpcTarget.All, grabbableId);
+            //mSocketNetworkBehaviour.GrabPunRpc(grabbableId);
             return true;
         }
 
@@ -46,13 +50,15 @@ namespace MultiplayerKitForHVR.General
         {
             HVRGrabbable grabbable = GrabbedTarget;
             int grabbableId = grabbable.GetComponent<PhotonView>().ViewID;
-            mSocketNetworkBehaviour.GrabPunRpc(grabbableId);
+            //mSocketNetworkBehaviour.GrabPunRpc(grabbableId);
+            m_PhotonView.RPC("GrabPunRpc", RpcTarget.All, grabbableId);
 
         }
 
         public void ServerGrab(int grabbableId)
         {
-            mSocketNetworkBehaviour.GrabPunRpc(grabbableId);
+            //mSocketNetworkBehaviour.GrabPunRpc(grabbableId);
+            m_PhotonView.RPC("GrabPunRpc", RpcTarget.All, grabbableId);
         }
 
         public bool BaseTryGrab(HVRGrabbable grabbable)
@@ -75,7 +81,8 @@ namespace MultiplayerKitForHVR.General
 
         public override void ForceRelease()
         {
-            mSocketNetworkBehaviour.ForceReleaseServerRpc();
+            //mSocketNetworkBehaviour.ForceReleaseServerRpc();
+            m_PhotonView.RPC("ForceReleaseServerRpc", RpcTarget.All);
         }
 
         public void BaseForceRelease()
@@ -122,7 +129,9 @@ namespace MultiplayerKitForHVR.General
             if (IsGrabbing)
             {
                 if (!IsHoldActive)
-                    GetComponent<SocketNetworkBehaviour>().ForceReleaseServerRpc();
+                    m_PhotonView.RPC("ForceReleaseServerRpc", RpcTarget.All);
+                    //GetComponent<SocketNetworkBehaviour>().ForceReleaseServerRpc();
+
                 //ReleaseGrabbable(this, GrabbedTarget);
             }
             //GetComponent<SocketNetworkBehaviour>().CheckReleaseServerRpc();

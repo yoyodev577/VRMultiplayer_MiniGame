@@ -50,7 +50,7 @@ public class PlayerNetworkSetup : MonoBehaviourPun
                     item.teleportationProvider = localXRRigGameobject.GetComponent<TeleportationProvider>();
                 }
             }
-            mainAvatarGamebject.AddComponent<AudioListener>();
+            //mainAvatarGamebject.AddComponent<AudioListener>();
 
             //If the player is local, the player should have the option to leave the room. 
             //This is possible with UI Menu gameobject under Non-networked Gameobjects under NetworkedPlayerPrefab

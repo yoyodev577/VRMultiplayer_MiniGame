@@ -108,5 +108,31 @@ namespace Photon.Pun
                 }
             }
         }
+        public void UnSetGrabbableGravity()
+        {
+            m_Body.GetComponent<PhotonView>().RPC("UnSetGrabbableGravityPunRpc", RpcTarget.All);
+        }
+
+        [PunRPC]
+        public void UnSetGrabbableGravityPunRpc()
+        {
+            //m_Body.isKinematic = false;
+            m_Body.useGravity = true;
+        }
+
+
+        public void SetGrabbableGravity()
+        {
+            
+            m_Body.GetComponent<PhotonView>().RPC("SetGrabbableGravityPunRpc", RpcTarget.All);
+
+        }
+
+        [PunRPC]
+        public void SetGrabbableGravityPunRpc()
+        {
+            //m_Body.isKinematic = true;
+            m_Body.useGravity = false;
+        }
     }
 }

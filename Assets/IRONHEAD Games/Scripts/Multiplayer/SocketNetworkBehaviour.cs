@@ -62,7 +62,9 @@ namespace MultiplayerKitForHVR.General
         [PunRPC]
         public void GrabPunRpc(int grabbableId)
         {
+            Debug.Log(grabbableId);
             HVRGrabbable grabbable = PhotonView.Find(grabbableId).GetComponent<HVRGrabbable>();
+            Debug.Log(grabbable.name);
             mNetworkedSocketScript.BaseTryGrab(grabbable);
         }
 
@@ -145,7 +147,7 @@ namespace MultiplayerKitForHVR.General
         public void UnSetGrabbableKinematic(GameObject grabbable)
         {
             int grabbableId = grabbable.GetComponent<PhotonView>().ViewID;
-            UnSetGrabbableKinematicPunRpc(grabbableId);
+            this.photonView.RPC("UnSetGrabbableKinematicPunRpc", RpcTarget.All, grabbableId);
         }
 
         [PunRPC]
@@ -160,7 +162,8 @@ namespace MultiplayerKitForHVR.General
         public void SetGrabbableKinematic(GameObject grabbable)
         {
             int grabbableId = grabbable.GetComponent<PhotonView>().ViewID;
-            SetGrabbableKinematicPunRpc(grabbableId);
+            this.photonView.RPC("SetGrabbableKinematicPunRpc", RpcTarget.All,grabbableId);
+            
         }
 
         [PunRPC]

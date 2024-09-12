@@ -63,7 +63,7 @@ public class NetworkChangeOwnership : MonoBehaviourPunCallbacks
             }
         }
         */
-        mNetworkObject.TransferOwnership(PhotonNetwork.MasterClient);
+        mNetworkObject.TransferOwnership(-1);
         //ResetOwnershipServerRpc(new ServerRpcParams());
         //mNetworkObject.gameObject.layer = LayerMask.NameToLayer("Default");
         /*
