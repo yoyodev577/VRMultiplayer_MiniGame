@@ -32,24 +32,43 @@ public class MoeManager : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
         hammer = GetComponentInChildren<Hammer>();
         view = GetComponent<PhotonView>();
-        view.RPC("HideAllMoes", RpcTarget.All);
+        view.RPC("PhotonHideAllMoes", RpcTarget.All);
     }
 
 
-    public void PhotonSetEngine(bool _isEnabled) {
-        view.RPC("SetEngine", RpcTarget.All, _isEnabled);
+    public void SetEngine(bool _isEnabled) {
+        view.RPC("PhotonSetEngine", RpcTarget.All, _isEnabled);
     }
+
+
+
+    public void RandomPickMoes() {
+
+        view.RPC("PhotonRandomPickMoes", RpcTarget.All);
+    }
+
+    public void PopMoes()
+    {
+        view.RPC("PhotonPopMoes", RpcTarget.All);
+    }
+
+    public void HideAllMoes()
+    {
+        view.RPC("PhotonHideAllMoes", RpcTarget.All);
+    }
+
 
     [PunRPC]
-    public void SetEngine(bool _isEnabled) {
+    public void PhotonSetEngine(bool _isEnabled)
+    {
 
         isEnabled = _isEnabled;
 
-        if( _isEnabled &&!isCoroutine)
+        if (_isEnabled && !isCoroutine)
         {
             StartCoroutine(MoeCoroutine());
         }
-        else if( !_isEnabled )
+        else if (!_isEnabled)
         {
             if (isCoroutine)
                 StopCoroutine(MoeCoroutine());
@@ -58,7 +77,7 @@ public class MoeManager : MonoBehaviour
 
 
     [PunRPC]
-    public void RandomPickMoes()
+    public void PhotonRandomPickMoes()
     {
         popList.Clear();
         temp.Clear();
@@ -79,7 +98,7 @@ public class MoeManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void PopMoes() {
+    public void PhotonPopMoes() {
         if (popList.Count == 0) return;
 
         Debug.Log("---Pop moes---");
@@ -93,7 +112,7 @@ public class MoeManager : MonoBehaviour
 
     [PunRPC]
     // lerping
-    public void HideAllMoes() 
+    public void PhotonHideAllMoes() 
     {
         Debug.Log("---Hide all moes---");
         for (int i = 0; i < moes.Count; i++)
@@ -104,7 +123,7 @@ public class MoeManager : MonoBehaviour
     
     }
     [PunRPC]
-    public void HideAllMoesNow() 
+    public void PhotonHideAllMoesNow() 
     {
         Debug.Log("---Hide all moes now!---");
         for (int i = 0; i < moes.Count; i++)
@@ -123,14 +142,22 @@ public class MoeManager : MonoBehaviour
     [PunRPC]
     public void PhotonScore(string _answer)
     {
-        if (manager.CheckAnswer(_answer)
-            && manager.canScore && !manager.IsCorrect)
+        if (manager.CheckAnswer(_answer))
         {
-            // find the correct answer, and start to the next question.
-            manager.IsCorrect = true;
-            this.score++;
-            scoreText.text = "Score: " + score.ToString();
+            if (manager.canScore && !manager.IsCorrect)
+            {
+                // find the correct answer, and start to the next question.
+                manager.IsCorrect = true;
+                this.score++;
+            }
         }
+        else {
+            if (manager.canScore) {
+                this.score--;
+            }
+        }
+        scoreText.text = "Score: " + score.ToString();
+
     }
 
     public void ResetMachine()
@@ -141,7 +168,7 @@ public class MoeManager : MonoBehaviour
     [PunRPC]
     public void PhotonResetMachine() {
 
-        StopCoroutine(MoeCoroutine());
+        //StopCoroutine(MoeCoroutine());
         hammer.ResetPos();
         isEnabled = false;
         isScored = false;
@@ -149,15 +176,15 @@ public class MoeManager : MonoBehaviour
         isCoroutine =false;
         score = 0;
         scoreText.text = "Score: " + score.ToString();
-        view.RPC("HideAllMoesNow", RpcTarget.All);
+        view.RPC("PhotonHideAllMoesNow", RpcTarget.All);
     }
 
-    public IEnumerator MoeCoroutine() {
+    public IEnumerator MoeCoroutine()
+    {
         isCoroutine = true;
         while (isEnabled)
         {
-            view.RPC("RandomPickMoes", RpcTarget.All);
-            yield return new WaitForFixedUpdate();
+
 
             view.RPC("PopMoes", RpcTarget.All);
 

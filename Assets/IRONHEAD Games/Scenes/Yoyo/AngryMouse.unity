@@ -584,8 +584,11 @@ MonoBehaviour:
   _resetButton: {fileID: 1295253393}
   isPlayersReady: 0
   IsReadyToStart: 0
+  isReadyTimerEnd: 0
   IsGameStart: 0
   IsGameEnd: 0
+  isLastQuestion: 0
+  isNewQuestion: 1
   canScore: 0
   IsCorrect: 0
   IsReset: 0
@@ -2486,7 +2489,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2009330716
 Transform:
   m_ObjectHideFlags: 0
@@ -2509,7 +2512,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009330715}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 91175dcc15224463780e01a8a98b1b60, type: 3}
   m_Name: 
@@ -2550,7 +2553,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2009330715}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 81d9debcbaf99472bb70ffc2f99cb23f, type: 3}
   m_Name: 
@@ -3806,6 +3809,7 @@ MonoBehaviour:
   panelObj: {fileID: 1380230686127350313}
   textMeshProUGUI: {fileID: 2670106506994730721}
   currentAns: D
+  mRs: []
 --- !u!4 &411731226748632429
 Transform:
   m_ObjectHideFlags: 0
@@ -4200,6 +4204,7 @@ MonoBehaviour:
   panelObj: {fileID: 1779625714533178054}
   textMeshProUGUI: {fileID: 3358241738410415911}
   currentAns: C
+  mRs: []
 --- !u!1 &825345813052490732
 GameObject:
   m_ObjectHideFlags: 0
@@ -4478,6 +4483,7 @@ MonoBehaviour:
   panelObj: {fileID: 8594159348972016733}
   textMeshProUGUI: {fileID: 5801016541841108861}
   currentAns: B
+  mRs: []
 --- !u!4 &926134626631097221
 Transform:
   m_ObjectHideFlags: 0
@@ -5012,6 +5018,7 @@ MonoBehaviour:
   panelObj: {fileID: 489003274538419690}
   textMeshProUGUI: {fileID: 4593311837075022503}
   currentAns: B
+  mRs: []
 --- !u!1 &1380230686127350313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5892,7 +5899,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1989004293978547095
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6345,8 +6352,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6475,7 +6482,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &2230745937516430132
 GameObject:
   m_ObjectHideFlags: 0
@@ -8160,8 +8167,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190330
+  m_fontColor: {r: 0.9811321, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -9216,6 +9223,7 @@ MonoBehaviour:
   panelObj: {fileID: 1429807069741265278}
   textMeshProUGUI: {fileID: 2190648373177194543}
   currentAns: A
+  mRs: []
 --- !u!23 &3762141990469443887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9472,6 +9480,7 @@ MonoBehaviour:
   panelObj: {fileID: 8522841890127505773}
   textMeshProUGUI: {fileID: 8658086971586029295}
   currentAns: D
+  mRs: []
 --- !u!223 &4011971109184866105
 Canvas:
   m_ObjectHideFlags: 0
@@ -9579,6 +9588,7 @@ MonoBehaviour:
   panelObj: {fileID: 7626422666437616768}
   textMeshProUGUI: {fileID: 7694643036761765102}
   currentAns: D
+  mRs: []
 --- !u!4 &4124030512320465843
 Transform:
   m_ObjectHideFlags: 0
@@ -9623,8 +9633,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278650874
+  m_fontColor: {r: 0.9811321, g: 0.027767722, b: 0.027767722, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10023,7 +10033,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!23 &4423247923504737912
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10427,7 +10437,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &4568659068911416970
 GameObject:
   m_ObjectHideFlags: 0
@@ -10532,8 +10542,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -10837,6 +10847,7 @@ MonoBehaviour:
   panelObj: {fileID: 6154334424407439456}
   textMeshProUGUI: {fileID: 7791059859753590573}
   currentAns: B
+  mRs: []
 --- !u!114 &4772785429177119961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12514,8 +12525,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -12973,7 +12984,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &5927030820420072263
 GameObject:
   m_ObjectHideFlags: 0
@@ -13007,7 +13018,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5931013530811782070
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13434,7 +13445,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &6104584975666386241
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13561,6 +13572,7 @@ MonoBehaviour:
   panelObj: {fileID: 4649490601512279971}
   textMeshProUGUI: {fileID: 8552266246094044011}
   currentAns: D
+  mRs: []
 --- !u!23 &6280318199455314819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13800,6 +13812,7 @@ MonoBehaviour:
   panelObj: {fileID: 5409772335697258316}
   textMeshProUGUI: {fileID: 9023806824310713005}
   currentAns: C
+  mRs: []
 --- !u!4 &6431867906149867306
 Transform:
   m_ObjectHideFlags: 0
@@ -14263,6 +14276,7 @@ MonoBehaviour:
   panelObj: {fileID: 2658611464503994839}
   textMeshProUGUI: {fileID: 225328008146473719}
   currentAns: B
+  mRs: []
 --- !u!4 &6880257676611675663
 Transform:
   m_ObjectHideFlags: 0
@@ -14819,6 +14833,7 @@ MonoBehaviour:
   panelObj: {fileID: 2731126296082945255}
   textMeshProUGUI: {fileID: 3136312199112055653}
   currentAns: D
+  mRs: []
 --- !u!222 &7229381433976494597
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -15099,6 +15114,7 @@ MonoBehaviour:
   panelObj: {fileID: 4645021674362359028}
   textMeshProUGUI: {fileID: 5604554333491127717}
   currentAns: A
+  mRs: []
 --- !u!23 &7463607367244831909
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15871,6 +15887,7 @@ MonoBehaviour:
   panelObj: {fileID: 4213012363606923530}
   textMeshProUGUI: {fileID: 4136840466672961892}
   currentAns: D
+  mRs: []
 --- !u!4 &7785654709178869339
 Transform:
   m_ObjectHideFlags: 0
@@ -17466,8 +17483,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -17720,7 +17737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &8650362735167747788
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18290,8 +18307,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4278190335
+  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

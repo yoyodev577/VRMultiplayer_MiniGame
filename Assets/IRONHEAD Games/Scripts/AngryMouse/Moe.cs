@@ -12,11 +12,14 @@ public class Moe : MonoBehaviour
     public Vector3 startPos;
     public bool isPop = false;
     public bool isHit = false;
+    public bool isHitCoroutine = false;
     public float speed = 3f;
 
     public GameObject panelObj;
     public TextMeshProUGUI textMeshProUGUI;
     public string currentAns = "";
+
+    public MeshRenderer[] mRs;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +27,7 @@ public class Moe : MonoBehaviour
         startPos = transform.localPosition;
         panelObj.SetActive(false);
         moeManager = GetComponentInParent<MoeManager>();
+        mRs = GetComponentsInChildren<MeshRenderer>();
     }
 
     public void SetPop(bool _pop)
@@ -59,6 +63,12 @@ public class Moe : MonoBehaviour
     [PunRPC]
     public void PhotonSetHitStatus(bool _isHit) {
         isHit = _isHit;
+
+        if (isHit)
+        {
+            if (!isHitCoroutine)
+                StartCoroutine(SetHitCoroutine());
+        }
     }
     [PunRPC]
     public void PhotonSetCurrentAns(string s) {
@@ -87,20 +97,51 @@ public class Moe : MonoBehaviour
         panelObj.SetActive(false);
     }
 
+    [PunRPC]
+    public void SwitchColor(bool isRed) {
+        if (isRed)
+        {
+            foreach (MeshRenderer mR in mRs)
+            {
+                mR.sharedMaterial.color = Color.red;
+            }
+        }
+        else
+        {
+            foreach (MeshRenderer mR in mRs)
+            {
+                mR.sharedMaterial.color = Color.white;
+            }
+        }
+    }
+
     public void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
         if (collision.gameObject.tag == "hammer")
         {
             SetHitStatus(true);
-            SetPop(false);
             moeManager.CheckScore(currentAns);
         }
     }
     public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "hammer") {
-            SetHitStatus(false);
+            view.RPC("SwitchColor", RpcTarget.All, false);;
         }
+    }
+
+    IEnumerator SetHitCoroutine() {
+        isHitCoroutine = true;
+        while (isHit) {
+            view.RPC("SwitchColor", RpcTarget.All, true);
+            yield return new WaitForSeconds(0.5f);
+            SetPop(false);
+            isHit = false;
+        }
+
+
+        isHitCoroutine = false;
+    
     }
 }

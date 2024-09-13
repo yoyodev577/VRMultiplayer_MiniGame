@@ -195,8 +195,13 @@ namespace AngryMouse
             Debug.Log("---Game Start---");
             foreach (MoeManager m in moeManagers)
             {
-                m.PhotonSetEngine(true);
-            }
+               // m.SetEngine(true);
+                m.HideAllMoes();
+                m.RandomPickMoes();
+                m.PopMoes();
+            }  
+
+
             if (!IsQuestionCoroutine && questionCoroutine==null)
             {
                 questionCoroutine = SetQuestionBoardCoroutine();
@@ -314,6 +319,13 @@ namespace AngryMouse
                     canScore = false;
                     currentIndex++;
 
+                    //set and pop random moes for it.
+                    foreach (MoeManager m in moeManagers)
+                    {
+                        m.RandomPickMoes();
+                        m.PopMoes();
+                    }
+
                     if (currentIndex >= questions.Count)
                     {
                         isLastQuestion = true; 
@@ -321,7 +333,6 @@ namespace AngryMouse
                     }
                     IsCorrect = false;
                 }
-                //if correct answer is found
                 yield return new WaitForSeconds(1);
                 view.RPC("SetQuestion", RpcTarget.All);
                 canScore = true;

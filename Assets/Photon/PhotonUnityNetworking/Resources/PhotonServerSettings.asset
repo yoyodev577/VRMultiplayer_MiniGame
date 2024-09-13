@@ -139,6 +139,12 @@ MonoBehaviour:
   - HideImmiediately
   - HideAllMoesNow
   - HideNow
+  - SwitchColor
+  - PhotonRandomPickMoes
+  - PhotonSetEngine
+  - PhotonPopMoes
+  - PhotonHideAllMoes
+  - PhotonHideAllMoesNow
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
