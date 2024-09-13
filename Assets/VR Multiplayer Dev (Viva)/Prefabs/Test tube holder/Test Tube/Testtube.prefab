@@ -184,6 +184,7 @@ GameObject:
   - component: {fileID: 741873224485329398}
   - component: {fileID: 6418263770580985134}
   - component: {fileID: 4428092489277285863}
+  - component: {fileID: 4126580937972489509}
   m_Layer: 0
   m_Name: Testtube
   m_TagString: TestTube
@@ -483,10 +484,34 @@ MonoBehaviour:
       m_Calls: []
   Socketed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4126580937972489509}
+        m_TargetAssemblyTypeName: OnSocketSync, Assembly-CSharp
+        m_MethodName: OnSocketSync1
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   UnSocketed:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4126580937972489509}
+        m_TargetAssemblyTypeName: OnSocketSync, Assembly-CSharp
+        m_MethodName: LeaveSocketReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   DistanceGrabbed:
     m_PersistentCalls:
       m_Calls: []
@@ -539,6 +564,19 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 0
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &4126580937972489509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369175122314620791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d02d0774a7997845a8f57c5b0556bd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socketed: 0
 --- !u!1 &3732692792557543987
 GameObject:
   m_ObjectHideFlags: 0

@@ -66,6 +66,7 @@ namespace MultiplayerKitForHVR.General
 
             mSocketNetworkBehaviour.SetGrabbableKinematic(grabbable.gameObject);
             grabbable.gameObject.transform.position = this.transform.position;
+
             //if (TryGetComponent<SocketFollowBehavior>(out var sfb))
             //{
             //    sfb.TargetObject = grabbable.gameObject;
