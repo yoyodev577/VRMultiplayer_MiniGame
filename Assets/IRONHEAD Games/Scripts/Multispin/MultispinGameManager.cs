@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using MultiplayerKitForHVR.General;
 
 public class MultispinGameManager : MonoBehaviour
 {
@@ -123,6 +124,13 @@ public class MultispinGameManager : MonoBehaviour
             {
                 IsReadyToStart = true;
                 _gameState = GameState.ReadyToStart;
+                var sockets = FindObjectsOfType<SocketNetworkBehaviour>();
+                foreach (var s in sockets){
+                    s.GrabInitialize();
+                
+                
+                }
+
             }
         }
     }

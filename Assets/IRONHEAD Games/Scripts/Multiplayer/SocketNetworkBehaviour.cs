@@ -25,10 +25,7 @@ namespace MultiplayerKitForHVR.General
             }
             */
 
-            if (IsInitGrab)
-            {
-                //initGrab.gameObject.SetActive(false);
-            }
+            
 
         }
 
@@ -38,7 +35,7 @@ namespace MultiplayerKitForHVR.General
         {
             if (IsInitGrab)
             {
-                //initGrab.gameObject.SetActive(true);
+                initGrab.gameObject.SetActive(true);
                 Debug.Log("servergrab:" + initGrab + " " + transform.name);
                 mNetworkedSocketScript.ServerGrab(initGrab.ViewID);
             }
@@ -56,6 +53,10 @@ namespace MultiplayerKitForHVR.General
         private void Awake()
         {
             TryGetComponent(out mNetworkedSocketScript);
+            if (IsInitGrab)
+            {
+                initGrab.gameObject.SetActive(false);
+            }
         }
 
 
