@@ -63,7 +63,10 @@ public class NetworkChangeOwnership : MonoBehaviourPunCallbacks
             }
         }
         */
-        mNetworkObject.TransferOwnership(-1);
+
+        //mNetworkObject.TransferOwnership(-1);
+
+
         //ResetOwnershipServerRpc(new ServerRpcParams());
         //mNetworkObject.gameObject.layer = LayerMask.NameToLayer("Default");
         /*
