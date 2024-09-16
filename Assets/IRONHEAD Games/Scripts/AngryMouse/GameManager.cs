@@ -191,12 +191,15 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonStartGame()
         {
+
+            if (!IsGameEnd && isLastQuestion) return;
+
             IsGameStart = true;
             Debug.Log("---Game Start---");
             foreach (MoeManager m in moeManagers)
             {
                // m.SetEngine(true);
-                m.HideAllMoes();
+               // m.HideAllMoes();
                 m.RandomPickMoes();
                 m.PopMoes();
             }  
@@ -224,11 +227,11 @@ namespace AngryMouse
 
             ShowResult();
 
-            foreach (MoeManager m in moeManagers)
+/*            foreach (MoeManager m in moeManagers)
             {
                 m.PhotonSetEngine(false);
             }
-
+*/
             StopCoroutine(questionCoroutine);
             IsQuestionCoroutine = false;
 
@@ -322,6 +325,7 @@ namespace AngryMouse
                     //set and pop random moes for it.
                     foreach (MoeManager m in moeManagers)
                     {
+                        m.HideAllMoesNow();
                         m.RandomPickMoes();
                         m.PopMoes();
                     }

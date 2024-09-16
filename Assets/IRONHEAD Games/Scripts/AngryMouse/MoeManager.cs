@@ -32,7 +32,7 @@ public class MoeManager : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
         hammer = GetComponentInChildren<Hammer>();
         view = GetComponent<PhotonView>();
-        view.RPC("PhotonHideAllMoes", RpcTarget.All);
+       // view.RPC("PhotonHideAllMoes", RpcTarget.All);
     }
 
 
@@ -57,7 +57,11 @@ public class MoeManager : MonoBehaviour
         view.RPC("PhotonHideAllMoes", RpcTarget.All);
     }
 
+    public void HideAllMoesNow() {
+        view.RPC("PhotonHideAllMoesNow", RpcTarget.All);
+    }
 
+/*
     [PunRPC]
     public void PhotonSetEngine(bool _isEnabled)
     {
@@ -73,7 +77,7 @@ public class MoeManager : MonoBehaviour
             if (isCoroutine)
                 StopCoroutine(MoeCoroutine());
         }
-    }
+    }*/
 
 
     [PunRPC]
@@ -84,7 +88,7 @@ public class MoeManager : MonoBehaviour
 
         temp.AddRange(moes);
         Debug.Log("---Random pick moes---");
-        while (popList.Count < maxMoes)
+        while (popList.Count != maxMoes)
         {
             int r = Random.Range(0, temp.Count);
             if (!popList.Contains(temp[r]))
@@ -179,12 +183,11 @@ public class MoeManager : MonoBehaviour
         view.RPC("PhotonHideAllMoesNow", RpcTarget.All);
     }
 
-    public IEnumerator MoeCoroutine()
+/*    public IEnumerator MoeCoroutine()
     {
         isCoroutine = true;
         while (isEnabled)
         {
-
 
             view.RPC("PopMoes", RpcTarget.All);
 
@@ -195,7 +198,7 @@ public class MoeManager : MonoBehaviour
         }
         isCoroutine = false;
 
-    }
+    }*/
 
     IEnumerator ResetScoreCoroutine() {
         isResetScoreCoroutine = true;

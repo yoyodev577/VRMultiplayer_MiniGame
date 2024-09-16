@@ -588,7 +588,6 @@ MonoBehaviour:
   IsGameStart: 0
   IsGameEnd: 0
   isLastQuestion: 0
-  isNewQuestion: 1
   canScore: 0
   IsCorrect: 0
   IsReset: 0
@@ -3391,6 +3390,7 @@ GameObject:
   - component: {fileID: 411731226748632429}
   - component: {fileID: 5204898601801588253}
   - component: {fileID: 7019619357238037348}
+  - component: {fileID: 7019619357238037349}
   m_Layer: 0
   m_Name: Capsule004
   m_TagString: Untagged
@@ -3805,11 +3805,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 1
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 1380230686127350313}
   textMeshProUGUI: {fileID: 2670106506994730721}
   currentAns: D
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!4 &411731226748632429
 Transform:
   m_ObjectHideFlags: 0
@@ -4200,11 +4205,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 1
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 1779625714533178054}
   textMeshProUGUI: {fileID: 3358241738410415911}
   currentAns: C
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!1 &825345813052490732
 GameObject:
   m_ObjectHideFlags: 0
@@ -4477,13 +4487,21 @@ MonoBehaviour:
   minHeight: 0.8
   maxHeight: 1.8
   startPos: {x: 0, y: 0, z: 0}
-  isPop: 1
+  isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 8594159348972016733}
   textMeshProUGUI: {fileID: 5801016541841108861}
   currentAns: B
-  mRs: []
+  mRs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!4 &926134626631097221
 Transform:
   m_ObjectHideFlags: 0
@@ -4657,6 +4675,7 @@ GameObject:
   - component: {fileID: 1006226722056879844}
   - component: {fileID: 5875098119634065836}
   - component: {fileID: 4297693374421271616}
+  - component: {fileID: 5875098119634065837}
   m_Layer: 0
   m_Name: Cylinder004
   m_TagString: Untagged
@@ -5014,11 +5033,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 489003274538419690}
   textMeshProUGUI: {fileID: 4593311837075022503}
   currentAns: B
   mRs: []
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!1 &1380230686127350313
 GameObject:
   m_ObjectHideFlags: 0
@@ -5684,6 +5708,7 @@ GameObject:
   - component: {fileID: 8119337664645042710}
   - component: {fileID: 1901708546519820273}
   - component: {fileID: 8417359790190248615}
+  - component: {fileID: 8417359790190248616}
   m_Layer: 0
   m_Name: Cylinder007
   m_TagString: Untagged
@@ -6021,8 +6046,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.4465892, y: 0.37111616, z: 0.58897305}
-  m_Center: {x: 0.04345324, y: 0.029822817, z: -0.07535557}
+  m_Size: {x: 0.28558242, y: 0.26844466, z: 0.588973}
+  m_Center: {x: 0.011951919, y: -0.009844589, z: -0.07535555}
 --- !u!33 &2026832175785046129
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6230,8 +6255,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.41007447, y: 0.5030724, z: 0.6470531}
-  m_Center: {x: 0.060260702, y: -0.003727874, z: -0.015071632}
+  m_Size: {x: 0.30273592, y: 0.27905896, z: 0.6470531}
+  m_Center: {x: 0.0065914425, y: -0.0037268065, z: -0.015071631}
 --- !u!33 &2138504695140196434
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6463,8 +6488,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.3923814, y: 0.46879947, z: 0.5743143}
-  m_Center: {x: 0.0036332058, y: -0.005095536, z: 0.019891622}
+  m_Size: {x: 0.31983364, y: 0.23351368, z: 0.57431424}
+  m_Center: {x: 0.0006914136, y: 0.004707858, z: 0.019891618}
 --- !u!1 &2229728268762314366
 GameObject:
   m_ObjectHideFlags: 0
@@ -6785,13 +6810,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7632532270372739920}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: -0.7071068}
-  m_LocalPosition: {x: 0, y: 0.11040004, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.002, y: 0.043, z: 0}
   m_LocalScale: {x: 0.26666677, y: 0.2666667, z: 0.26666674}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8592687782686801152}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2376350672002175449
 GameObject:
   m_ObjectHideFlags: 0
@@ -8575,8 +8600,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.44496748, y: 0.47637093, z: 0.7806906}
-  m_Center: {x: -0.0033030275, y: 0.006921052, z: 0.0034888382}
+  m_Size: {x: 0.3516291, y: 0.21735871, z: 0.7806906}
+  m_Center: {x: -0.017304413, y: 0.01275407, z: 0.0034888438}
 --- !u!33 &3329141643084323368
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8996,6 +9021,7 @@ GameObject:
   - component: {fileID: 527107673429882180}
   - component: {fileID: 10622859131049329}
   - component: {fileID: 6280318199455314819}
+  - component: {fileID: 6280318199455314820}
   m_Layer: 0
   m_Name: Capsule007
   m_TagString: Untagged
@@ -9014,6 +9040,7 @@ GameObject:
   - component: {fileID: 1993986361266830504}
   - component: {fileID: 4985026033389145642}
   - component: {fileID: 7244213072947053839}
+  - component: {fileID: 7244213072947053840}
   m_Layer: 0
   m_Name: Capsule005
   m_TagString: Untagged
@@ -9219,11 +9246,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 1429807069741265278}
   textMeshProUGUI: {fileID: 2190648373177194543}
   currentAns: A
   mRs: []
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!23 &3762141990469443887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9476,11 +9508,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 8522841890127505773}
   textMeshProUGUI: {fileID: 8658086971586029295}
   currentAns: D
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!223 &4011971109184866105
 Canvas:
   m_ObjectHideFlags: 0
@@ -9584,11 +9621,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 7626422666437616768}
   textMeshProUGUI: {fileID: 7694643036761765102}
   currentAns: D
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!4 &4124030512320465843
 Transform:
   m_ObjectHideFlags: 0
@@ -9868,6 +9910,7 @@ GameObject:
   - component: {fileID: 5599525935153137514}
   - component: {fileID: 4724335096862069120}
   - component: {fileID: 6080880028397887806}
+  - component: {fileID: 6080880028397887807}
   m_Layer: 0
   m_Name: Cylinder012
   m_TagString: Untagged
@@ -10254,6 +10297,7 @@ GameObject:
   - component: {fileID: 691741922140204917}
   - component: {fileID: 6955935706840599569}
   - component: {fileID: 4423247923504737912}
+  - component: {fileID: 6955935706840599570}
   m_Layer: 0
   m_Name: Cylinder011
   m_TagString: Untagged
@@ -10299,6 +10343,7 @@ GameObject:
   - component: {fileID: 9129106315528338816}
   - component: {fileID: 7305948129840054136}
   - component: {fileID: 2338938863306251178}
+  - component: {fileID: 9129106315528338817}
   m_Layer: 0
   m_Name: Cylinder013
   m_TagString: Untagged
@@ -10506,6 +10551,7 @@ GameObject:
   - component: {fileID: 2896948121900668870}
   - component: {fileID: 2176743252988228098}
   - component: {fileID: 2747113167384351395}
+  - component: {fileID: 4592514893659079851}
   m_Layer: 0
   m_Name: Capsule002
   m_TagString: Untagged
@@ -10513,6 +10559,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &4592514893659079851
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4592514893659079850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 60
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &4593311837075022503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10725,6 +10793,7 @@ GameObject:
   - component: {fileID: 2221805978216946768}
   - component: {fileID: 6544004796567487057}
   - component: {fileID: 4424952643805135653}
+  - component: {fileID: 6544004796567487058}
   m_Layer: 0
   m_Name: Cylinder005
   m_TagString: Untagged
@@ -10843,11 +10912,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 6154334424407439456}
   textMeshProUGUI: {fileID: 7791059859753590573}
   currentAns: B
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!114 &4772785429177119961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11437,6 +11511,7 @@ GameObject:
   - component: {fileID: 1073655763071666578}
   - component: {fileID: 8999162935542078067}
   - component: {fileID: 4621367625501058246}
+  - component: {fileID: 8999162935542078068}
   m_Layer: 0
   m_Name: Capsule003
   m_TagString: Untagged
@@ -11667,8 +11742,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.41014263, y: 0.37814468, z: 0.79196143}
-  m_Center: {x: -0.014244921, y: 0.0026867024, z: 0.10401932}
+  m_Size: {x: 0.28646934, y: 0.20080292, z: 0.7919613}
+  m_Center: {x: -0.010745522, y: 0.016686844, z: 0.104019314}
 --- !u!114 &5270288936905640442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12000,7 +12075,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5573237264630554957
 Transform:
   m_ObjectHideFlags: 0
@@ -12653,6 +12728,7 @@ GameObject:
   - component: {fileID: 2094769949768667259}
   - component: {fileID: 8775296943961427675}
   - component: {fileID: 887572760218431722}
+  - component: {fileID: 8775296943961427676}
   m_Layer: 0
   m_Name: Cylinder002
   m_TagString: Untagged
@@ -12867,6 +12943,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1049653022765004514}
   m_Mesh: {fileID: -5208879343037863941, guid: ba89e0e378db35f4fa7eb53c72c039e4, type: 3}
+--- !u!114 &5875098119634065837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1049653022765004514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 61
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!23 &5878275925258223439
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13049,6 +13147,7 @@ GameObject:
   - component: {fileID: 8181412644838938445}
   - component: {fileID: 6568314665538174465}
   - component: {fileID: 2646679520970878009}
+  - component: {fileID: 8181412644838938446}
   m_Layer: 0
   m_Name: Capsule006
   m_TagString: Untagged
@@ -13343,6 +13442,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6080880028397887807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4265674636236976104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 67
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!23 &6090450938053210259
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13566,13 +13687,18 @@ MonoBehaviour:
   minHeight: 0.8
   maxHeight: 1.8
   startPos: {x: 0, y: 0, z: 0}
-  isPop: 1
+  isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 4649490601512279971}
   textMeshProUGUI: {fileID: 8552266246094044011}
   currentAns: D
   mRs: []
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!23 &6280318199455314819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13615,6 +13741,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6280318199455314820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3642934198753702996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 70
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!33 &6296876603629358705
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -13806,13 +13954,18 @@ MonoBehaviour:
   minHeight: 0.8
   maxHeight: 1.8
   startPos: {x: 0, y: 0, z: 0}
-  isPop: 1
+  isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 5409772335697258316}
   textMeshProUGUI: {fileID: 9023806824310713005}
   currentAns: C
   mRs: []
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!4 &6431867906149867306
 Transform:
   m_ObjectHideFlags: 0
@@ -13882,6 +14035,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4632390034418663814}
   m_Mesh: {fileID: -7816157650164661064, guid: ba89e0e378db35f4fa7eb53c72c039e4, type: 3}
+--- !u!114 &6544004796567487058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632390034418663814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 64
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6548929461050235332
 GameObject:
   m_ObjectHideFlags: 0
@@ -14050,6 +14225,7 @@ GameObject:
   - component: {fileID: 202936445960642878}
   - component: {fileID: 2758401096396710845}
   - component: {fileID: 4779230018581504207}
+  - component: {fileID: 6739876860596292593}
   m_Layer: 0
   m_Name: Cylinder008
   m_TagString: Untagged
@@ -14057,6 +14233,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &6739876860596292593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6739876860596292592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 74
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!33 &6744533236295751258
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14272,11 +14470,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 1
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 2658611464503994839}
   textMeshProUGUI: {fileID: 225328008146473719}
   currentAns: B
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!4 &6880257676611675663
 Transform:
   m_ObjectHideFlags: 0
@@ -14482,6 +14685,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4445461263882108708}
   m_Mesh: {fileID: 3049172315057216404, guid: ba89e0e378db35f4fa7eb53c72c039e4, type: 3}
+--- !u!114 &6955935706840599570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4445461263882108708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 66
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &6966222869350370912
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14592,6 +14817,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7019619357238037349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 208215000691869764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 76
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &7025106632520393548
 Transform:
   m_ObjectHideFlags: 0
@@ -14618,6 +14865,7 @@ GameObject:
   - component: {fileID: 57139984273174189}
   - component: {fileID: 5031533926151405081}
   - component: {fileID: 8660684154433581806}
+  - component: {fileID: 8660684154433581807}
   m_Layer: 0
   m_Name: Cylinder003
   m_TagString: Untagged
@@ -14829,11 +15077,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 2731126296082945255}
   textMeshProUGUI: {fileID: 3136312199112055653}
   currentAns: D
   mRs: []
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!222 &7229381433976494597
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14884,6 +15137,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7244213072947053840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3658143627144686983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 73
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!33 &7248541835896870888
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14942,6 +15217,7 @@ GameObject:
   - component: {fileID: 4124030512320465843}
   - component: {fileID: 3978403653419412066}
   - component: {fileID: 6700356548765642323}
+  - component: {fileID: 7290603237881477957}
   m_Layer: 0
   m_Name: Cylinder006
   m_TagString: Untagged
@@ -14949,6 +15225,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &7290603237881477957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290603237881477956}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 62
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &7299247835601482811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15110,11 +15408,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
   speed: 0.9
   panelObj: {fileID: 4645021674362359028}
   textMeshProUGUI: {fileID: 5604554333491127717}
   currentAns: A
   mRs: []
+  sfxSource: {fileID: 0}
+  hitClip: {fileID: 0}
 --- !u!23 &7463607367244831909
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15271,6 +15574,7 @@ GameObject:
   - component: {fileID: 2572775987487105080}
   - component: {fileID: 6165072071343100654}
   - component: {fileID: 8296389367859520633}
+  - component: {fileID: 8296389367859520634}
   m_Layer: 0
   m_Name: Cylinder009
   m_TagString: Untagged
@@ -15883,11 +16187,16 @@ MonoBehaviour:
   startPos: {x: 0, y: 0, z: 0}
   isPop: 0
   isHit: 0
-  speed: 0.9
+  isHitCoroutine: 0
+  isPopCoroutine: 0
+  isHideCoroutine: 0
+  speed: 1.5
   panelObj: {fileID: 4213012363606923530}
   textMeshProUGUI: {fileID: 4136840466672961892}
   currentAns: D
   mRs: []
+  sfxSource: {fileID: 237376917}
+  hitClip: {fileID: 8300000, guid: 8037720f3a48df34cb0ed72c235ae178, type: 3}
 --- !u!4 &7785654709178869339
 Transform:
   m_ObjectHideFlags: 0
@@ -16177,8 +16486,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.53088874, y: 0.4206571, z: 0.6839465}
-  m_Center: {x: 0.014388678, y: -0.03414793, z: -0.0018473974}
+  m_Size: {x: 0.30454147, y: 0.21998109, z: 0.68394643}
+  m_Center: {x: 0.0062227226, y: -0.0014793501, z: -0.0018474087}
 --- !u!1 &7863860248550263527
 GameObject:
   m_ObjectHideFlags: 0
@@ -16729,6 +17038,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8463148612189911369}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8181412644838938446
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5931239788676489885}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 65
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &8188326039389719757
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16926,6 +17257,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8296389367859520634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509979933526732901}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 72
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &8301004409291962425
 GameObject:
   m_ObjectHideFlags: 0
@@ -17118,6 +17471,7 @@ GameObject:
   - component: {fileID: 3429519226342027355}
   - component: {fileID: 9048474654693304226}
   - component: {fileID: 5878275925258223439}
+  - component: {fileID: 9048474654693304227}
   m_Layer: 0
   m_Name: Cylinder010
   m_TagString: Untagged
@@ -17212,6 +17566,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8417359790190248616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784069604341500484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 75
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!23 &8423912747992842575
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17285,6 +17661,7 @@ GameObject:
   - component: {fileID: 2803761909482337365}
   - component: {fileID: 8205662578614241186}
   - component: {fileID: 8135515051918536780}
+  - component: {fileID: 8450643837169828804}
   m_Layer: 0
   m_Name: Capsule001
   m_TagString: Untagged
@@ -17292,6 +17669,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8450643837169828804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8450643837169828803}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 57
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &8451332305471523295
 Transform:
   m_ObjectHideFlags: 0
@@ -17593,7 +17992,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3541847348802427122}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.68, y: 0.6725, z: 3.325}
   m_LocalScale: {x: 1.8749995, y: 1.875, z: 1.8749995}
   m_ConstrainProportionsScale: 1
@@ -17877,6 +18276,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &8660684154433581807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7058669515062396619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 59
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!23 &8677558323046476126
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18017,8 +18438,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.45483133, y: 0.39909714, z: 0.70225227}
-  m_Center: {x: -0.026547685, y: -0.026478618, z: -0.035165567}
+  m_Size: {x: 0.3731611, y: 0.19608693, z: 0.7022522}
+  m_Center: {x: 0.014287433, y: 0.00035544945, z: -0.03516559}
 --- !u!114 &8755983585554167981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18050,6 +18471,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5846360961389268920}
   m_Mesh: {fileID: -2128599272216676504, guid: ba89e0e378db35f4fa7eb53c72c039e4, type: 3}
+--- !u!114 &8775296943961427676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5846360961389268920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 58
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!222 &8784326978104926122
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -18270,6 +18713,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5172865333740567168}
   m_Mesh: {fileID: 2709736753126115380, guid: ba89e0e378db35f4fa7eb53c72c039e4, type: 3}
+--- !u!114 &8999162935542078068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5172865333740567168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 63
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!33 &9005664944797698630
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18395,6 +18860,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8382171399078665979}
   m_Mesh: {fileID: -1616458658916155781, guid: ba89e0e378db35f4fa7eb53c72c039e4, type: 3}
+--- !u!114 &9048474654693304227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382171399078665979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 71
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &9071354278674620166
 GameObject:
   m_ObjectHideFlags: 0
@@ -18508,6 +18995,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 784552837443134112}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9129106315528338817
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4504677514462476141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 69
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &9129549326082378861
 Transform:
   m_ObjectHideFlags: 0
@@ -18603,6 +19112,7 @@ GameObject:
   - component: {fileID: 6840556624360788598}
   - component: {fileID: 9075968166791077355}
   - component: {fileID: 1994762544851456014}
+  - component: {fileID: 9175225860197844951}
   m_Layer: 0
   m_Name: Cylinder001
   m_TagString: Untagged
@@ -18610,6 +19120,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9175225860197844951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175225860197844950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 56
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!4 &9214475086018834381
 Transform:
   m_ObjectHideFlags: 0
@@ -18636,6 +19168,7 @@ GameObject:
   - component: {fileID: 9214475086018834381}
   - component: {fileID: 9123023709104095185}
   - component: {fileID: 4220247647692381825}
+  - component: {fileID: 9216917901661148848}
   m_Layer: 0
   m_Name: Cylinder014
   m_TagString: Untagged
@@ -18643,6 +19176,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &9216917901661148848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9216917901661148847}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 68
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &9222885663705229836
 MonoBehaviour:
   m_ObjectHideFlags: 0
