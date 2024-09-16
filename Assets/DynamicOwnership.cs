@@ -18,8 +18,10 @@ public class DynamicOwnership : MonoBehaviour
 
     private void OnCollisionEnter(Collision c)
     {
+        Debug.Log("coltest"+c.transform.name);
         if (c.transform.CompareTag("handCol"))
         {
+            Debug.Log("suc");
             GetComponent<NetworkChangeOwnership>().SetOwnership();
         }
     }
