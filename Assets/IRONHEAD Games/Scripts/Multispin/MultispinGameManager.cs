@@ -124,12 +124,7 @@ public class MultispinGameManager : MonoBehaviour
             {
                 IsReadyToStart = true;
                 _gameState = GameState.ReadyToStart;
-                var sockets = FindObjectsOfType<SocketNetworkBehaviour>();
-                foreach (var s in sockets){
-                    s.GrabInitialize();
                 
-                
-                }
 
             }
         }
@@ -149,7 +144,11 @@ public class MultispinGameManager : MonoBehaviour
 
         _gameState = GameState.StartGame;
         IsGameStart = true;
-
+        var sockets = FindObjectsOfType<SocketNetworkBehaviour>();
+        foreach (var s in sockets)
+        {
+            s.GrabInitialize();
+        }
     }
 
     public void EndGame()
