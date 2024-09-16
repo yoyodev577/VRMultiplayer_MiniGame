@@ -19,7 +19,7 @@ public class DynamicOwnership : MonoBehaviour
     private void OnCollisionEnter(Collision c)
     {
         Debug.Log("coltest"+c.transform.name);
-        if (c.transform.CompareTag("handCol"))
+        if (c.gameObject.CompareTag("handCol")|| c.gameObject.layer== LayerMask.NameToLayer("Hand"))
         {
             Debug.Log("suc");
             GetComponent<NetworkChangeOwnership>().SetOwnership();
