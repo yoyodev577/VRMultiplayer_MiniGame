@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using AngryMouse;
 
 public class Moe : MonoBehaviour
 {
+    public GameManager gameManager;
     public MoeManager moeManager;
     public PhotonView view;
     public float minHeight, maxHeight;
@@ -32,6 +34,7 @@ public class Moe : MonoBehaviour
         panelObj.SetActive(false);
         moeManager = GetComponentInParent<MoeManager>();
         mRs = GetComponentsInChildren<MeshRenderer>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
     public void SetPop(bool _pop)
@@ -96,24 +99,11 @@ public class Moe : MonoBehaviour
     {
         panelObj.SetActive(false);
         textMeshProUGUI.text = "?";
-        if (!isHideCoroutine )
-        {
-            StartCoroutine(HideCoroutine());
-        }
-    }
-    [PunRPC]
-    public void HideNow() {
-        Debug.Log("--Hide all moes now---");
-        StopCoroutine(PopCoroutine());
-        StopCoroutine(HideCoroutine());
-        isHideCoroutine = false;
-        isPopCoroutine = false;
-
+        Debug.Log("---Moe is hiding :" + gameObject.name);
         Vector3 targetPos = new Vector3(startPos.x, minHeight, startPos.z);
         transform.localPosition = targetPos;
-        panelObj.SetActive(false);
-
     }
+
 
     [PunRPC]
     public void SwitchColor(bool isRed) {
@@ -136,7 +126,7 @@ public class Moe : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "hammer" && isPop)
+        if (collision.gameObject.tag == "hammer" && isPop && gameManager.canScore)
         {
             SetHitStatus(true);
             moeManager.CheckScore(currentAns);
@@ -152,9 +142,10 @@ public class Moe : MonoBehaviour
     IEnumerator SetHitCoroutine() {
         isHitCoroutine = true;
         while (isHit) {
+         
             view.RPC("SwitchColor", RpcTarget.All, true);
             sfxSource.PlayOneShot(hitClip);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.3f);
             SetPop(false);
             isHit = false;
         }
@@ -165,17 +156,16 @@ public class Moe : MonoBehaviour
     {
         isPopCoroutine = true;
         Vector3 targetPos = new Vector3(startPos.x, maxHeight, startPos.z);
-
+        Debug.Log("---Moe is popping :" + gameObject.name);
         while (Vector3.Distance(targetPos, transform.localPosition) > 0.1f)
         {
-            Debug.Log("---Moe is popping :" + gameObject.name);
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed * Time.deltaTime);
             yield return null;
         }
         isPopCoroutine = false;
 
     }
-
+/*
     IEnumerator HideCoroutine()
     {
         isHideCoroutine = true;
@@ -189,5 +179,5 @@ public class Moe : MonoBehaviour
         }
         isHideCoroutine = false;
 
-    }
+    }*/
 }

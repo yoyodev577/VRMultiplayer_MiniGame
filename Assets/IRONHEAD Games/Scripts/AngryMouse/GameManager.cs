@@ -96,15 +96,22 @@ namespace AngryMouse
         public void InitQuestions()
         {
             questions.Add(new Question(
-            "What are not major disinfectants for lab disinfection?\n"
-            + "A. Hypochlorites\n" + "B. Formaldehyde\n" + "C. Xylene"
+            "What are not major disinfectants for lab disinfection?\n"+ 
+            "A. Hypochlorites\n" + 
+            "B. Formaldehyde\n" + 
+            "C. Xylene\n" +
+            "D. Ebola virus disease\n" +
+            "E. Pink Eye"
             , "C"));
 
 
             questions.Add(new Question(
                 "Which one is not belong to common behavior that can be exposed to bloodborne pathogens?\n"
-                + "A. Splashes to blood\n" + "B. Contact of eyes\n"
-                + "C. Bites and knife wounds\n" + "D. Shake hands"
+                + "A. Splashes to blood\n" 
+                + "B. Contact of eyes\n"
+                + "C. Bites and knife wounds\n" 
+                + "D. Shake hands"
+                + "E. Pink Eye"
                 , "D"));
 
 
@@ -192,7 +199,7 @@ namespace AngryMouse
         public void PhotonStartGame()
         {
 
-            if (!IsGameEnd && isLastQuestion) return;
+            if (IsGameEnd) return;
 
             IsGameStart = true;
             Debug.Log("---Game Start---");
@@ -226,14 +233,6 @@ namespace AngryMouse
             Debug.Log("---Game End---");
 
             ShowResult();
-
-/*            foreach (MoeManager m in moeManagers)
-            {
-                m.PhotonSetEngine(false);
-            }
-*/
-            StopCoroutine(questionCoroutine);
-            IsQuestionCoroutine = false;
 
         }
 
@@ -293,9 +292,10 @@ namespace AngryMouse
 
         public void ShowResult() {
             string text = "";
+            text = "The game has ended";
 
             Debug.Log("---Show game result---");
-            if (moeManagers[0].score > moeManagers[1].score)
+/*            if (moeManagers[0].score > moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
             }
@@ -305,7 +305,7 @@ namespace AngryMouse
             }
             else {
                 text = "The game has ended";
-            }
+            }*/
 
             view.RPC("UpdateBoardText", RpcTarget.All, text);
         }
@@ -313,32 +313,51 @@ namespace AngryMouse
 
         IEnumerator SetQuestionBoardCoroutine()
         {
+
             IsQuestionCoroutine =true;
             currentIndex = 0;
             canScore = true;
             while (IsGameStart && !isLastQuestion)
             {
+    
                 if (IsCorrect) {
-                    canScore = false;
-                    currentIndex++;
+                    Debug.Log("---Question:" + currentIndex + "correct");
 
-                    //set and pop random moes for it.
+                    canScore = false;
+
                     foreach (MoeManager m in moeManagers)
                     {
-                        m.HideAllMoesNow();
-                        m.RandomPickMoes();
-                        m.PopMoes();
+                        m.HideMoes();
+                    }
+
+                    if (currentIndex < questions.Count)
+                    {
+                        currentIndex++;
+                        foreach (MoeManager m in moeManagers)
+                        {
+                            m.RandomPickMoes();
+                            m.PopMoes();
+                        }
                     }
 
                     if (currentIndex >= questions.Count)
                     {
-                        isLastQuestion = true; 
+                        isLastQuestion = true;
+                        Debug.Log("---Is Last Question---");
+                        foreach (MoeManager m in moeManagers)
+                        {
+                            m.HideMoes();
+                        }
 
                     }
+
                     IsCorrect = false;
                 }
                 yield return new WaitForSeconds(1);
+                //set question
                 view.RPC("SetQuestion", RpcTarget.All);
+                //set and pop random moes for it.
+
                 canScore = true;
 
 

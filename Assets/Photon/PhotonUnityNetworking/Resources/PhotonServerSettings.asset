@@ -145,6 +145,9 @@ MonoBehaviour:
   - PhotonPopMoes
   - PhotonHideAllMoes
   - PhotonHideAllMoesNow
+  - PhotonHide
+  - PhotonPop
+  - PhotonHideMoes
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

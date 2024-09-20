@@ -35,12 +35,12 @@ public class MoeManager : MonoBehaviour
        // view.RPC("PhotonHideAllMoes", RpcTarget.All);
     }
 
-
+/*
     public void SetEngine(bool _isEnabled) {
         view.RPC("PhotonSetEngine", RpcTarget.All, _isEnabled);
     }
 
-
+*/
 
     public void RandomPickMoes() {
 
@@ -52,13 +52,9 @@ public class MoeManager : MonoBehaviour
         view.RPC("PhotonPopMoes", RpcTarget.All);
     }
 
-    public void HideAllMoes()
+    public void HideMoes()
     {
-        view.RPC("PhotonHideAllMoes", RpcTarget.All);
-    }
-
-    public void HideAllMoesNow() {
-        view.RPC("PhotonHideAllMoesNow", RpcTarget.All);
+        view.RPC("PhotonHideMoes", RpcTarget.All);
     }
 
 /*
@@ -116,25 +112,16 @@ public class MoeManager : MonoBehaviour
 
     [PunRPC]
     // lerping
-    public void PhotonHideAllMoes() 
+    public void PhotonHideMoes() 
     {
-        Debug.Log("---Hide all moes---");
+        Debug.Log("---Hide moes---");
         for (int i = 0; i < moes.Count; i++)
         {
             moes[i].SetPop(false);
-            moes[i].SetHitStatus(false);
         }
     
     }
-    [PunRPC]
-    public void PhotonHideAllMoesNow() 
-    {
-        Debug.Log("---Hide all moes now!---");
-        for (int i = 0; i < moes.Count; i++)
-        {
-            moes[i].HideNow();
-        }
-    }
+
 
     public void CheckScore(string _answer) {
 
@@ -153,13 +140,20 @@ public class MoeManager : MonoBehaviour
                 // find the correct answer, and start to the next question.
                 manager.IsCorrect = true;
                 this.score++;
+
             }
         }
         else {
-            if (manager.canScore) {
+            if (manager.canScore && !isScored) {
                 this.score--;
+                isScored = true;
             }
+
+            if (!isResetScoreCoroutine)
+                StartCoroutine(ResetScoreCoroutine());
         }
+
+
         scoreText.text = "Score: " + score.ToString();
 
     }
@@ -180,7 +174,7 @@ public class MoeManager : MonoBehaviour
         isCoroutine =false;
         score = 0;
         scoreText.text = "Score: " + score.ToString();
-        view.RPC("PhotonHideAllMoesNow", RpcTarget.All);
+        view.RPC("PhotonHideMoes", RpcTarget.All);
     }
 
 /*    public IEnumerator MoeCoroutine()
@@ -202,7 +196,7 @@ public class MoeManager : MonoBehaviour
 
     IEnumerator ResetScoreCoroutine() {
         isResetScoreCoroutine = true;
-        yield return new WaitForFixedUpdate();
+        yield return new WaitForSeconds(0.5f);
         isScored = false;
         isResetScoreCoroutine = false;
     }
