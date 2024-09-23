@@ -7,6 +7,10 @@ public class MultiSpinGame : MonoBehaviour
     [SerializeField] GameObject Lid;
     [SerializeField] GameObject Spinner;
     [SerializeField] MultispinGameManager gameManager;
+    [SerializeField] private ParticleSystem explosion;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip correctClip, explodeClip;
+    [SerializeField] public GameObject[] TestTubeHolder;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,10 +25,10 @@ public class MultiSpinGame : MonoBehaviour
     //do some checking to see if the toggle lid action is allow
     public void CheckToggleLid()
     {
-        //if (!gameManager.IsGameStart)
-        //{
-        //    return;
-        //}
+        if (!gameManager.IsGameStart || Spinner.GetComponent<Spiner>().spining)
+        {
+            return;
+        }
         Lid.GetComponent<LidToggle>().ToggleLid();
     }
     public void CheckActivateSpinner()
@@ -33,7 +37,16 @@ public class MultiSpinGame : MonoBehaviour
     }
     public void CheckResult()
     {
-        //StartCoroutine(Explode());
+        StartCoroutine(Explode());
+    }
+    IEnumerator Explode()
+    {
+        explosion.Play(true);
+        audioSource.PlayOneShot(explodeClip);
+        yield return new WaitForSeconds(1);
+        explosion.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+        yield return null;
+
     }
 
 }
