@@ -31,6 +31,9 @@ public class MultiSpinGame : MonoBehaviour
     {
         Spinner.GetComponent<Spiner>().ActivateSpinner();
     }
-
+    public void CheckResult()
+    {
+        //StartCoroutine(Explode());
+    }
 
 }
