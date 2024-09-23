@@ -1,3 +1,8 @@
+/* 
+ * This is a old script!!!!
+ * Just for reference!!!!!!
+ * No longer used!!!!!!!!!!
+ */
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

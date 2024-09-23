@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 5581230869669594341}
   - component: {fileID: 8019346989947439209}
   - component: {fileID: 4016541727431254816}
+  - component: {fileID: 6765821953328244240}
   m_Layer: 0
   m_Name: Spinner
   m_TagString: Untagged
@@ -438,6 +439,18 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &6765821953328244240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2743510300519295434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63e0a3e25d791fa489022bcfde1ec555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2983607875149956728
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +914,74 @@ MonoBehaviour:
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!1 &5787807695824690893
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6119127677154281538}
+  - component: {fileID: 2607011642004270669}
+  - component: {fileID: 662208769983825104}
+  m_Layer: 0
+  m_Name: ToggleButton
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6119127677154281538
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787807695824690893}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.6245319, y: -0, z: 0.00000008940696, w: 0.78099924}
+  m_LocalPosition: {x: 0.00889937, y: 0.48632106, z: -0.12117779}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5452154470418222732}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &2607011642004270669
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787807695824690893}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.11
+  m_Center: {x: 0, y: -0.2, z: 0.54}
+--- !u!114 &662208769983825104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5787807695824690893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f276c1cffec3904ca114644cca66e38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiSpinGame: {fileID: 4519646501847432648}
+  colliderList: []
 --- !u!1 &5853983875373495106
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,6 +992,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5452154470418222732}
   - component: {fileID: 6221671614926371590}
+  - component: {fileID: 4254391416615713241}
   m_Layer: 0
   m_Name: Cover
   m_TagString: Untagged
@@ -931,6 +1013,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6119127677154281538}
   - {fileID: 4209520003364202059}
   m_Father: {fileID: 3367816674708457354}
   m_LocalEulerAnglesHint: {x: 77.296, y: 0, z: 0}
@@ -949,6 +1032,20 @@ MonoBehaviour:
   eulerAngX: 77.29572
   eulerAngY: -0
   eulerAngZ: -0
+--- !u!114 &4254391416615713241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5853983875373495106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8671ccf32a668364cbee387419ff97be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  multiSpinGame: {fileID: 4519646501847432648}
+  LidOpen: 0
 --- !u!1 &8041839799988868923
 GameObject:
   m_ObjectHideFlags: 0
@@ -963,6 +1060,7 @@ GameObject:
   - component: {fileID: 8761207819275652532}
   - component: {fileID: 2163415747897650261}
   - component: {fileID: 50298935840726432}
+  - component: {fileID: 4519646501847432648}
   m_Layer: 0
   m_Name: Multi Spin
   m_TagString: Untagged
@@ -1036,7 +1134,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8041839799988868923}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87ca08f7d75fecb489dc966292245264, type: 3}
   m_Name: 
@@ -1056,7 +1154,7 @@ MonoBehaviour:
   IsShowResult: 0
   isSpinCoroutine: 0
   isResultCoroutine: 0
-  testTubeParent: {fileID: 0}
+  testTubeParent: {fileID: 654443596213235109}
   testTubeList: []
   testTubeLocks: []
   lockedTestTube: []
@@ -1064,16 +1162,16 @@ MonoBehaviour:
   spinnerPosCount: 0
   testTubePlaceholder: 
   isBalanced: 0
-  explosion: {fileID: 910410574698125998}
+  explosion: {fileID: 0}
   debug: {fileID: 0}
   correctSequence: {fileID: 0}
   View: {fileID: 0}
   correctImage: {fileID: 0}
-  correctClip: {fileID: 0}
-  explodeClip: {fileID: 0}
+  correctClip: {fileID: 8300000, guid: d6bc0dc61afd2c846854021636799050, type: 3}
+  explodeClip: {fileID: 8300000, guid: 7f569d2827ddb6a41b1176f5bd881c66, type: 3}
   audioSource: {fileID: 0}
   isExplodeCoroutine: 0
-  buttonCollider: {fileID: 0}
+  buttonCollider: {fileID: 2163415747897650261}
 --- !u!135 &2163415747897650261
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1122,6 +1220,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &4519646501847432648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8041839799988868923}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c2a1a127ce2ac04b87e8c673611ebf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Lid: {fileID: 5853983875373495106}
+  Spinner: {fileID: 2743510300519295434}
+  gameManager: {fileID: 0}
 --- !u!1 &8054406884676619182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1451,6 +1564,7 @@ GameObject:
   - component: {fileID: 4209520003364202059}
   - component: {fileID: 5740671439235659457}
   - component: {fileID: 6867349094176288406}
+  - component: {fileID: 772544640149840925}
   m_Layer: 0
   m_Name: Lid
   m_TagString: Untagged
@@ -1524,6 +1638,28 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &772544640149840925
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9144700381857393379}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -2232952877369940510, guid: 2ff2be384ad20c445936b1c253c189b1, type: 3}
 --- !u!1001 &1036858499576368704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1657,11 +1793,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
---- !u!198 &910410574698125998 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 198656289721292014, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
-  m_PrefabInstance: {fileID: 1036858499576368704}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1039441215205924852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4361801158873524, guid: 64891a0eb28db934898420d80ca07cb3, type: 3}
@@ -2497,6 +2628,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &654443596213235109 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7169577720966142544, guid: 52bd2ae073644f447a3b05c2a910ae99, type: 3}
+  m_PrefabInstance: {fileID: 7668073294568650741}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1767692943709242286 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8278288282315224155, guid: 52bd2ae073644f447a3b05c2a910ae99, type: 3}
