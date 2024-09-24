@@ -52,7 +52,11 @@ public class Moe : MonoBehaviour
         if (view != null)
             view.RPC("PhotonSetCurrentAns", RpcTarget.All, s);
     }
-
+    public void ResetAsDefault ()
+    {
+        if (view != null)
+            view.RPC("PhotonReset", RpcTarget.All);
+    }
 
 
     [PunRPC]
@@ -103,6 +107,13 @@ public class Moe : MonoBehaviour
         Vector3 targetPos = new Vector3(startPos.x, minHeight, startPos.z);
         transform.localPosition = targetPos;
     }
+    [PunRPC]
+    public void PhotonReset() {
+        if (isHitCoroutine)
+            StopCoroutine(SetHitCoroutine());
+        if (isPopCoroutine)
+            StopCoroutine(PopCoroutine());
+    }
 
 
     [PunRPC]
@@ -126,7 +137,8 @@ public class Moe : MonoBehaviour
     public void OnCollisionEnter(Collision collision)
     {
         //Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "hammer" && isPop && gameManager.canScore)
+        if (collision.gameObject.tag == "hammer" 
+            && isPop && gameManager.canScore && !moeManager.isHit)
         {
             SetHitStatus(true);
             moeManager.CheckScore(currentAns);

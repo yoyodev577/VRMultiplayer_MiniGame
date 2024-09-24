@@ -325,31 +325,31 @@ namespace AngryMouse
 
                     canScore = false;
 
+                    if (currentIndex >= questions.Count)
+                    {
+                        isLastQuestion = true;
+                        Debug.Log("---Is Last Question---");
+
+                    }
+
+
                     foreach (MoeManager m in moeManagers)
                     {
                         m.HideMoes();
                     }
-
+                    yield return new WaitForFixedUpdate();
                     if (currentIndex < questions.Count)
                     {
                         currentIndex++;
                         foreach (MoeManager m in moeManagers)
                         {
                             m.RandomPickMoes();
+                            yield return new WaitForSeconds(0.5f);
                             m.PopMoes();
                         }
                     }
 
-                    if (currentIndex >= questions.Count)
-                    {
-                        isLastQuestion = true;
-                        Debug.Log("---Is Last Question---");
-                        foreach (MoeManager m in moeManagers)
-                        {
-                            m.HideMoes();
-                        }
 
-                    }
 
                     IsCorrect = false;
                 }

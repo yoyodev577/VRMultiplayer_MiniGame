@@ -19,9 +19,9 @@ public class MoeManager : MonoBehaviour
     public bool isEnabled = false;
     public int maxMoes = 4;
     public int score = 0;
-    public bool isScored = false;
+    public bool isHit = false;
     public bool isCoroutine = false;
-    public bool isResetScoreCoroutine = false;
+    public bool isResetHitCoroutine = false;
     public TextMeshProUGUI scoreText;
     public int playerNum = 0;
 
@@ -118,6 +118,7 @@ public class MoeManager : MonoBehaviour
         for (int i = 0; i < moes.Count; i++)
         {
             moes[i].SetPop(false);
+            moes[i].ResetAsDefault();
         }
     
     }
@@ -135,6 +136,7 @@ public class MoeManager : MonoBehaviour
     {
         if (manager.CheckAnswer(_answer))
         {
+            isHit = true;
             if (manager.canScore && !manager.IsCorrect)
             {
                 // find the correct answer, and start to the next question.
@@ -144,15 +146,12 @@ public class MoeManager : MonoBehaviour
             }
         }
         else {
-            if (manager.canScore && !isScored) {
+            if (manager.canScore && !isHit) {
                 this.score--;
-                isScored = true;
             }
-
-            if (!isResetScoreCoroutine)
-                StartCoroutine(ResetScoreCoroutine());
         }
-
+        if (!isResetHitCoroutine)
+            StartCoroutine(ResetHitCoroutine());
 
         scoreText.text = "Score: " + score.ToString();
 
@@ -169,8 +168,8 @@ public class MoeManager : MonoBehaviour
         //StopCoroutine(MoeCoroutine());
         hammer.ResetPos();
         isEnabled = false;
-        isScored = false;
-        isResetScoreCoroutine = false;
+        isHit = false;
+        isResetHitCoroutine = false;
         isCoroutine =false;
         score = 0;
         scoreText.text = "Score: " + score.ToString();
@@ -194,11 +193,11 @@ public class MoeManager : MonoBehaviour
 
     }*/
 
-    IEnumerator ResetScoreCoroutine() {
-        isResetScoreCoroutine = true;
-        yield return new WaitForSeconds(0.5f);
-        isScored = false;
-        isResetScoreCoroutine = false;
+    IEnumerator ResetHitCoroutine() {
+        isResetHitCoroutine = true;
+        yield return new WaitForSeconds(0.1f);
+        isHit = false;
+        isResetHitCoroutine = false;
     }
 
 }
