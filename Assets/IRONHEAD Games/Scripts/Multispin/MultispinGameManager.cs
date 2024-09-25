@@ -13,7 +13,7 @@ public class MultispinGameManager : MonoBehaviour
 
     [SerializeField] private List<PlayerButton> _playerButtons;
     [SerializeField] private TableButton resetButton;
-    [SerializeField] private List<MultiSpin> _multiSpins;
+    //[SerializeField] private List<MultiSpin> _multiSpins;
     private List<MultiSpinGame> _multiSpinsGame;
 
     [SerializeField] 
@@ -41,7 +41,7 @@ public class MultispinGameManager : MonoBehaviour
         PhotonNetwork.SerializationRate = 30;
         _view = GetComponent<PhotonView>();
         _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
-        _multiSpins = FindObjectsOfType<MultiSpin>().ToList();
+        //_multiSpins = FindObjectsOfType<MultiSpin>().ToList();
         _multiSpinsGame = FindObjectsOfType<MultiSpinGame>().ToList();
         _audioSource = GetComponent<AudioSource>();
         InitGame();
@@ -63,16 +63,26 @@ public class MultispinGameManager : MonoBehaviour
         }
 
         //end the game when both players have the results.
+        /*
         if (IsGameStart && !IsGameEnd) {
 
-            if (_multiSpins[0].hasResult && _multiSpins[1].hasResult)
+            if (_multiSpins[0].finished && _multiSpins[1].hasResult)
+            {
+                EndGame();
+            }
+        }
+        */
+        if (IsGameStart && !IsGameEnd)
+        {
+
+            if (_multiSpinsGame[0].finished && _multiSpinsGame[1].finished)
             {
                 EndGame();
             }
         }
 
         //reset the game state
-        if(IsGameStart && IsReset)
+        if (IsGameStart && IsReset)
         {
             if (PhotonNetwork.IsConnected)
                 _view.RPC("PhotonResetGame", RpcTarget.All);
@@ -189,20 +199,20 @@ public class MultispinGameManager : MonoBehaviour
     public void ShowResult() {
         string text = "";
 
-        if (_multiSpins[0].isBalanced && !_multiSpins[1].isBalanced)
+        if (_multiSpinsGame[0].isBalanced && !_multiSpinsGame[1].isBalanced)
         {
-            text = "The game has ended.\nPlayer :" + _multiSpins[0].playerNum + " wins";
+            text = "The game has ended.\nPlayer :" + _multiSpinsGame[0].playerNum + " wins";
 
         }
-        else if (!_multiSpins[0].isBalanced && _multiSpins[1].isBalanced) {
+        else if (!_multiSpinsGame[0].isBalanced && _multiSpinsGame[1].isBalanced) {
 
-            text = "The game has ended.\nPlayer :" + _multiSpins[1].playerNum + " wins";
+            text = "The game has ended.\nPlayer :" + _multiSpinsGame[1].playerNum + " wins";
         }
-        else if (_multiSpins[0].isBalanced && _multiSpins[1].isBalanced)
+        else if (_multiSpinsGame[0].isBalanced && _multiSpinsGame[1].isBalanced)
         {
             text = "The game has ended.Both players win!";
         }
-        else if (!_multiSpins[0].isBalanced && !_multiSpins[1].isBalanced)
+        else if (!_multiSpinsGame[0].isBalanced && !_multiSpinsGame[1].isBalanced)
         {
             text = "The game has ended.Both players lose :(!";
         }

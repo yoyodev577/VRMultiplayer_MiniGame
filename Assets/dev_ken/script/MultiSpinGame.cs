@@ -14,7 +14,12 @@ public class MultiSpinGame : MonoBehaviour
     [SerializeField] private Image correctImage;
     [SerializeField] public GameObject[] TestTubeHolder;
     [SerializeField] public GameObject[] TestTubes;
-    private bool finished = false;
+    //finish the game or not
+    public bool finished = false;
+    //win the game or not
+    public bool isBalanced = false;
+    //Player number
+    public int playerNum;
     // Start is called before the first frame update
     void Start()
     {
@@ -60,6 +65,7 @@ public class MultiSpinGame : MonoBehaviour
             }
         }
         //correct
+        isBalanced = true;
         //show the tick image
         correctImage.enabled = true;
         //play the correct sound

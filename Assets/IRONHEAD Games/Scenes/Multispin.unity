@@ -3782,6 +3782,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 126037712}
     - target: {fileID: 4519646501847432648, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: playerNum
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519646501847432648, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1039450011}
@@ -4876,6 +4880,10 @@ PrefabInstance:
     - target: {fileID: 4517587080199522738, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
       value: 81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4519646501847432648, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: playerNum
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4519646501847432648, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: gameManager

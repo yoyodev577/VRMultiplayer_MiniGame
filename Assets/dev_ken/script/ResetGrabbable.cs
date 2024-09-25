@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class ResetGrabbable : MonoBehaviour
 {
-    [SerializeField] GameObject[] ReturnSockets;
+    [SerializeField] GameObject[] ReturnSockets1;
+    [SerializeField] GameObject[] ReturnSockets2;
     void OnCollisionEnter(Collision c)
     {
         if (c.transform.CompareTag("TestTube"))
@@ -15,7 +16,7 @@ public class ResetGrabbable : MonoBehaviour
             {
                 return;
             }
-            foreach (var socket in ReturnSockets)
+            foreach (var socket in ReturnSockets1)
             {
                 if (socket.transform.childCount < 1)
                 {

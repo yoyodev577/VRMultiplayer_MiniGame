@@ -186,6 +186,7 @@ GameObject:
   - component: {fileID: 4428092489277285863}
   - component: {fileID: 4126580937972489509}
   - component: {fileID: 7548872331630679582}
+  - component: {fileID: 1664757616638042537}
   m_Layer: 0
   m_Name: Testtube
   m_TagString: TestTube
@@ -590,6 +591,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a262ff0a3c243a4f87c07ac678db816, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1664757616638042537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2369175122314620791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be92a9c0fa86a9947b499ad0d679fb71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TeamNum: 0
+  multiSpinGame: {fileID: 0}
 --- !u!1 &3732692792557543987
 GameObject:
   m_ObjectHideFlags: 0
