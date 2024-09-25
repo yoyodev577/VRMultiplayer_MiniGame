@@ -24,6 +24,7 @@ TagManager:
   - RigRightHand
   - RigCamera
   - TestTube
+  - HandBox
   layers:
   - Default
   - TransparentFX

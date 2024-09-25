@@ -14,6 +14,7 @@ public class MultispinGameManager : MonoBehaviour
     [SerializeField] private List<PlayerButton> _playerButtons;
     [SerializeField] private TableButton resetButton;
     [SerializeField] private List<MultiSpin> _multiSpins;
+    private List<MultiSpinGame> _multiSpinsGame;
 
     [SerializeField] 
     private GameState _gameState = GameState.Default;
@@ -41,6 +42,7 @@ public class MultispinGameManager : MonoBehaviour
         _view = GetComponent<PhotonView>();
         _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
         _multiSpins = FindObjectsOfType<MultiSpin>().ToList();
+        _multiSpinsGame = FindObjectsOfType<MultiSpinGame>().ToList();
         _audioSource = GetComponent<AudioSource>();
         InitGame();
     }
@@ -255,11 +257,17 @@ public class MultispinGameManager : MonoBehaviour
         {
             button.ResetButton();
         }
-
+        /*
         foreach(MultiSpin m in _multiSpins)
         {
             m.ResetMultispin();
         }
+        */
+        foreach (MultiSpinGame m in _multiSpinsGame)
+        {
+            m.ResetGame();
+        }
+        
         //InitGame();
         yield return new WaitForSeconds(2f);
         IsReset = false;

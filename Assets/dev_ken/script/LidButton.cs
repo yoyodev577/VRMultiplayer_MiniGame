@@ -13,7 +13,7 @@ public class LidButton : MonoBehaviour
             colliderList.Add(collider.gameObject);
         }
         //if hand touch the button
-        if (collider.transform.CompareTag("handCol"))
+        if (collider.transform.CompareTag("HandBox"))
         {
             //toggle the lid
             multiSpinGame.CheckToggleLid();
