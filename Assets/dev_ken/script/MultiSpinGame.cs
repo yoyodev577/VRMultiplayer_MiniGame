@@ -51,19 +51,19 @@ public class MultiSpinGame : MonoBehaviour
             if (TestTubeHolder[i].transform.childCount > 0)
             {
                 TestTubeIndex.Add(i);
+                if (TestTubeHolder[(i + 4) % 8].transform.childCount < 1)
+                {
+                    //wrong
+                    StartCoroutine(Explode());
+                    return;
+                }
             }
         }
-        if (false)
-        {
-            StartCoroutine(Explode());
-        }
-        else
-        {
-            //show the tick image
-            correctImage.enabled = true;
-            //play the correct sound
-            audioSource.PlayOneShot(correctClip);
-        }
+        //correct
+        //show the tick image
+        correctImage.enabled = true;
+        //play the correct sound
+        audioSource.PlayOneShot(correctClip);
         
     }
     IEnumerator Explode()
