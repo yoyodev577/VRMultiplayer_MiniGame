@@ -423,9 +423,9 @@ MonoBehaviour:
   isEnabled: 0
   maxMoes: 5
   score: 0
-  isScored: 0
+  isHit: 0
   isCoroutine: 0
-  isResetScoreCoroutine: 0
+  isResetHitCoroutine: 0
   scoreText: {fileID: 5708607206960372162}
   playerNum: 0
 --- !u!114 &612071710644218928
@@ -1004,6 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8
@@ -2805,6 +2806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8
@@ -3202,6 +3204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8
@@ -4164,6 +4167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8
@@ -6019,6 +6023,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8
@@ -7416,6 +7421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8
@@ -8056,8 +8062,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.07549843, y: 0.028017214, z: 0.06450201}
-  m_Center: {x: 0.000000047187015, y: -0.01858072, z: -0.0067154476}
+  m_Size: {x: 0.07549843, y: 0.24690728, z: 0.06450201}
+  m_Center: {x: 0.000000047187015, y: 0.090864286, z: -0.0067154476}
 --- !u!65 &6978226698466217054
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8172,6 +8178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c06be9e330f86c84e9428abaf7882a87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   moeManager: {fileID: 0}
   view: {fileID: 0}
   minHeight: 0.8

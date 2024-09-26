@@ -128,15 +128,20 @@ public class MoeManager : MonoBehaviour
 
         if (!manager.IsGameStart || manager.IsGameEnd) return;
 
-        view.RPC("PhotonScore", RpcTarget.All,_answer);
+        if (!isHit)
+        {
+            view.RPC("PhotonScore", RpcTarget.All, _answer);
+            isHit = true;
+                    if (!isResetHitCoroutine)
+            StartCoroutine(ResetHitCoroutine());
+        }
     }
 
     [PunRPC]
     public void PhotonScore(string _answer)
     {
-        if (manager.CheckAnswer(_answer))
+        if (manager.CheckAnswer(_answer) )
         {
-            isHit = true;
             if (manager.canScore && !manager.IsCorrect)
             {
                 // find the correct answer, and start to the next question.
@@ -146,12 +151,11 @@ public class MoeManager : MonoBehaviour
             }
         }
         else {
-            if (manager.canScore && !isHit) {
+            if (manager.canScore) {
                 this.score--;
             }
         }
-        if (!isResetHitCoroutine)
-            StartCoroutine(ResetHitCoroutine());
+
 
         scoreText.text = "Score: " + score.ToString();
 
@@ -195,7 +199,7 @@ public class MoeManager : MonoBehaviour
 
     IEnumerator ResetHitCoroutine() {
         isResetHitCoroutine = true;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.5f);
         isHit = false;
         isResetHitCoroutine = false;
     }

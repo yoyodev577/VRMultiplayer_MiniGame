@@ -39,8 +39,8 @@ public class Moe : MonoBehaviour
 
     public void SetPop(bool _pop)
     {
-        if(view != null)
-        view.RPC("PhotonSetPop", RpcTarget.All,_pop);
+        if (view != null)
+            view.RPC("PhotonSetPop", RpcTarget.All, _pop);
     }
     public void SetHitStatus(bool _isHit)
     {
@@ -52,7 +52,7 @@ public class Moe : MonoBehaviour
         if (view != null)
             view.RPC("PhotonSetCurrentAns", RpcTarget.All, s);
     }
-    public void ResetAsDefault ()
+    public void ResetAsDefault()
     {
         if (view != null)
             view.RPC("PhotonReset", RpcTarget.All);
@@ -60,7 +60,7 @@ public class Moe : MonoBehaviour
 
 
     [PunRPC]
-    public void PhotonSetPop( bool pop) {
+    public void PhotonSetPop(bool pop) {
 
         isPop = pop;
         if (pop)
@@ -136,9 +136,11 @@ public class Moe : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
+
+        if (!gameManager.canScore ) return;
+
         //Debug.Log(collision.gameObject.name);
-        if (collision.gameObject.tag == "hammer" 
-            && isPop && gameManager.canScore && !moeManager.isHit)
+        if (collision.gameObject.tag == "hammer" && isPop && !moeManager.isHit )
         {
             SetHitStatus(true);
             moeManager.CheckScore(currentAns);
@@ -157,7 +159,7 @@ public class Moe : MonoBehaviour
          
             view.RPC("SwitchColor", RpcTarget.All, true);
             sfxSource.PlayOneShot(hitClip);
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(0.2f);
             SetPop(false);
             isHit = false;
         }

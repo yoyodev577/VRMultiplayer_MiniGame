@@ -85,6 +85,10 @@ namespace AngryMouse
                 StartGame();
             }
 
+            if (IsGameStart && currentIndex == questions.Count && IsCorrect) {
+                isLastQuestion = true;
+            }
+
             //end the game
             if (IsGameStart && isLastQuestion && !IsGameEnd)
             {
@@ -110,7 +114,7 @@ namespace AngryMouse
                 + "A. Splashes to blood\n" 
                 + "B. Contact of eyes\n"
                 + "C. Bites and knife wounds\n" 
-                + "D. Shake hands"
+                + "D. Shake hands\n"
                 + "E. Pink Eye"
                 , "D"));
 
@@ -203,14 +207,6 @@ namespace AngryMouse
 
             IsGameStart = true;
             Debug.Log("---Game Start---");
-            foreach (MoeManager m in moeManagers)
-            {
-               // m.SetEngine(true);
-               // m.HideAllMoes();
-                m.RandomPickMoes();
-                m.PopMoes();
-            }  
-
 
             if (!IsQuestionCoroutine && questionCoroutine==null)
             {
@@ -231,8 +227,14 @@ namespace AngryMouse
         {
             IsGameEnd = true; 
             Debug.Log("---Game End---");
-
+            if (questionCoroutine!=null)
+            {
+                Debug.Log("---Stop Questions--");
+                StopCoroutine(questionCoroutine);
+                questionCoroutine = null;
+            }
             ShowResult();
+  
 
         }
 
@@ -295,7 +297,7 @@ namespace AngryMouse
             text = "The game has ended";
 
             Debug.Log("---Show game result---");
-/*            if (moeManagers[0].score > moeManagers[1].score)
+            if (moeManagers[0].score > moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
             }
@@ -303,9 +305,10 @@ namespace AngryMouse
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[1].playerNum + " wins";
             }
-            else {
+            else
+            {
                 text = "The game has ended";
-            }*/
+            }
 
             view.RPC("UpdateBoardText", RpcTarget.All, text);
         }
@@ -316,21 +319,25 @@ namespace AngryMouse
 
             IsQuestionCoroutine =true;
             currentIndex = 0;
+
+            //first time
+            foreach (MoeManager m in moeManagers)
+            {
+
+                m.RandomPickMoes();
+                m.PopMoes();
+            }
+            yield return new WaitForSeconds(0.3f);
             canScore = true;
-            while (IsGameStart && !isLastQuestion)
+
+        
+            while (IsGameStart && !IsGameEnd )
             {
     
                 if (IsCorrect) {
-                    Debug.Log("---Question:" + currentIndex + "correct");
+                    Debug.Log("---Question:" + currentIndex + " correct");
 
                     canScore = false;
-
-                    if (currentIndex >= questions.Count)
-                    {
-                        isLastQuestion = true;
-                        Debug.Log("---Is Last Question---");
-
-                    }
 
 
                     foreach (MoeManager m in moeManagers)
@@ -349,8 +356,6 @@ namespace AngryMouse
                         }
                     }
 
-
-
                     IsCorrect = false;
                 }
                 yield return new WaitForSeconds(1);
@@ -360,8 +365,9 @@ namespace AngryMouse
 
                 canScore = true;
 
-
             }
+
+
             IsQuestionCoroutine = false;
         }
 
