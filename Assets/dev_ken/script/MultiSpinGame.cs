@@ -1,3 +1,5 @@
+using MultiplayerKitForHVR.General;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,6 +86,15 @@ public class MultiSpinGame : MonoBehaviour
 
     public void ResetGame()
     {
+        foreach (var holder in TestTubeHolder)
+        {
+            try{
+                holder.GetComponent<NetworkedSocketScript>().ForceRelease();
+            } catch (Exception e)
+            {
+
+            }
+        }
         foreach (var TestTube in TestTubes)
         {
             TestTube.SetActive(false);

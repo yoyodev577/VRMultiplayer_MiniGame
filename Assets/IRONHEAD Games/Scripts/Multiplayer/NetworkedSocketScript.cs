@@ -89,17 +89,17 @@ namespace MultiplayerKitForHVR.General
         public void BaseForceRelease()
         {
             HVRGrabbable grabbable = GrabbedTarget;
-
+            /*
             if (grabbable.TryGetComponent<NetworkChangeOwnership>(out var nco))
             {
-                nco.ResetOwnership();
+                //nco.ResetOwnership();
                 //nco.SetOwnership();
             }
             else
             {
                 Debug.LogError($"{nameof(BaseForceRelease)}: Grabbable is missing a {nameof(NetworkChangeOwnership)} component");
             }
-
+            */
             //if (TryGetComponent<SocketFollowBehavior>(out var sfb))
             //{
             //    //sfb.start = false;
