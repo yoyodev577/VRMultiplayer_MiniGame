@@ -5,11 +5,13 @@ using UnityEngine;
 public class Team : MonoBehaviour
 {
     public int TeamNum;
-    [SerializeField] MultiSpinGame multiSpinGame;
+    public MultiSpinGame multiSpinGame;
     // Start is called before the first frame update
     void Start()
     {
+        multiSpinGame = GetComponent<Transform>().parent.parent.parent.GetComponent<MultiSpinGame>();
         TeamNum = multiSpinGame.playerNum;
+        
     }
 
     // Update is called once per frame

@@ -16,12 +16,25 @@ public class ResetGrabbable : MonoBehaviour
             {
                 return;
             }
-            foreach (var socket in ReturnSockets1)
+            if (c.transform.GetComponent<Team>().TeamNum == 1)
             {
-                if (socket.transform.childCount < 1)
+                foreach (var socket in ReturnSockets1)
                 {
-                    socket.GetComponent<NetworkedSocketScript>().ServerGrab(c.transform.GetComponent<PhotonView>().ViewID);
-                    break;
+                    if (socket.transform.childCount < 1)
+                    {
+                        socket.GetComponent<NetworkedSocketScript>().ServerGrab(c.transform.GetComponent<PhotonView>().ViewID);
+                        break;
+                    }
+                }
+            } else if (c.transform.GetComponent<Team>().TeamNum == 2)
+            {
+                foreach (var socket in ReturnSockets2)
+                {
+                    if (socket.transform.childCount < 1)
+                    {
+                        socket.GetComponent<NetworkedSocketScript>().ServerGrab(c.transform.GetComponent<PhotonView>().ViewID);
+                        break;
+                    }
                 }
             }
         }
