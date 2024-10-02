@@ -5224,6 +5224,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 23
       objectReference: {fileID: 0}
+    - target: {fileID: 4835624007096181982, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: OwnershipTransfer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4895568004559674037, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5263,6 +5267,10 @@ PrefabInstance:
     - target: {fileID: 6008801913897538597, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
       value: 62
+      objectReference: {fileID: 0}
+    - target: {fileID: 6008801913897538597, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: OwnershipTransfer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6078856174293443342, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
@@ -5447,6 +5455,10 @@ PrefabInstance:
     - target: {fileID: 8540359848253954958, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
       value: 65
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540359848253954958, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
+      propertyPath: OwnershipTransfer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8590533543816050884, guid: d5c2b00499908fe44beaeef5b38bd8b6, type: 3}
       propertyPath: sceneViewId
