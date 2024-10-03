@@ -144,6 +144,8 @@ MonoBehaviour:
   - UnSetGrabbableGravityPunRpc
   - SetGrabbableGravityPunRpc
   - OnSocketSync1PunRpc
+  - SetSyncHandHoldServerRpc
+  - SetSyncHoldServerRpc
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

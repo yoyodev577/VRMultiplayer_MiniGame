@@ -37,7 +37,7 @@ public class MultiSpinGame : MonoBehaviour
     public void CheckToggleLid()
     {
         //do not open if the game is not start or it is spining
-        if (!gameManager.IsGameStart || Spinner.GetComponent<Spiner>().spining || finished)
+        if (!gameManager.IsGameStart || gameManager.IsReadyTimerCoroutine || Spinner.GetComponent<Spiner>().spining || finished)
         {
             return;
         }
@@ -100,6 +100,7 @@ public class MultiSpinGame : MonoBehaviour
             TestTube.SetActive(false);
             finished = false;
             Lid.GetComponent<LidToggle>().SetLid(false);
+            correctImage.enabled = false;
         }
     }
 

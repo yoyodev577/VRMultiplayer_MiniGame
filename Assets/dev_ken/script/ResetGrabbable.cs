@@ -12,7 +12,7 @@ public class ResetGrabbable : MonoBehaviour
     {
         if (c.transform.CompareTag("TestTube"))
         {
-            if (!c.transform.GetComponent<Rigidbody>().useGravity)
+            if (c.transform.GetComponent<HoldStatus>().SyncHandHold)
             {
                 return;
             }
