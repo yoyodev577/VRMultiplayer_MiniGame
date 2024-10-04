@@ -91,7 +91,6 @@ public class MoeManager : MonoBehaviour
             {
                // Debug.Log("Pop " + temp[r].name);
                 popList.Add(temp[r]);
-                temp.RemoveAt(r);
             }
 
         }

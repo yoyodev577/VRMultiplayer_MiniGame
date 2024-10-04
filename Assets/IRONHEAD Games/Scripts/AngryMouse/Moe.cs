@@ -149,7 +149,7 @@ public class Moe : MonoBehaviour
     public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "hammer") {
-            view.RPC("SwitchColor", RpcTarget.All, false);;
+            view.RPC("SwitchColor", RpcTarget.All, false);
         }
     }
 
@@ -161,6 +161,7 @@ public class Moe : MonoBehaviour
             sfxSource.PlayOneShot(hitClip);
             yield return new WaitForSeconds(0.2f);
             SetPop(false);
+            view.RPC("SwitchColor", RpcTarget.All, false);
             isHit = false;
         }
         isHitCoroutine = false;  
@@ -171,7 +172,7 @@ public class Moe : MonoBehaviour
         isPopCoroutine = true;
         Vector3 targetPos = new Vector3(startPos.x, maxHeight, startPos.z);
         Debug.Log("---Moe is popping :" + gameObject.name);
-        while (Vector3.Distance(targetPos, transform.localPosition) > 0.1f)
+        while (Vector3.Distance(targetPos, transform.localPosition) > 0.1f && !isHit)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed * Time.deltaTime);
             yield return null;

@@ -139,7 +139,7 @@ namespace AngryMouse
                 currentQuestion = questions[currentIndex];
 
                 answer = currentQuestion.answerText;
-                text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+                text = "Question " + (currentIndex + 1) + ":\n" + questions[currentIndex].questionText;
 
 
                 view.RPC("UpdateBoardText", RpcTarget.All, text);
@@ -194,6 +194,7 @@ namespace AngryMouse
 
         public void StartGame()
         {
+
             if (PhotonNetwork.IsConnected)
                 view.RPC("PhotonStartGame", RpcTarget.All);
 
@@ -207,6 +208,16 @@ namespace AngryMouse
 
             IsGameStart = true;
             Debug.Log("---Game Start---");
+
+            //first time
+            foreach (MoeManager m in moeManagers)
+            {
+
+                m.RandomPickMoes();
+                m.PopMoes();
+            }
+            view.RPC("SetQuestion", RpcTarget.All);
+
 
             if (!IsQuestionCoroutine && questionCoroutine==null)
             {
@@ -319,15 +330,6 @@ namespace AngryMouse
 
             IsQuestionCoroutine =true;
             currentIndex = 0;
-
-            //first time
-            foreach (MoeManager m in moeManagers)
-            {
-
-                m.RandomPickMoes();
-                m.PopMoes();
-            }
-            yield return new WaitForSeconds(0.3f);
             canScore = true;
 
         
@@ -344,9 +346,12 @@ namespace AngryMouse
                     {
                         m.HideMoes();
                     }
-                    yield return new WaitForFixedUpdate();
+                    //set question
+ 
                     if (currentIndex < questions.Count)
                     {
+                        view.RPC("UpdateBoardText", RpcTarget.All, "Next Question");
+                        yield return new WaitForSeconds(0.3f);
                         currentIndex++;
                         foreach (MoeManager m in moeManagers)
                         {
@@ -357,10 +362,11 @@ namespace AngryMouse
                     }
 
                     IsCorrect = false;
+
                 }
-                yield return new WaitForSeconds(1);
-                //set question
+                yield return new WaitForFixedUpdate();
                 view.RPC("SetQuestion", RpcTarget.All);
+
                 //set and pop random moes for it.
 
                 canScore = true;
