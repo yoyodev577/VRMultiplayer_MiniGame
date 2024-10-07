@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
-using UnityEngine.InputSystem.XR;
+using HurricaneVR.Framework.Core;
+using HurricaneVR.Framework.ControllerInput;
 
 public class Shoot : MonoBehaviour
 {
@@ -47,7 +48,7 @@ public class Shoot : MonoBehaviour
     private HandsAnimationController handsAnimationController;
 
 
-    private NetworkedGrabbing networkedGrabbing;
+    private HVRGrabbable networkedGrabbing;
     public int score = 0;
     public bool isUpdatedScore;
     public GunGameManager gunGameManager;
@@ -59,7 +60,7 @@ public class Shoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        networkedGrabbing  = GetComponent<NetworkedGrabbing>();
+        networkedGrabbing  = GetComponent<HVRGrabbable>();
         // index = 0;  
         redPoint.SetActive(false);
         laserLine = GetComponent<LineRenderer>();
@@ -166,12 +167,12 @@ public class Shoot : MonoBehaviour
     {
         if (gunGameManager.isGameEnd || !gunGameManager.isGameStart) return;
 
-        if (other.gameObject.tag == "Hand" && networkedGrabbing.isBeingHeld) {
+        if (networkedGrabbing.IsHandGrabbed) {
 
-            HandsAnimationController controller = other.gameObject.GetComponentInParent<HandsAnimationController>();
+            //HandsAnimationController controller = other.gameObject.GetComponentInParent<HandsAnimationController>();
 
 
-            if (controller.currentPressed_trigger > 0.8f || controller.currentPressed_triggerR > 0.8f)
+            if (HVRGlobalInputs.Instance.LeftTriggerButtonState.Active || HVRGlobalInputs.Instance.RightTriggerButtonState.Active)
             {
                 Debug.Log("---Shooting---");
                 //start shooting

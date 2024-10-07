@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using HurricaneVR.Framework.ControllerInput;
+using HurricaneVR.Framework.Shared;
 
 public class handanimations : MonoBehaviour
 {
@@ -36,17 +38,51 @@ public class handanimations : MonoBehaviour
 	int HoldOculusController = Animator.StringToHash("HoldOculusController");
 	int PressTriggerOculusController = Animator.StringToHash("PressTriggerOculusController");
 
-    void Start ()
+	[SerializeField] HVRController m_hvrcontroller;
+	[SerializeField] HVRPlayerInputs m_hvrplayerinputs;
+	public bool IsLeft;
+
+	void Start ()
     {
         anim = GetComponent<Animator>();
+		m_hvrplayerinputs = GameObject.FindWithTag("RigControl").GetComponent<HVRPlayerInputs>();
+        if (IsLeft)
+        {
+			m_hvrcontroller = m_hvrplayerinputs.LeftController;
+        }
+        else
+        {
+			m_hvrcontroller = m_hvrplayerinputs.RightController;
+        }
+		/*
 		OculusController.SetActive (false);
 		ViveController.SetActive (false);
 		StickUp.SetActive (false);
 		StickFront.SetActive (false);
-    }
+		*/
+	}
 
     void Update()
     {
+		if (m_hvrcontroller.GripButtonState.Active)
+		{
+			anim.SetTrigger(GrabLarge);
+			anim.SetFloat("grab", 1f);
+			/*
+			OculusController.SetActive(false);
+			ViveController.SetActive(false);
+			StickUp.SetActive(false);
+			StickFront.SetActive(false);
+			*/
+        }
+        else
+        {
+			anim.SetTrigger(Idle);
+			anim.SetFloat("grab", 0f);
+		}
+
+
+		/*
         if (Input.GetKeyDown(KeyCode.Q))
         {
             anim.SetTrigger(Idle);
@@ -253,6 +289,7 @@ public class handanimations : MonoBehaviour
 			StickUp.SetActive (false);
 			StickFront.SetActive (false);
 		}
-    }
+		*/
+	}
   
 }

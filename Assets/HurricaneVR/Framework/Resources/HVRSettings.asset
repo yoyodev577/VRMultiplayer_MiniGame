@@ -19,8 +19,8 @@ MonoBehaviour:
   LocalPosesDirectory: 
   AutoApplyGrabbableLayer: 1
   DefaultSocketableTags: {fileID: 0}
-  LeftHand: {fileID: 4172465882228960903, guid: 8beaacf77ac8d0d49a9b4284dc399aaf, type: 3}
-  RightHand: {fileID: 5317784970213213621, guid: 08a9044b5c065044ab67f546bf6b04e9, type: 3}
+  LeftHand: {fileID: 1016422420541577461, guid: 3b1116fa08029a5428a56b0786f3d9f0, type: 3}
+  RightHand: {fileID: 935854851803864857, guid: ac0c475745a9c064487eba5672c26f75, type: 3}
   InverseKinematics: 0
   IKHandMirroring: 1
   FullBody: {fileID: 0}

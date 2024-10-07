@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using HurricaneVR.Framework.ControllerInput;
+using HurricaneVR.Framework.Shared;
 
 
 public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
@@ -92,10 +94,34 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
     //Rotation
     private Quaternion m_NetworkRotation_RightHand;
     private float m_Angle_RightHand;
-
-
-
-
+    /*
+    [SerializeField] HVRPlayerInputs m_hvrplayerinputs;
+    int Idle = Animator.StringToHash("Idle");
+    int Point = Animator.StringToHash("Point");
+    int GrabLarge = Animator.StringToHash("GrabLarge");
+    int GrabSmall = Animator.StringToHash("GrabSmall");
+    int GrabStickUp = Animator.StringToHash("GrabStickUp");
+    int GrabStickFront = Animator.StringToHash("GrabStickFront");
+    int ThumbUp = Animator.StringToHash("ThumbUp");
+    int Fist = Animator.StringToHash("Fist");
+    int Gun = Animator.StringToHash("Gun");
+    int GunShoot = Animator.StringToHash("GunShoot");
+    int PushButton = Animator.StringToHash("PushButton");
+    int Spread = Animator.StringToHash("Spread");
+    int MiddleFinger = Animator.StringToHash("MiddleFinger");
+    int Peace = Animator.StringToHash("Peace");
+    int OK = Animator.StringToHash("OK");
+    int Phone = Animator.StringToHash("Phone");
+    int Rock = Animator.StringToHash("Rock");
+    int Natural = Animator.StringToHash("Natural");
+    int Number3 = Animator.StringToHash("Number3");
+    int Number4 = Animator.StringToHash("Number4");
+    int Number3V2 = Animator.StringToHash("Number3V2");
+    int HoldViveController = Animator.StringToHash("HoldViveController");
+    int PressTriggerViveController = Animator.StringToHash("PressTriggerViveController");
+    int HoldOculusController = Animator.StringToHash("HoldOculusController");
+    int PressTriggerOculusController = Animator.StringToHash("PressTriggerOculusController");
+    */
     bool m_firstTake = false;
 
     public void Awake()
@@ -188,6 +214,10 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
             rightHandTransform.localPosition = this.m_NetworkPosition_RightHand;
             rightHandTransform.localRotation = this.m_NetworkRotation_RightHand;
 
+            /*if (m_hvrplayerinputs.LeftController.GripButtonState.Active)
+            {
+                leftHandTransform.Find("vr_cartoon_hand_prefab_left").GetComponent<Animator>().SetTrigger(GrabLarge);
+            }*/
         }
     }
 
