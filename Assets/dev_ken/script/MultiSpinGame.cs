@@ -60,11 +60,17 @@ public class MultiSpinGame : MonoBehaviour
                 TestTubeIndex.Add(i);
                 if (TestTubeHolder[(i + 4) % 8].transform.childCount < 1)
                 {
-                    //wrong
+                    //wrong (not balance)
                     StartCoroutine(Explode());
                     return;
                 }
             }
+        }
+        //wrong (empty)
+        if (TestTubeIndex.Count <= 0)
+        {
+            StartCoroutine(Explode());
+            return;
         }
         //correct
         isBalanced = true;
