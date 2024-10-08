@@ -494,6 +494,7 @@ MonoBehaviour:
   board: {fileID: 3062925702189156697}
   _audioSource: {fileID: 237376917}
   _audioClip: {fileID: 8300000, guid: 890473b548af83949b2686db84738ffe, type: 3}
+  _nextQuestionClip: {fileID: 8300000, guid: 3f49685495385354da3a809fe07255eb, type: 3}
 --- !u!1 &440469653
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,6 +2172,23 @@ PrefabInstance:
     - target: {fileID: 3941172118914603627, guid: 24d917e1f0f1eaf4e8b71522b2dc17b9, type: 3}
       propertyPath: m_Name
       value: Board Panel
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612533709381650070, guid: 24d917e1f0f1eaf4e8b71522b2dc17b9, type: 3}
+      propertyPath: m_text
+      value: "<b>Question 1: \nWhich of the following is not a metal?</b>\nA. Mg\nB.
+        Na\nC. He\nD. Fe"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612533709381650070, guid: 24d917e1f0f1eaf4e8b71522b2dc17b9, type: 3}
+      propertyPath: m_fontSize
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612533709381650070, guid: 24d917e1f0f1eaf4e8b71522b2dc17b9, type: 3}
+      propertyPath: m_fontStyle
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4612533709381650070, guid: 24d917e1f0f1eaf4e8b71522b2dc17b9, type: 3}
+      propertyPath: m_isRightToLeft
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7760382050206480561, guid: 24d917e1f0f1eaf4e8b71522b2dc17b9, type: 3}
       propertyPath: m_Pivot.x

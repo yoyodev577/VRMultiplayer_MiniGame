@@ -44,7 +44,7 @@ namespace AngryMouse
 
         public TMP_Text board;
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private AudioClip _audioClip, _nextQuestionClip;
 
         // Start is called before the first frame update
         void Start()
@@ -139,7 +139,7 @@ namespace AngryMouse
                 currentQuestion = questions[currentIndex];
 
                 answer = currentQuestion.answerText;
-                text = "Question " + (currentIndex + 1) + ":\n" + questions[currentIndex].questionText;
+                text = "<b>Question " + (currentIndex + 1) + "</b>:\n" + questions[currentIndex].questionText;
 
 
                 view.RPC("UpdateBoardText", RpcTarget.All, text);
@@ -351,6 +351,7 @@ namespace AngryMouse
                     if (currentIndex < questions.Count)
                     {
                         view.RPC("UpdateBoardText", RpcTarget.All, "Next Question");
+                        _audioSource.PlayOneShot(_nextQuestionClip);
                         yield return new WaitForSeconds(0.3f);
                         currentIndex++;
                         foreach (MoeManager m in moeManagers)

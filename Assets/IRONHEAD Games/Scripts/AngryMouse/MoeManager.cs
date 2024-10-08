@@ -136,6 +136,10 @@ public class MoeManager : MonoBehaviour
         }
     }
 
+    public void EmitFireWork() { 
+
+    }
+
     [PunRPC]
     public void PhotonScore(string _answer)
     {
