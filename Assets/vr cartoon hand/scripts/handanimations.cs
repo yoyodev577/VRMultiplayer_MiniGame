@@ -2,6 +2,7 @@
 using System.Collections;
 using HurricaneVR.Framework.ControllerInput;
 using HurricaneVR.Framework.Shared;
+using Photon.Pun;
 
 public class handanimations : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class handanimations : MonoBehaviour
 	public GameObject OculusController;
 	public GameObject StickUp;
 	public GameObject StickFront;
-
-    Animator anim;
+	private PhotonView m_PhotonView;
+	Animator anim;
     int Idle = Animator.StringToHash("Idle");
     int Point = Animator.StringToHash("Point");
     int GrabLarge = Animator.StringToHash("GrabLarge");
@@ -44,7 +45,8 @@ public class handanimations : MonoBehaviour
 
 	void Start ()
     {
-        anim = GetComponent<Animator>();
+		m_PhotonView = GetComponent<PhotonView>();
+		anim = GetComponent<Animator>();
 		m_hvrplayerinputs = GameObject.FindWithTag("RigControl").GetComponent<HVRPlayerInputs>();
         if (IsLeft)
         {
@@ -61,24 +63,47 @@ public class handanimations : MonoBehaviour
 		StickFront.SetActive (false);
 		*/
 	}
-
-    void Update()
+	[PunRPC]
+	public void GrabPunRpc(bool grab)
     {
-		if (m_hvrcontroller.GripButtonState.Active)
+		if (grab)
 		{
 			anim.SetTrigger(GrabLarge);
 			anim.SetFloat("grab", 1f);
+        }
+        else
+        {
+			anim.SetTrigger(Idle);
+			anim.SetFloat("grab", 0f);
+		}
+	}
+    void Update()
+    {
+		if (!m_PhotonView.IsMine)
+        {
+			return;
+        }
+		if (m_hvrcontroller.GripButtonState.Active)
+		{
+			/*
+			anim.SetTrigger(GrabLarge);
+			anim.SetFloat("grab", 1f);
+			*/
+			m_PhotonView.RPC("GrabPunRpc", RpcTarget.All,true);
 			/*
 			OculusController.SetActive(false);
 			ViveController.SetActive(false);
 			StickUp.SetActive(false);
 			StickFront.SetActive(false);
 			*/
-        }
+		}
         else
         {
+			m_PhotonView.RPC("GrabPunRpc", RpcTarget.All, false);
+			/*
 			anim.SetTrigger(Idle);
 			anim.SetFloat("grab", 0f);
+			*/
 		}
 
 
