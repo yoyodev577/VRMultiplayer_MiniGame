@@ -8,7 +8,7 @@ public class ResetGrabbable : MonoBehaviour
 {
     [SerializeField] GameObject[] ReturnSockets1;
     [SerializeField] GameObject[] ReturnSockets2;
-    void OnCollisionEnter(Collision c)
+    void OnTriggerEnter(Collider c)
     {
         if (c.transform.CompareTag("TestTube"))
         {
