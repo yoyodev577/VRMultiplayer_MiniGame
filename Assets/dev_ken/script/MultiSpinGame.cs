@@ -16,6 +16,7 @@ public class MultiSpinGame : MonoBehaviour
     [SerializeField] private Image correctImage;
     [SerializeField] public GameObject[] TestTubeHolder;
     [SerializeField] public GameObject[] TestTubes;
+    [SerializeField] public GameObject[] BoardSockets;
     //finish the game or not
     public bool finished = false;
     //win the game or not
@@ -97,6 +98,17 @@ public class MultiSpinGame : MonoBehaviour
             try{
                 holder.GetComponent<NetworkedSocketScript>().ForceRelease();
             } catch (Exception e)
+            {
+
+            }
+        }
+        foreach (var BoardSocket in BoardSockets)
+        {
+            try
+            {
+                BoardSocket.GetComponent<NetworkedSocketScript>().ForceRelease();
+            }
+            catch (Exception e)
             {
 
             }
