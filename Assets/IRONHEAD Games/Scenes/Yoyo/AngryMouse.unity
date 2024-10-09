@@ -927,6 +927,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 88
       objectReference: {fileID: 0}
+    - target: {fileID: 8988582441658059428, guid: 34b69b63ebda73148a7e29b478e6bb47, type: 3}
+      propertyPath: sceneViewId
+      value: 99
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2517,6 +2521,10 @@ PrefabInstance:
     - target: {fileID: 8960212298489447028, guid: 34b69b63ebda73148a7e29b478e6bb47, type: 3}
       propertyPath: sceneViewId
       value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8988582441658059428, guid: 34b69b63ebda73148a7e29b478e6bb47, type: 3}
+      propertyPath: sceneViewId
+      value: 98
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

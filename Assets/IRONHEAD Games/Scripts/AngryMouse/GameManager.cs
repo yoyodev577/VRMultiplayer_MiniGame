@@ -311,10 +311,12 @@ namespace AngryMouse
             if (moeManagers[0].score > moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
+                moeManagers[0].EmitFireWork();
             }
             else if (moeManagers[0].score < moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[1].playerNum + " wins";
+                moeManagers[1].EmitFireWork();
             }
             else
             {

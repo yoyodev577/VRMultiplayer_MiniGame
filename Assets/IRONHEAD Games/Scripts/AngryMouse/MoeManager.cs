@@ -24,6 +24,9 @@ public class MoeManager : MonoBehaviour
     public bool isResetHitCoroutine = false;
     public TextMeshProUGUI scoreText;
     public int playerNum = 0;
+    public GameObject fireworkObject;
+    public AudioSource _sfxSource;
+    public AudioClip fireworkClip;
 
 
     // Start is called before the first frame update
@@ -32,7 +35,9 @@ public class MoeManager : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
         hammer = GetComponentInChildren<Hammer>();
         view = GetComponent<PhotonView>();
-       // view.RPC("PhotonHideAllMoes", RpcTarget.All);
+        _sfxSource = GetComponentInChildren<AudioSource>();
+        view.RPC("PhotonFireWork", RpcTarget.All, false);
+        // view.RPC("PhotonHideAllMoes", RpcTarget.All);
     }
 
 /*
@@ -136,8 +141,16 @@ public class MoeManager : MonoBehaviour
         }
     }
 
-    public void EmitFireWork() { 
+    public void EmitFireWork() {
 
+        view.RPC("PhotonFireWork", RpcTarget.All, true);
+    }
+
+    [PunRPC]
+    public void PhotonFireWork(bool _isActive) { 
+        fireworkObject.SetActive(_isActive);
+        if(_isActive )
+        _sfxSource.PlayOneShot(fireworkClip);
     }
 
     [PunRPC]
@@ -181,6 +194,7 @@ public class MoeManager : MonoBehaviour
         score = 0;
         scoreText.text = "Score: " + score.ToString();
         view.RPC("PhotonHideMoes", RpcTarget.All);
+        view.RPC("PhotonFireWork", RpcTarget.All, false);
     }
 
 /*    public IEnumerator MoeCoroutine()
