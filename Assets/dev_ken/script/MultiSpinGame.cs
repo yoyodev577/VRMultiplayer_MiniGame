@@ -108,6 +108,7 @@ public class MultiSpinGame : MonoBehaviour
             Lid.GetComponent<LidToggle>().SetLid(false);
             correctImage.enabled = false;
         }
+        isBalanced = false;
     }
 
 }
