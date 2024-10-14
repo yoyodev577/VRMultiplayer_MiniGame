@@ -136,6 +136,20 @@ MonoBehaviour:
   - SetPanelState
   - SetLensState
   - SetQuestion
+  - HideImmiediately
+  - HideAllMoesNow
+  - HideNow
+  - SwitchColor
+  - PhotonRandomPickMoes
+  - PhotonSetEngine
+  - PhotonPopMoes
+  - PhotonHideAllMoes
+  - PhotonHideAllMoesNow
+  - PhotonHide
+  - PhotonPop
+  - PhotonHideMoes
+  - PhotonFireork
+  - PhotonFireWork
   - ForceReleaseServerRpc
   - GrabPunRpc
   - OnHoverGrabbableReleasedPunRpc

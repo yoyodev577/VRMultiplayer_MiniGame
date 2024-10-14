@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 7321326905726896753}
     - target: {fileID: 701188412520975514, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_ThrowVelocityScale
-      value: 3.5
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 701188412520975514, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_ThrowSmoothingDuration

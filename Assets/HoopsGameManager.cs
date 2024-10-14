@@ -207,7 +207,7 @@ public class HoopsGameManager : MonoBehaviour
         Debug.Log("---Game Reset---");
         foreach (HoopsMachine m in _machines)
         {
-            //m.BallReset();
+            m.BallReset();
             m.SetGate(true);
             m.ResetScore();
         }

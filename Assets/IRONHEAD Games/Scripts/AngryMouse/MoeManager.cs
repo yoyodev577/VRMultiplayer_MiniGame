@@ -19,11 +19,14 @@ public class MoeManager : MonoBehaviour
     public bool isEnabled = false;
     public int maxMoes = 4;
     public int score = 0;
-    public bool isScored = false;
+    public bool isHit = false;
     public bool isCoroutine = false;
-    public bool isResetScoreCoroutine = false;
+    public bool isResetHitCoroutine = false;
     public TextMeshProUGUI scoreText;
     public int playerNum = 0;
+    public GameObject fireworkObject;
+    public AudioSource _sfxSource;
+    public AudioClip fireworkClip;
 
 
     // Start is called before the first frame update
@@ -32,57 +35,78 @@ public class MoeManager : MonoBehaviour
         manager = FindObjectOfType<GameManager>();
         hammer = GetComponentInChildren<Hammer>();
         view = GetComponent<PhotonView>();
-        view.RPC("HideAllMoes", RpcTarget.All);
+        _sfxSource = GetComponentInChildren<AudioSource>();
+        view.RPC("PhotonFireWork", RpcTarget.All, false);
+        // view.RPC("PhotonHideAllMoes", RpcTarget.All);
     }
 
-
-    public void PhotonSetEngine(bool _isEnabled) {
-        view.RPC("SetEngine", RpcTarget.All, _isEnabled);
-    }
-
-    [PunRPC]
+/*
     public void SetEngine(bool _isEnabled) {
+        view.RPC("PhotonSetEngine", RpcTarget.All, _isEnabled);
+    }
+
+*/
+
+    public void RandomPickMoes() {
+
+        view.RPC("PhotonRandomPickMoes", RpcTarget.All);
+    }
+
+    public void PopMoes()
+    {
+        view.RPC("PhotonPopMoes", RpcTarget.All);
+    }
+
+    public void HideMoes()
+    {
+        view.RPC("PhotonHideMoes", RpcTarget.All);
+    }
+
+/*
+    [PunRPC]
+    public void PhotonSetEngine(bool _isEnabled)
+    {
 
         isEnabled = _isEnabled;
 
-        if( _isEnabled &&!isCoroutine)
+        if (_isEnabled && !isCoroutine)
         {
             StartCoroutine(MoeCoroutine());
         }
-        else if( !_isEnabled )
+        else if (!_isEnabled)
         {
             if (isCoroutine)
                 StopCoroutine(MoeCoroutine());
         }
-    }
+    }*/
 
 
     [PunRPC]
-    public void RandomPickMoes()
+    public void PhotonRandomPickMoes()
     {
         popList.Clear();
         temp.Clear();
 
         temp.AddRange(moes);
-
-        while (popList.Count < maxMoes)
+        Debug.Log("---Random pick moes---");
+        while (popList.Count != maxMoes)
         {
             int r = Random.Range(0, temp.Count);
             if (!popList.Contains(temp[r]))
             {
                // Debug.Log("Pop " + temp[r].name);
                 popList.Add(temp[r]);
-                temp.RemoveAt(r);
             }
 
         }
     }
 
     [PunRPC]
-    public void PopMoes() {
+    public void PhotonPopMoes() {
         if (popList.Count == 0) return;
 
-        for(int i = 0; i < popList.Count; i++)
+        Debug.Log("---Pop moes---");
+        for (int i = 0; i < popList.Count; i++)
         {
             // first one = A, second one = B
             popList[i].SetCurrentAns(answerList[i]);
@@ -91,34 +115,66 @@ public class MoeManager : MonoBehaviour
     }
 
     [PunRPC]
-    public void HideAllMoes() 
-    { 
-        for(int i = 0; i < moes.Count; i++)
+    // lerping
+    public void PhotonHideMoes() 
+    {
+        Debug.Log("---Hide moes---");
+        for (int i = 0; i < moes.Count; i++)
         {
             moes[i].SetPop(false);
-            moes[i].SetHitStatus(false);
+            moes[i].ResetAsDefault();
         }
     
     }
+
 
     public void CheckScore(string _answer) {
 
         if (!manager.IsGameStart || manager.IsGameEnd) return;
 
-        view.RPC("PhotonScore", RpcTarget.All,_answer);
+        if (!isHit)
+        {
+            view.RPC("PhotonScore", RpcTarget.All, _answer);
+            isHit = true;
+                    if (!isResetHitCoroutine)
+            StartCoroutine(ResetHitCoroutine());
+        }
+    }
+
+    public void EmitFireWork() {
+
+        view.RPC("PhotonFireWork", RpcTarget.All, true);
+    }
+
+    [PunRPC]
+    public void PhotonFireWork(bool _isActive) { 
+        fireworkObject.SetActive(_isActive);
+        if(_isActive )
+        _sfxSource.PlayOneShot(fireworkClip);
     }
 
     [PunRPC]
     public void PhotonScore(string _answer)
     {
-        if (manager.CheckAnswer(_answer)
-            && manager.canScore && !manager.IsCorrect)
+        if (manager.CheckAnswer(_answer) )
         {
-            // find the correct answer, and start to the next question.
-            manager.IsCorrect = true;
-            this.score++;
-            scoreText.text = "Score: " + score.ToString();
+            if (manager.canScore && !manager.IsCorrect)
+            {
+                // find the correct answer, and start to the next question.
+                manager.IsCorrect = true;
+                this.score++;
+
+            }
         }
+        else {
+            if (manager.canScore) {
+                this.score--;
+            }
+        }
+
+
+        scoreText.text = "Score: " + score.ToString();
+
     }
 
     public void ResetMachine()
@@ -129,42 +185,40 @@ public class MoeManager : MonoBehaviour
     [PunRPC]
     public void PhotonResetMachine() {
 
-        StopCoroutine(MoeCoroutine());
+        //StopCoroutine(MoeCoroutine());
         hammer.ResetPos();
         isEnabled = false;
-        isScored = false;
-        isResetScoreCoroutine = false;
+        isHit = false;
+        isResetHitCoroutine = false;
         isCoroutine =false;
         score = 0;
         scoreText.text = "Score: " + score.ToString();
-        view.RPC("HideAllMoes", RpcTarget.All);
+        view.RPC("PhotonHideMoes", RpcTarget.All);
+        view.RPC("PhotonFireWork", RpcTarget.All, false);
     }
 
-    public IEnumerator MoeCoroutine() {
+/*    public IEnumerator MoeCoroutine()
+    {
         isCoroutine = true;
         while (isEnabled)
         {
-            //RandomPickMoes();
-            view.RPC("RandomPickMoes", RpcTarget.All);
-            yield return new WaitForFixedUpdate();
 
-            //PopMoes();
             view.RPC("PopMoes", RpcTarget.All);
 
             yield return new WaitForSeconds(3);
-            //HideAllMoes();
+
             view.RPC("HideAllMoes", RpcTarget.All);
             yield return new WaitForSeconds(1);
         }
         isCoroutine = false;
 
-    }
+    }*/
 
-    IEnumerator ResetScoreCoroutine() {
-        isResetScoreCoroutine = true;
-        yield return new WaitForFixedUpdate();
-        isScored = false;
-        isResetScoreCoroutine = false;
+    IEnumerator ResetHitCoroutine() {
+        isResetHitCoroutine = true;
+        yield return new WaitForSeconds(0.5f);
+        isHit = false;
+        isResetHitCoroutine = false;
     }
 
 }

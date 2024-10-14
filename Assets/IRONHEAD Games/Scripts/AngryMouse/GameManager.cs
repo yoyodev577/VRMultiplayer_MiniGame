@@ -26,8 +26,10 @@ namespace AngryMouse
         [SerializeField] private TableButton _resetButton;
         public bool isPlayersReady = false;
         public bool IsReadyToStart = false;
+        public bool isReadyTimerEnd = false;
         public bool IsGameStart = false;
         public bool IsGameEnd = false;
+        public bool isLastQuestion = false;
         public bool canScore = false;
         public bool IsCorrect = false;
         public bool IsReset = false;
@@ -42,7 +44,7 @@ namespace AngryMouse
 
         public TMP_Text board;
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] private AudioClip _audioClip;
+        [SerializeField] private AudioClip _audioClip, _nextQuestionClip;
 
         // Start is called before the first frame update
         void Start()
@@ -69,6 +71,7 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonUpdate()
         {
+            if (IsReset) return;
 
             // when players get ready, the timer starts.
             if (isPlayersReady && IsReadyToStart && !IsReadyTimerCoroutine)
@@ -76,14 +79,18 @@ namespace AngryMouse
                 StartCoroutine(SetReadyTimerCoroutine(timerSec));
             }
 
-
-            if (!IsGameStart && IsReadyToStart && !IsGameEnd)
+            // when timer count down as 0
+            if (!IsGameStart && isReadyTimerEnd&& !IsGameEnd)
             {
                 StartGame();
             }
 
+            if (IsGameStart && currentIndex == questions.Count && IsCorrect) {
+                isLastQuestion = true;
+            }
+
             //end the game
-            if (IsGameStart && IsGameEnd)
+            if (IsGameStart && isLastQuestion && !IsGameEnd)
             {
                 EndGame();
             }
@@ -93,15 +100,22 @@ namespace AngryMouse
         public void InitQuestions()
         {
             questions.Add(new Question(
-            "What are not major disinfectants for lab disinfection?\n"
-            + "A. Hypochlorites\n" + "B. Formaldehyde\n" + "C. Xylene"
+            "What are not major disinfectants for lab disinfection?\n"+ 
+            "A. Hypochlorites\n" + 
+            "B. Formaldehyde\n" + 
+            "C. Xylene\n" +
+            "D. Ebola virus disease\n" +
+            "E. Pink Eye"
             , "C"));
 
 
             questions.Add(new Question(
                 "Which one is not belong to common behavior that can be exposed to bloodborne pathogens?\n"
-                + "A. Splashes to blood\n" + "B. Contact of eyes\n"
-                + "C. Bites and knife wounds\n" + "D. Shake hands"
+                + "A. Splashes to blood\n" 
+                + "B. Contact of eyes\n"
+                + "C. Bites and knife wounds\n" 
+                + "D. Shake hands\n"
+                + "E. Pink Eye"
                 , "D"));
 
 
@@ -125,7 +139,7 @@ namespace AngryMouse
                 currentQuestion = questions[currentIndex];
 
                 answer = currentQuestion.answerText;
-                text = "Question " + currentIndex + ":\n" + questions[currentIndex].questionText;
+                text = "<b>Question " + (currentIndex + 1) + "</b>:\n" + questions[currentIndex].questionText;
 
 
                 view.RPC("UpdateBoardText", RpcTarget.All, text);
@@ -180,6 +194,7 @@ namespace AngryMouse
 
         public void StartGame()
         {
+
             if (PhotonNetwork.IsConnected)
                 view.RPC("PhotonStartGame", RpcTarget.All);
 
@@ -188,12 +203,22 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonStartGame()
         {
+
+            if (IsGameEnd) return;
+
             IsGameStart = true;
             Debug.Log("---Game Start---");
+
+            //first time
             foreach (MoeManager m in moeManagers)
             {
-                m.PhotonSetEngine(true);
+
+                m.RandomPickMoes();
+                m.PopMoes();
             }
+            view.RPC("SetQuestion", RpcTarget.All);
+
+
             if (!IsQuestionCoroutine && questionCoroutine==null)
             {
                 questionCoroutine = SetQuestionBoardCoroutine();
@@ -209,19 +234,19 @@ namespace AngryMouse
         }
 
         [PunRPC]
-        public void PhotonEndGame() {
+        public void PhotonEndGame()
+        {
+            IsGameEnd = true; 
             Debug.Log("---Game End---");
-
-            ShowResult();
-
-            foreach (MoeManager m in moeManagers)
+            if (questionCoroutine!=null)
             {
-                m.PhotonSetEngine(false);
-            }
-            if (IsQuestionCoroutine) {
+                Debug.Log("---Stop Questions--");
                 StopCoroutine(questionCoroutine);
-                IsQuestionCoroutine = false;
+                questionCoroutine = null;
             }
+            ShowResult();
+  
+
         }
 
         public void ResetGame()
@@ -233,6 +258,8 @@ namespace AngryMouse
         [PunRPC]
         public void PhotonResetGame() {
             Debug.Log("---Game Reset---");
+
+            IsReset = true;
 
             foreach (MoeManager m in moeManagers)
             {
@@ -247,9 +274,13 @@ namespace AngryMouse
 
             questionCoroutine = null;
             currentIndex = 0;
+            answer = "";
+            currentSec = 0;
             currentQuestion = null;
             isPlayersReady = false;
             IsReadyToStart = false;
+            isReadyTimerEnd = false;
+            isLastQuestion = false;
             IsGameStart = false;
             IsGameEnd = false;
 
@@ -258,8 +289,6 @@ namespace AngryMouse
             IsQuestionCoroutine = false;
             IsReadyTimerCoroutine = false;
 
-
-            IsReset = true;
 
             if (!IsResetCoroutine)
                 StartCoroutine(ResetCoroutine());
@@ -276,17 +305,21 @@ namespace AngryMouse
 
         public void ShowResult() {
             string text = "";
+            text = "The game has ended";
 
             Debug.Log("---Show game result---");
             if (moeManagers[0].score > moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
+                moeManagers[0].EmitFireWork();
             }
             else if (moeManagers[0].score < moeManagers[1].score)
             {
                 text = "The game has ended.\nPlayer :" + moeManagers[1].playerNum + " wins";
+                moeManagers[1].EmitFireWork();
             }
-            else {
+            else
+            {
                 text = "The game has ended";
             }
 
@@ -296,29 +329,54 @@ namespace AngryMouse
 
         IEnumerator SetQuestionBoardCoroutine()
         {
+
             IsQuestionCoroutine =true;
             currentIndex = 0;
             canScore = true;
-            while (IsGameStart)
+
+        
+            while (IsGameStart && !IsGameEnd )
             {
+    
                 if (IsCorrect) {
+                    Debug.Log("---Question:" + currentIndex + " correct");
+
                     canScore = false;
-                    currentIndex++;
 
-                    if (currentIndex >= questions.Count)
+
+                    foreach (MoeManager m in moeManagers)
                     {
-                        IsGameEnd = true;
-
+                        m.HideMoes();
                     }
+                    //set question
+ 
+                    if (currentIndex < questions.Count)
+                    {
+                        view.RPC("UpdateBoardText", RpcTarget.All, "Next Question");
+                        _audioSource.PlayOneShot(_nextQuestionClip);
+                        yield return new WaitForSeconds(0.3f);
+                        currentIndex++;
+                        foreach (MoeManager m in moeManagers)
+                        {
+                            m.RandomPickMoes();
+                            yield return new WaitForSeconds(0.5f);
+                            m.PopMoes();
+                        }
+                    }
+
                     IsCorrect = false;
+
                 }
-                //if correct answer is found
-                yield return new WaitForSeconds(1);
+                yield return new WaitForFixedUpdate();
                 view.RPC("SetQuestion", RpcTarget.All);
+
+                //set and pop random moes for it.
+
                 canScore = true;
 
-
             }
+
+
             IsQuestionCoroutine = false;
         }
 
@@ -339,8 +397,8 @@ namespace AngryMouse
             if (currentSec <= 0)
             {
                 _audioSource.Stop();
+                isReadyTimerEnd = true;
                 IsReadyToStart = false;
-                IsGameStart = true;
                 view.RPC("UpdateBoardText", RpcTarget.All, "Game Starts");
             }
             yield return null;

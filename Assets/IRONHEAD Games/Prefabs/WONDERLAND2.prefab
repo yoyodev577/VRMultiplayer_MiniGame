@@ -1969,7 +1969,6 @@ GameObject:
   - component: {fileID: 7492386707721551398}
   - component: {fileID: 2900195606458569071}
   - component: {fileID: 8296569466837138805}
-  - component: {fileID: 4702493042617612847}
   m_Layer: 0
   m_Name: BoardColliderB
   m_TagString: B
@@ -2044,22 +2043,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &4702493042617612847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 847060188023523624}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &870371142262777948
 GameObject:
   m_ObjectHideFlags: 0
@@ -2188,7 +2171,6 @@ GameObject:
   - component: {fileID: 4352003713389939450}
   - component: {fileID: 7001809160673483473}
   - component: {fileID: 618165797486964598}
-  - component: {fileID: 2873494068630164533}
   m_Layer: 0
   m_Name: BoardColliderB
   m_TagString: B
@@ -2263,22 +2245,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2873494068630164533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 902136569552120666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 1
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
 --- !u!1 &1022579314520836464
 GameObject:
   m_ObjectHideFlags: 0
