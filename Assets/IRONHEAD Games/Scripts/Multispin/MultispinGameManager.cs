@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using MultiplayerKitForHVR.General;
 
 public class MultispinGameManager : MonoBehaviour
 {
@@ -12,7 +13,8 @@ public class MultispinGameManager : MonoBehaviour
 
     [SerializeField] private List<PlayerButton> _playerButtons;
     [SerializeField] private TableButton resetButton;
-    [SerializeField] private List<MultiSpin> _multiSpins;
+    //[SerializeField] private List<MultiSpin> _multiSpins;
+    private List<MultiSpinGame> _multiSpinsGame;
 
     [SerializeField] 
     private GameState _gameState = GameState.Default;
@@ -35,9 +37,12 @@ public class MultispinGameManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        PhotonNetwork.SendRate = 60;
+        PhotonNetwork.SerializationRate = 30;
         _view = GetComponent<PhotonView>();
         _playerButtons = FindObjectsOfType<PlayerButton>().ToList();
-        _multiSpins = FindObjectsOfType<MultiSpin>().ToList();
+        //_multiSpins = FindObjectsOfType<MultiSpin>().ToList();
+        _multiSpinsGame = FindObjectsOfType<MultiSpinGame>().ToList();
         _audioSource = GetComponent<AudioSource>();
         InitGame();
     }
@@ -58,16 +63,26 @@ public class MultispinGameManager : MonoBehaviour
         }
 
         //end the game when both players have the results.
+        /*
         if (IsGameStart && !IsGameEnd) {
 
-            if (_multiSpins[0].hasResult && _multiSpins[1].hasResult)
+            if (_multiSpins[0].finished && _multiSpins[1].hasResult)
+            {
+                EndGame();
+            }
+        }
+        */
+        if (IsGameStart && !IsGameEnd)
+        {
+
+            if (_multiSpinsGame[0].finished && _multiSpinsGame[1].finished)
             {
                 EndGame();
             }
         }
 
         //reset the game state
-        if(IsGameStart && IsReset)
+        if (IsGameStart && IsReset)
         {
             if (PhotonNetwork.IsConnected)
                 _view.RPC("PhotonResetGame", RpcTarget.All);
@@ -121,6 +136,8 @@ public class MultispinGameManager : MonoBehaviour
             {
                 IsReadyToStart = true;
                 _gameState = GameState.ReadyToStart;
+                
+
             }
         }
     }
@@ -139,7 +156,11 @@ public class MultispinGameManager : MonoBehaviour
 
         _gameState = GameState.StartGame;
         IsGameStart = true;
-
+        var sockets = FindObjectsOfType<SocketNetworkBehaviour>();
+        foreach (var s in sockets)
+        {
+            s.GrabInitialize();
+        }
     }
 
     public void EndGame()
@@ -178,20 +199,20 @@ public class MultispinGameManager : MonoBehaviour
     public void ShowResult() {
         string text = "";
 
-        if (_multiSpins[0].isBalanced && !_multiSpins[1].isBalanced)
+        if (_multiSpinsGame[0].isBalanced && !_multiSpinsGame[1].isBalanced)
         {
-            text = "The game has ended.\nPlayer :" + _multiSpins[0].playerNum + " wins";
+            text = "The game has ended.\nPlayer :" + _multiSpinsGame[0].playerNum + " wins";
 
         }
-        else if (!_multiSpins[0].isBalanced && _multiSpins[1].isBalanced) {
+        else if (!_multiSpinsGame[0].isBalanced && _multiSpinsGame[1].isBalanced) {
 
-            text = "The game has ended.\nPlayer :" + _multiSpins[1].playerNum + " wins";
+            text = "The game has ended.\nPlayer :" + _multiSpinsGame[1].playerNum + " wins";
         }
-        else if (_multiSpins[0].isBalanced && _multiSpins[1].isBalanced)
+        else if (_multiSpinsGame[0].isBalanced && _multiSpinsGame[1].isBalanced)
         {
             text = "The game has ended.Both players win!";
         }
-        else if (!_multiSpins[0].isBalanced && !_multiSpins[1].isBalanced)
+        else if (!_multiSpinsGame[0].isBalanced && !_multiSpinsGame[1].isBalanced)
         {
             text = "The game has ended.Both players lose :(!";
         }
@@ -246,11 +267,17 @@ public class MultispinGameManager : MonoBehaviour
         {
             button.ResetButton();
         }
-
+        /*
         foreach(MultiSpin m in _multiSpins)
         {
             m.ResetMultispin();
         }
+        */
+        foreach (MultiSpinGame m in _multiSpinsGame)
+        {
+            m.ResetGame();
+        }
+        
         //InitGame();
         yield return new WaitForSeconds(2f);
         IsReset = false;

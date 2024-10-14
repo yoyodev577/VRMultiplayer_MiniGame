@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using HurricaneVR.Framework.ControllerInput;
+using HurricaneVR.Framework.Shared;
 
 
 public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
@@ -48,6 +50,10 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
 
     private Quaternion m_NetworkRotation_Head;
     private float m_Angle_Head;
+    //Head child Synch
+    //Rotation
+    private Quaternion m_NetworkRotation_HeadChild;
+    private float m_Angle_HeadChild;
 
     //Body Synch
     //Rotation
@@ -88,10 +94,34 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
     //Rotation
     private Quaternion m_NetworkRotation_RightHand;
     private float m_Angle_RightHand;
-
-
-
-
+    /*
+    [SerializeField] HVRPlayerInputs m_hvrplayerinputs;
+    int Idle = Animator.StringToHash("Idle");
+    int Point = Animator.StringToHash("Point");
+    int GrabLarge = Animator.StringToHash("GrabLarge");
+    int GrabSmall = Animator.StringToHash("GrabSmall");
+    int GrabStickUp = Animator.StringToHash("GrabStickUp");
+    int GrabStickFront = Animator.StringToHash("GrabStickFront");
+    int ThumbUp = Animator.StringToHash("ThumbUp");
+    int Fist = Animator.StringToHash("Fist");
+    int Gun = Animator.StringToHash("Gun");
+    int GunShoot = Animator.StringToHash("GunShoot");
+    int PushButton = Animator.StringToHash("PushButton");
+    int Spread = Animator.StringToHash("Spread");
+    int MiddleFinger = Animator.StringToHash("MiddleFinger");
+    int Peace = Animator.StringToHash("Peace");
+    int OK = Animator.StringToHash("OK");
+    int Phone = Animator.StringToHash("Phone");
+    int Rock = Animator.StringToHash("Rock");
+    int Natural = Animator.StringToHash("Natural");
+    int Number3 = Animator.StringToHash("Number3");
+    int Number4 = Animator.StringToHash("Number4");
+    int Number3V2 = Animator.StringToHash("Number3V2");
+    int HoldViveController = Animator.StringToHash("HoldViveController");
+    int PressTriggerViveController = Animator.StringToHash("PressTriggerViveController");
+    int HoldOculusController = Animator.StringToHash("HoldOculusController");
+    int PressTriggerOculusController = Animator.StringToHash("PressTriggerOculusController");
+    */
     bool m_firstTake = false;
 
     public void Awake()
@@ -142,24 +172,52 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
         {
 
 
-            networkedVRPlayerTransform.position = Vector3.MoveTowards(networkedVRPlayerTransform.position, this.m_NetworkPosition_NetworkedVRPlayer, this.m_Distance_NetworkedVRPlayer * (1.0f / PhotonNetwork.SerializationRate));
-            networkedVRPlayerTransform.rotation = Quaternion.RotateTowards(networkedVRPlayerTransform.rotation, this.m_NetworkRotation_GeneralVRPlayer, this.m_Angle_GeneralVRPlayer * (1.0f / PhotonNetwork.SerializationRate));
+            //networkedVRPlayerTransform.position = Vector3.MoveTowards(networkedVRPlayerTransform.position, this.m_NetworkPosition_NetworkedVRPlayer, this.m_Distance_NetworkedVRPlayer * (1.0f / PhotonNetwork.SerializationRate));
+            //networkedVRPlayerTransform.rotation = Quaternion.RotateTowards(networkedVRPlayerTransform.rotation, this.m_NetworkRotation_GeneralVRPlayer, this.m_Angle_GeneralVRPlayer * (1.0f / PhotonNetwork.SerializationRate));
 
-            mainAvatarTransform.localPosition = Vector3.MoveTowards(mainAvatarTransform.localPosition, this.m_NetworkPosition_MainAvatar, this.m_Distance_MainAvatar * (1.0f / PhotonNetwork.SerializationRate));
-            mainAvatarTransform.localRotation = Quaternion.RotateTowards(mainAvatarTransform.localRotation, this.m_NetworkRotation_MainAvatar, this.m_Angle_MainAvatar * (1.0f / PhotonNetwork.SerializationRate));
-
-
-
-            headTransform.localRotation = Quaternion.RotateTowards(headTransform.localRotation, this.m_NetworkRotation_Head, this.m_Angle_Head * (1.0f / PhotonNetwork.SerializationRate));
-            bodyTransform.localRotation = Quaternion.RotateTowards(bodyTransform.localRotation, this.m_NetworkRotation_Body, this.m_Angle_Body * (1.0f / PhotonNetwork.SerializationRate));
+            //mainAvatarTransform.localPosition = Vector3.MoveTowards(mainAvatarTransform.localPosition, this.m_NetworkPosition_MainAvatar, this.m_Distance_MainAvatar * (1.0f / PhotonNetwork.SerializationRate));
+            //mainAvatarTransform.localRotation = Quaternion.RotateTowards(mainAvatarTransform.localRotation, this.m_NetworkRotation_MainAvatar, this.m_Angle_MainAvatar * (1.0f / PhotonNetwork.SerializationRate));
 
 
-            leftHandTransform.localPosition = Vector3.MoveTowards(leftHandTransform.localPosition, this.m_NetworkPosition_LeftHand, this.m_Distance_LeftHand * (1.0f / PhotonNetwork.SerializationRate));
-            leftHandTransform.localRotation = Quaternion.RotateTowards(leftHandTransform.localRotation, this.m_NetworkRotation_LeftHand, this.m_Angle_LeftHand * (1.0f / PhotonNetwork.SerializationRate));
 
-            rightHandTransform.localPosition = Vector3.MoveTowards(rightHandTransform.localPosition, this.m_NetworkPosition_RightHand, this.m_Distance_RightHand * (1.0f / PhotonNetwork.SerializationRate));
-            rightHandTransform.localRotation = Quaternion.RotateTowards(rightHandTransform.localRotation, this.m_NetworkRotation_RightHand, this.m_Angle_RightHand * (1.0f / PhotonNetwork.SerializationRate));
+            //headTransform.localRotation = Quaternion.RotateTowards(headTransform.localRotation, this.m_NetworkRotation_Head, this.m_Angle_Head * (1.0f / PhotonNetwork.SerializationRate));
+            //headTransform.GetChild(0).localRotation = Quaternion.RotateTowards(headTransform.GetChild(0).localRotation, this.m_NetworkRotation_HeadChild, this.m_Angle_HeadChild * (1.0f / PhotonNetwork.SerializationRate));
+            //bodyTransform.localRotation = Quaternion.RotateTowards(bodyTransform.localRotation, this.m_NetworkRotation_Body, this.m_Angle_Body * (1.0f / PhotonNetwork.SerializationRate));
 
+
+            //leftHandTransform.localPosition = Vector3.MoveTowards(leftHandTransform.localPosition, this.m_NetworkPosition_LeftHand, this.m_Distance_LeftHand * (1.0f / PhotonNetwork.SerializationRate));
+            //leftHandTransform.localRotation = Quaternion.RotateTowards(leftHandTransform.localRotation, this.m_NetworkRotation_LeftHand, this.m_Angle_LeftHand * (1.0f / PhotonNetwork.SerializationRate));
+
+            //rightHandTransform.localPosition = Vector3.MoveTowards(rightHandTransform.localPosition, this.m_NetworkPosition_RightHand, this.m_Distance_RightHand * (1.0f / PhotonNetwork.SerializationRate));
+            //rightHandTransform.localRotation = Quaternion.RotateTowards(rightHandTransform.localRotation, this.m_NetworkRotation_RightHand, this.m_Angle_RightHand * (1.0f / PhotonNetwork.SerializationRate));
+
+            //networkedVRPlayerTransform.position = Vector3.MoveTowards(networkedVRPlayerTransform.position, this.m_NetworkPosition_NetworkedVRPlayer, this.m_Distance_NetworkedVRPlayer * (1.0f / PhotonNetwork.SerializationRate));
+            //networkedVRPlayerTransform.rotation = Quaternion.RotateTowards(networkedVRPlayerTransform.rotation, this.m_NetworkRotation_GeneralVRPlayer, this.m_Angle_GeneralVRPlayer * (1.0f / PhotonNetwork.SerializationRate));
+
+            //mainAvatarTransform.localPosition = Vector3.MoveTowards(mainAvatarTransform.localPosition, this.m_NetworkPosition_MainAvatar, this.m_Distance_MainAvatar * (1.0f / PhotonNetwork.SerializationRate));
+            //mainAvatarTransform.localRotation = Quaternion.RotateTowards(mainAvatarTransform.localRotation, this.m_NetworkRotation_MainAvatar, this.m_Angle_MainAvatar * (1.0f / PhotonNetwork.SerializationRate));
+
+            networkedVRPlayerTransform.position = this.m_NetworkPosition_NetworkedVRPlayer;
+            networkedVRPlayerTransform.rotation = this.m_NetworkRotation_GeneralVRPlayer;
+
+            mainAvatarTransform.localPosition = this.m_NetworkPosition_MainAvatar;
+            mainAvatarTransform.localRotation = this.m_NetworkRotation_MainAvatar;
+
+            headTransform.localRotation = this.m_NetworkRotation_Head;
+            headTransform.GetChild(0).localRotation = this.m_NetworkRotation_HeadChild;
+            bodyTransform.localRotation = this.m_NetworkRotation_Body;
+
+
+            leftHandTransform.localPosition = this.m_NetworkPosition_LeftHand;
+            leftHandTransform.localRotation = this.m_NetworkRotation_LeftHand;
+
+            rightHandTransform.localPosition = this.m_NetworkPosition_RightHand;
+            rightHandTransform.localRotation = this.m_NetworkRotation_RightHand;
+
+            /*if (m_hvrplayerinputs.LeftController.GripButtonState.Active)
+            {
+                leftHandTransform.Find("vr_cartoon_hand_prefab_left").GetComponent<Animator>().SetTrigger(GrabLarge);
+            }*/
         }
     }
 
@@ -201,6 +259,7 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
 
             //Send Head rotation data
             stream.SendNext(headTransform.localRotation);
+            stream.SendNext(headTransform.GetChild(0).localRotation);
 
 
             ///////////////////////////////////////////////////////////////////
@@ -313,6 +372,21 @@ public class MultiplayerVRSynchronization : MonoBehaviour, IPunObservable
             else
             {
                 this.m_Angle_Head = Quaternion.Angle(headTransform.localRotation, this.m_NetworkRotation_Head);
+            }
+
+            ///////////////////////////////////////////////////////////////////
+            //HeadChild rotation synch
+            //Get Head rotation data 
+            this.m_NetworkRotation_HeadChild = (Quaternion)stream.ReceiveNext();
+
+            if (m_firstTake)
+            {
+                this.m_Angle_HeadChild = 0f;
+                headTransform.GetChild(0).localRotation = this.m_NetworkRotation_HeadChild;
+            }
+            else
+            {
+                this.m_Angle_HeadChild = Quaternion.Angle(headTransform.GetChild(0).localRotation, this.m_NetworkRotation_HeadChild);
             }
 
             ///////////////////////////////////////////////////////////////////

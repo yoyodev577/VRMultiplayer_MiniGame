@@ -23,6 +23,7 @@ public class PlayerNetworkSetup : MonoBehaviourPun
     // Start is called before the first frame update
     void Awake()
     {
+        localXRRigGameobject = GameObject.FindGameObjectWithTag("Rig").transform.Find("PlayerController").gameObject;
         if (photonView.IsMine)
         {
             //If this is the case, the player is the local player
@@ -49,7 +50,7 @@ public class PlayerNetworkSetup : MonoBehaviourPun
                     item.teleportationProvider = localXRRigGameobject.GetComponent<TeleportationProvider>();
                 }
             }
-            mainAvatarGamebject.AddComponent<AudioListener>();
+            //mainAvatarGamebject.AddComponent<AudioListener>();
 
             //If the player is local, the player should have the option to leave the room. 
             //This is possible with UI Menu gameobject under Non-networked Gameobjects under NetworkedPlayerPrefab
@@ -64,7 +65,10 @@ public class PlayerNetworkSetup : MonoBehaviourPun
             //Else, the player is the remote player
             //So, certain actions must be done
             //For example, XRRig will be disabled for remote players
-            localXRRigGameobject.SetActive(false);
+
+            //the structure is different, the rig is local now, so no need to disable
+            //localXRRigGameobject.SetActive(false);
+            
             mainAvatarGamebject.SetActive(true);
 
             //Disabling AvatarInputConverter script

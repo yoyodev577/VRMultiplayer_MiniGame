@@ -1,0 +1,241 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &452160222379701705
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 680312717249807559}
+  - component: {fileID: 7098393821950967990}
+  - component: {fileID: 8606191781825841861}
+  - component: {fileID: 1050874025731356559}
+  - component: {fileID: 4767872183482811231}
+  - component: {fileID: 8315635535167445274}
+  - component: {fileID: 2191400366744861932}
+  m_Layer: 0
+  m_Name: BoardSocket (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &680312717249807559
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.0474992, y: 0.35, z: 0.3804998}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7098393821950967990
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.07
+  m_Height: 0.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8606191781825841861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &1050874025731356559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af97aaea961eea14d9a15026f363c312, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tags:
+    Tags: {fileID: 11400000, guid: 0e83bcde818c784468e6c9a69d44702f, type: 2}
+    _data: 8
+  Any: 1
+--- !u!114 &4767872183482811231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f81f898b867fe4e93d52dd797f1bd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInitGrab: 0
+  initGrab: {fileID: 0}
+--- !u!114 &8315635535167445274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8d778bf014b4340922296707e806dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BeforeGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  Grabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8315635535167445274}
+        m_TargetAssemblyTypeName: MultiplayerKitForHVR.General.NetworkedSocketScript,
+          Assembly-CSharp
+        m_MethodName: ServerGrab
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Released:
+    m_PersistentCalls:
+      m_Calls: []
+  BeforeHoverEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2191400366744861932}
+        m_TargetAssemblyTypeName: NetworkChangeOwnership, Assembly-CSharp
+        m_MethodName: SetOwnership
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoverEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2191400366744861932}
+        m_TargetAssemblyTypeName: NetworkChangeOwnership, Assembly-CSharp
+        m_MethodName: SetOwnership
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoverExit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2191400366744861932}
+        m_TargetAssemblyTypeName: NetworkChangeOwnership, Assembly-CSharp
+        m_MethodName: ResetOwnership
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _grabBag: {fileID: 0}
+  GrabBags: []
+  GrabControl: 0
+  GrabDetectionType: 1
+  CheckHandOverlap: 0
+  ReleasesOnHover: 0
+  InstantHandPose: 0
+  HoldType: 0
+  AutoSpawnPrefab: {fileID: 0}
+  GrabTimeout: 0
+  GrabbableMustBeHeld: 1
+  GrabsFromHand: 0
+  HoverActions: []
+  HandGrabActions: []
+  ParentDisablesGrab: 0
+  ParentGrabbable: {fileID: 0}
+  CanRemoveGrabbable: 1
+  ScaleGrabbable: 0
+  Size: 0
+  CanGrabStabbingGrabbable: 0
+  AudioGrabbedOverride: {fileID: 0}
+  AudioReleasedOverride: {fileID: 0}
+  AudioGrabbedFallback: {fileID: 0}
+  AudioReleasedFallback: {fileID: 0}
+  SocketFilters: []
+  FilterCondition: 0
+  DistanceSource: {fileID: 0}
+  PoseTag: 
+  DisableCollision: 1
+  SpawnedPrefab:
+    m_PersistentCalls:
+      m_Calls: []
+  DebugScale: 0
+  isStatic: 0
+--- !u!114 &2191400366744861932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 452160222379701705}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0951f4bf446c94ba9f2cc7d3d8a63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClientIdOfUser: 0
+  InUse: 0

@@ -3,20 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Floor
-  - Hand
-  - Basketball
-  - A
-  - B
-  - C
-  - D
-  - Start Button
-  - Ready Button
-  - hammer
-  - Machine
-  - Base
-  - Mouse
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -27,16 +14,16 @@ TagManager:
   - 
   - 
   - 
-  - FIRSTPERSON_ONLY_LAYER
-  - THIRDPERSON_ONLY_LAYER
-  - LocalAvatarHead
-  - LocalAvatarBody
-  - InHand
-  - Interactable
-  - TestTube
-  - TestTubeHolder
-  - BlueHolder
-  - Hand
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
