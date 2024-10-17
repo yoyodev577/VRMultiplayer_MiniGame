@@ -56,7 +56,7 @@
       "url": "https://npm-registry.vive.com"
     },
     "com.meta.xr.simulator": {
-      "version": "file:../com.meta.xr.simulator.tgz",
+      "version": "file:C:/Users/mmlab/Downloads/com.meta.xr.simulator.tgz",
       "depth": 0,
       "source": "local-tarball",
       "dependencies": {}

@@ -6891,11 +6891,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109352929}
   m_CullTransparentMesh: 0
---- !u!223 &1143353953 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 3353666616870502090, guid: 19475cbac0984c04d9b743d42e666751, type: 3}
-  m_PrefabInstance: {fileID: 411201529}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1148189338
 GameObject:
   m_ObjectHideFlags: 0
@@ -7333,7 +7328,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1202706544}
   - component: {fileID: 1202706543}
-  - component: {fileID: 1202706545}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -7371,24 +7365,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1202706545
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1202706540}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4d8cf91bea2654aae40de6c5eed10c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
-  MaxDistance: 8
-  PressButton: 1
-  UICanvases:
-  - {fileID: 1143353953}
-  AngleDragThreshold: 1
 --- !u!1 &1204401561
 GameObject:
   m_ObjectHideFlags: 0
