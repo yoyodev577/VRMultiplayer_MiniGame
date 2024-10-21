@@ -100,10 +100,13 @@ namespace CaptainSafety
 
         }
 
-        public void EndGame() {
+        public void EndGame()
+        {
 
-            if (PhotonNetwork.IsConnected)
+            if (PhotonNetwork.IsConnected) { 
                 view.RPC("PhotonEndGame", RpcTarget.All);
+                view.RPC("UpdateBoardText", RpcTarget.All, "Game End");
+            }
         }
 
         [PunRPC]
