@@ -68,28 +68,43 @@ public class EyeWasher : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        if (other != null && other.gameObject.name == "XR Origin")
+        //Debug.Log("enter: " + other.gameObject.name);
+        if (other != null && other.gameObject.name == "PlayerController")
         {
-
+            Debug.Log("enter: " + other.gameObject.name);
             playerGameController = other.gameObject.GetComponentInParent<PlayerGameController>();
             isInZone = true;
         }
+
     }
 
     public void OnTriggerExit(Collider other)
     {
-        if (other != null && other.gameObject.name == "XR Origin")
+        //Debug.Log("exit: " + other.gameObject.name);
+        if (other != null && other.gameObject.name == "PlayerController")
         {
+            Debug.Log("exit: " + other.gameObject.name);
             isInZone = false;
-            playerGameController = null; 
+            playerGameController = null;
         }
     }
+    public void ToogleWasher(bool status) {
+        if (isInZone&&status)
+        {
+            isActivated = true;
 
+        }
+        else
+        {
+            isActivated = false;
+        }
+    }
+    /*
     public void OnCollisionEnter(Collision collision)
     {
        // Debug.Log("---" + collision.gameObject.name);
 
-        if (isInZone && collision.collider != null && collision.gameObject.tag == "Hand")
+        if (isInZone && collision.collider != null && collision.gameObject.tag == "handCol")
         {
             isActivated = true;
 
@@ -101,6 +116,7 @@ public class EyeWasher : MonoBehaviour
         isActivated = false;
         
     }
+    */
 
     [PunRPC]
     public void SetLensState(bool _canOpen)
