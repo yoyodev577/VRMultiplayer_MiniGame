@@ -1,33 +1,64 @@
 using System;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 using HurricaneVR.Framework.Core;
 
 [RequireComponent(typeof(PhotonView))]
-public class NetworkChangeOwnership : MonoBehaviourPunCallbacks
+public class NetworkChangeOwnership : MonoBehaviourPunCallbacks, IPunOwnershipCallbacks
 {
     //public NetworkVariable<ulong> ClientIdOfUser = new NetworkVariable<ulong>();
     public int ClientIdOfUser; 
     public bool InUse = false;
 
-    private PhotonView mNetworkObject;
 
     private void Awake()
     {
-        mNetworkObject = GetComponent<PhotonView>();
+        PhotonNetwork.AddCallbackTarget(this);
     }
+
+    private void OnDestroy()
+    {
+        PhotonNetwork.RemoveCallbackTarget(this);
+    }
+
+    public void OnOwnershipRequest(PhotonView targetView, Player requestingPlayer)
+    {
+        if (targetView != base.photonView)
+            return;
+        base.photonView.TransferOwnership(requestingPlayer);
+    }
+
+    public void OnOwnershipTransfered(PhotonView targetView, Player previousOwner)
+    {
+        if (targetView != base.photonView)
+            return;
+    }
+
+    public void OnOwnershipTransferFailed(PhotonView targetView, Player previousOwner)
+    {
+        
+    }
+
+
+
+
+
+
 
     public override void OnJoinedRoom()
     {
-        InUse = false;
+        //InUse = false;
+        ClientIdOfUser = PhotonNetwork.LocalPlayer.ActorNumber;
     }
 
     public void SetOwnership()
     {
         //ChangeOwnershipPunRpc(new ServerRpcParams());
 
-        mNetworkObject.TransferOwnership(PhotonNetwork.LocalPlayer);
-
+        base.photonView.RequestOwnership();
+        Debug.Log("Owner has Changed to Player:" + ClientIdOfUser);
+        InUse = true;
         //mNetworkObject.gameObject.layer = LayerMask.NameToLayer("Grabbables");
         /*
         foreach (var child in mNetworkObject.gameObject.GetComponentsInChildren<Transform>(includeInactive: true))
@@ -64,8 +95,8 @@ public class NetworkChangeOwnership : MonoBehaviourPunCallbacks
         }
         */
 
-        //mNetworkObject.TransferOwnership(-1);
-
+        //base.photonView.TransferOwnership(-1);
+        InUse = false;
 
         //ResetOwnershipServerRpc(new ServerRpcParams());
         //mNetworkObject.gameObject.layer = LayerMask.NameToLayer("Default");

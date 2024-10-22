@@ -3,7 +3,28 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - C
+  - A
+  - B
+  - D
+  - Floor
+  - hammer
+  - hoop
+  - hoopFloor
+  - Basketball
+  - Start Button
+  - Ready Button
+  - Rig
+  - handCol
+  - RigControl
+  - RigLeftHand
+  - RigRightHand
+  - Hand
+  - HandBox
+  - TestTube
+  - Base
+  - Machine
   layers:
   - Default
   - TransparentFX
