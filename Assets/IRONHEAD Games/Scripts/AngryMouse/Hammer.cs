@@ -2,19 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using HurricaneVR.Framework.Core;
+using HurricaneVR.Framework.ControllerInput;
 
 public class Hammer : MonoBehaviour
 {
     public PhotonView view;
     public Vector3 startPos;
     public Quaternion startRot;
-    public NetworkedGrabbing networkedGrabbing;
+    public HVRGrabbable networkedGrabbing;
     public Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         view = GetComponent<PhotonView>();
-        networkedGrabbing = GetComponent<NetworkedGrabbing>();
+        networkedGrabbing = GetComponent<HVRGrabbable>();
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
         startRot = transform.rotation;
@@ -37,10 +39,13 @@ public class Hammer : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-       if (collision.gameObject !=null && !networkedGrabbing.isBeingHeld) 
+        if (collision.gameObject != null && !networkedGrabbing.IsHandGrabbed)
         {
-            if (PhotonNetwork.IsConnected)
-                view.RPC("PhotonResetPosition", RpcTarget.All);
+            if (HVRGlobalInputs.Instance.LeftTriggerButtonState.Active || HVRGlobalInputs.Instance.RightTriggerButtonState.Active)
+            {
+                if (PhotonNetwork.IsConnected)
+                    view.RPC("PhotonResetPosition", RpcTarget.All);
+            }
         }
     }
 }
