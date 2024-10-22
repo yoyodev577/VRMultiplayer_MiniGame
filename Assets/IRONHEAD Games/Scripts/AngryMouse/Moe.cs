@@ -52,15 +52,23 @@ public class Moe : MonoBehaviour
         if (view != null)
             view.RPC("PhotonSetCurrentAns", RpcTarget.All, s);
     }
-    public void ResetAsDefault()
-    {
-        if (view != null)
-            view.RPC("PhotonReset", RpcTarget.All);
-    }
+ 
 
 
     [PunRPC]
     public void PhotonSetPop(bool pop) {
+
+        if (isHitCoroutine)
+        {
+            StopCoroutine(SetHitCoroutine());
+            isHitCoroutine = false;
+        }
+        if (isPopCoroutine)
+        {
+            isPopCoroutine = false;
+            StopCoroutine(PopCoroutine());
+
+        }
 
         isPop = pop;
         if (pop)
@@ -103,16 +111,9 @@ public class Moe : MonoBehaviour
     {
         panelObj.SetActive(false);
         textMeshProUGUI.text = "?";
-        Debug.Log("---Moe is hiding :" + gameObject.name);
+        //Debug.Log("---Moe is hiding :" + gameObject.name);
         Vector3 targetPos = new Vector3(startPos.x, minHeight, startPos.z);
         transform.localPosition = targetPos;
-    }
-    [PunRPC]
-    public void PhotonReset() {
-        if (isHitCoroutine)
-            StopCoroutine(SetHitCoroutine());
-        if (isPopCoroutine)
-            StopCoroutine(PopCoroutine());
     }
 
 
@@ -171,7 +172,7 @@ public class Moe : MonoBehaviour
     {
         isPopCoroutine = true;
         Vector3 targetPos = new Vector3(startPos.x, maxHeight, startPos.z);
-        Debug.Log("---Moe is popping :" + gameObject.name);
+        //Debug.Log("---Moe is popping :" + gameObject.name);
         while (Vector3.Distance(targetPos, transform.localPosition) > 0.1f && !isHit)
         {
             transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, speed * Time.deltaTime);

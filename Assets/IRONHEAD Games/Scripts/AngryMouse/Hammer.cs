@@ -41,11 +41,8 @@ public class Hammer : MonoBehaviour
     {
         if (collision.gameObject != null && !networkedGrabbing.IsHandGrabbed)
         {
-            if (HVRGlobalInputs.Instance.LeftTriggerButtonState.Active || HVRGlobalInputs.Instance.RightTriggerButtonState.Active)
-            {
-                if (PhotonNetwork.IsConnected)
-                    view.RPC("PhotonResetPosition", RpcTarget.All);
-            }
+            if (PhotonNetwork.IsConnected)
+                view.RPC("PhotonResetPosition", RpcTarget.All);
         }
     }
 }

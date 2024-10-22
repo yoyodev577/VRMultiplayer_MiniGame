@@ -101,6 +101,7 @@ public class MoeManager : MonoBehaviour
         }
     }
 
+
     [PunRPC]
     public void PhotonPopMoes() {
         if (popList.Count == 0) return;
@@ -122,7 +123,6 @@ public class MoeManager : MonoBehaviour
         for (int i = 0; i < moes.Count; i++)
         {
             moes[i].SetPop(false);
-            moes[i].ResetAsDefault();
         }
     
     }
@@ -216,7 +216,7 @@ public class MoeManager : MonoBehaviour
 
     IEnumerator ResetHitCoroutine() {
         isResetHitCoroutine = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         isHit = false;
         isResetHitCoroutine = false;
     }

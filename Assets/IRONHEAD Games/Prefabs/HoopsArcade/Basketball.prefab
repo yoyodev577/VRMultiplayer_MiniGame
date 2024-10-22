@@ -9,17 +9,29 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 701188412520975514, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 701188412520975514, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_AttachTransform
       value: 
       objectReference: {fileID: 7321326905726896753}
     - target: {fileID: 701188412520975514, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_ThrowVelocityScale
-      value: 2.5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 701188412520975514, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_ThrowSmoothingDuration
-      value: 0.25
+      value: 0.12
       objectReference: {fileID: 0}
+    - target: {fileID: 1231170439217918425, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1231170439217918425, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 8477419399857584822}
     - target: {fileID: 1607972098254441589, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -30,23 +42,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.75
+      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.75
+      value: 0.75000006
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.6000006
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.09600043
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.32399994
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -54,15 +66,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1695717241675235348, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -84,11 +96,224 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Basketball
       objectReference: {fileID: 0}
+    - target: {fileID: 9055904673477938600, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5877218121230280166, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2340241304686745836}
+    - targetCorrespondingSourceObject: {fileID: 5877218121230280166, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8477419399857584822}
+    - targetCorrespondingSourceObject: {fileID: 5877218121230280166, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1524285449022777466}
   m_SourcePrefab: {fileID: 100100000, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+--- !u!1 &3727498602306976185 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5877218121230280166, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}
+  m_PrefabInstance: {fileID: 7073658049989106783}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2340241304686745836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727498602306976185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ebc937e678155e4d86feeb9248cca97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrabBehaviour: 0
+  PoseType: 0
+  TrackingType: 0
+  HoldType: 1
+  GrabControl: 0
+  OverrideGrabTrigger: 0
+  GrabTrigger: 0
+  RequireLineOfSight: 1
+  PoseImmediately: 0
+  ParentHandModel: 0
+  BreakDistance: 1
+  BreakDistanceSource: 0
+  Stationary: 0
+  ReleasedAngularConversionFactor: 0
+  ReleasedVelocityFactor: 1
+  ReleasedAngularFactor: 1
+  GrabIndicator: {fileID: 0}
+  ForceGrabIndicator: {fileID: 0}
+  ShowGrabIndicator: 1
+  ShowTriggerGrabIndicator: 1
+  ShowForceGrabIndicator: 1
+  ForceGrabbable: 1
+  ForcePullOverride: {fileID: 0}
+  JointOverride: {fileID: 0}
+  OneHandStrength: {fileID: 0}
+  TwoHandStrength: {fileID: 0}
+  PullingSettingsOverride: {fileID: 0}
+  HandGrabbedClip: {fileID: 0}
+  SocketGrabPoints: []
+  Rigidbody: {fileID: 0}
+  AutoApplyLayer: 1
+  RequireOverlapClearance: 0
+  OverlapTimeout: 0.1
+  FinalJointMaxAngle: 15
+  FinalJointTimeout: 0.25
+  CollisionParents: []
+  ExtraIgnoreCollisionParents: []
+  GrabColliders: []
+  ConsiderGrabPointAngle: 1
+  UseColliderClosestPoint: 1
+  DisableHandCollision: 0
+  AllowMultiplayerSwap: 0
+  MasterGrabbable: {fileID: 0}
+  LinkedGrabbables: []
+  CollisionDetection: 2
+  PhysicsPoserFallback: 1
+  OverrideMaxDistanceBehaviour: 0
+  MaxDistanceBehaviour: 0
+  OneHandJointSettings: {fileID: 0}
+  TwoHandJointSettings: {fileID: 0}
+  StartingSocket: {fileID: 0}
+  LinkStartingSocket: 0
+  ShowBoundingBox: 0
+  DrawCenterOfMass: 0
+  GrabPoints: []
+  Deactivated:
+    m_PersistentCalls:
+      m_Calls: []
+  Activated:
+    m_PersistentCalls:
+      m_Calls: []
+  Grabbed:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1524285449022777466}
+        m_TargetAssemblyTypeName: NetworkChangeOwnership, Assembly-CSharp
+        m_MethodName: SetOwnership
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8477419399857584822}
+        m_TargetAssemblyTypeName: Photon.Pun.PhotonRigidbodyView, PhotonUnityNetworking
+        m_MethodName: SetGrabbableGravity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Released:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1524285449022777466}
+        m_TargetAssemblyTypeName: NetworkChangeOwnership, Assembly-CSharp
+        m_MethodName: ResetOwnership
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8477419399857584822}
+        m_TargetAssemblyTypeName: Photon.Pun.PhotonRigidbodyView, PhotonUnityNetworking
+        m_MethodName: UnSetGrabbableGravity
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  HoverEnter:
+    m_PersistentCalls:
+      m_Calls: []
+  HoverExit:
+    m_PersistentCalls:
+      m_Calls: []
+  Collided:
+    m_PersistentCalls:
+      m_Calls: []
+  Destroyed:
+    m_PersistentCalls:
+      m_Calls: []
+  HandGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  HandReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  HandFullReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  Socketed:
+    m_PersistentCalls:
+      m_Calls: []
+  UnSocketed:
+    m_PersistentCalls:
+      m_Calls: []
+  DistanceGrabbed:
+    m_PersistentCalls:
+      m_Calls: []
+  DistanceReleased:
+    m_PersistentCalls:
+      m_Calls: []
+  GrabPointsMeta: []
+  Grabbers: []
+  HandGrabbers: []
+  Stabbers: []
+  Stabbable: {fileID: 0}
+--- !u!114 &8477419399857584822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727498602306976185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 0
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &1524285449022777466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3727498602306976185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0951f4bf446c94ba9f2cc7d3d8a63d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ClientIdOfUser: 0
+  InUse: 0
 --- !u!4 &7321326905726896753 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 554007088891844142, guid: 467a58d2d1c78534faa778e209fb9e8e, type: 3}

@@ -541,6 +541,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 2104761221124024311, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: sceneViewId
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151724523202896939, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: sceneViewId
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2168684762450174276, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: m_InteractionManager
       value: 
@@ -967,7 +975,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3924027509722682573, guid: 6974999791dc8804fafee05e319aa932, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 32.75
+      value: 20.93
       objectReference: {fileID: 0}
     - target: {fileID: 3924027509722682573, guid: 6974999791dc8804fafee05e319aa932, type: 3}
       propertyPath: m_LocalPosition.y
@@ -975,7 +983,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3924027509722682573, guid: 6974999791dc8804fafee05e319aa932, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -4.484
+      value: -16.07
       objectReference: {fileID: 0}
     - target: {fileID: 3924027509722682573, guid: 6974999791dc8804fafee05e319aa932, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1047,7 +1055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &822928515
 Transform:
   m_ObjectHideFlags: 0
@@ -1097,7 +1105,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1015944668
 Transform:
   m_ObjectHideFlags: 0
@@ -1480,7 +1488,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1460057232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1955,7 +1963,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2031717630
 Transform:
   m_ObjectHideFlags: 0
@@ -2638,6 +2646,14 @@ PrefabInstance:
     - target: {fileID: 1704468039721665045, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104761221124024311, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: sceneViewId
+      value: 26
+      objectReference: {fileID: 0}
+    - target: {fileID: 2151724523202896939, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: sceneViewId
+      value: 27
       objectReference: {fileID: 0}
     - target: {fileID: 2676349651460687181, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId

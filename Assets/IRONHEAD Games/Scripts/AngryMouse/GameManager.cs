@@ -310,12 +310,12 @@ namespace AngryMouse
             Debug.Log("---Show game result---");
             if (moeManagers[0].score > moeManagers[1].score)
             {
-                text = "The game has ended.\nPlayer :" + moeManagers[0].playerNum + " wins";
+                text = "The game has ended.\nPlayer :" +( moeManagers[0].playerNum +1 )+ " wins";
                 moeManagers[0].EmitFireWork();
             }
             else if (moeManagers[0].score < moeManagers[1].score)
             {
-                text = "The game has ended.\nPlayer :" + moeManagers[1].playerNum + " wins";
+                text = "The game has ended.\nPlayer :" + (moeManagers[1].playerNum + 1 )+ " wins";
                 moeManagers[1].EmitFireWork();
             }
             else
@@ -349,18 +349,26 @@ namespace AngryMouse
                         m.HideMoes();
                     }
                     //set question
- 
+
                     if (currentIndex < questions.Count)
                     {
+                     
                         view.RPC("UpdateBoardText", RpcTarget.All, "Next Question");
                         _audioSource.PlayOneShot(_nextQuestionClip);
                         yield return new WaitForSeconds(0.3f);
                         currentIndex++;
+                        Debug.Log("---Next Question:" + currentIndex);
                         foreach (MoeManager m in moeManagers)
                         {
                             m.RandomPickMoes();
                             yield return new WaitForSeconds(0.5f);
                             m.PopMoes();
+                        }
+                    }
+                    else {
+                        foreach (MoeManager m in moeManagers)
+                        {
+                            m.HideMoes();
                         }
                     }
 
