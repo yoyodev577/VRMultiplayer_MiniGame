@@ -613,6 +613,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 4135760953334099411, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: A
+      objectReference: {fileID: 0}
     - target: {fileID: 4246733717647037431, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 42
@@ -764,6 +768,10 @@ PrefabInstance:
     - target: {fileID: 8782231406161443308, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821005289204893640, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: A
       objectReference: {fileID: 0}
     - target: {fileID: 8906858949954411908, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
@@ -2631,6 +2639,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 115603213372189156, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 115603213372189156, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 664261510754320605, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: m_Name
       value: HoopMachine
@@ -2639,21 +2655,57 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 935584860644726282, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 935584860644726282, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 1174954329295290850, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174954329295290850, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174954329295290850, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1704468039721665045, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 1704468039721665045, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1704468039721665045, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2104761221124024311, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 26
       objectReference: {fileID: 0}
+    - target: {fileID: 2104761221124024311, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2104761221124024311, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2151724523202896939, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 2653723526688015175, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: C
       objectReference: {fileID: 0}
     - target: {fileID: 2676349651460687181, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
@@ -2666,6 +2718,18 @@ PrefabInstance:
     - target: {fileID: 3208714623256173955, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208714623256173955, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3208714623256173955, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4135760953334099411, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: A
       objectReference: {fileID: 0}
     - target: {fileID: 4246733717647037431, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
@@ -2711,6 +2775,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5511897121459438133, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: B
+      objectReference: {fileID: 0}
+    - target: {fileID: 6278740143838664234, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: C
+      objectReference: {fileID: 0}
     - target: {fileID: 6443670783934371216, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 1
@@ -2719,9 +2791,33 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 7229974219167553400, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7229974219167553400, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7782863030159264188, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: B
+      objectReference: {fileID: 0}
     - target: {fileID: 8782231406161443308, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782231406161443308, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8782231406161443308, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8821005289204893640, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
+      propertyPath: m_TagString
+      value: A
       objectReference: {fileID: 0}
     - target: {fileID: 8936235673540196945, guid: 4b8ecc9bcd0cc9043a0f774d395131ab, type: 3}
       propertyPath: sceneViewId

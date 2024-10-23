@@ -30,9 +30,13 @@ public class HoopsScore : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        GameObject ball = other.gameObject;
-        PhotonView ballPhotonView = ball.GetComponent<PhotonView>();
-        View.RPC("PhotonTriggerExit",RpcTarget.AllBuffered, ballPhotonView.ViewID);
+        if(other.CompareTag("A")|| other.CompareTag("B") || other.CompareTag("C") || other.CompareTag("D") )
+        {
+            GameObject ball = other.gameObject;
+            PhotonView ballPhotonView = ball.GetComponent<PhotonView>();
+            View.RPC("PhotonTriggerExit", RpcTarget.AllBuffered, ballPhotonView.ViewID);
+        }
+        
     }
 
     [PunRPC]

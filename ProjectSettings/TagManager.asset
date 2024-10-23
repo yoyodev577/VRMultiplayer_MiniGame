@@ -25,6 +25,8 @@ TagManager:
   - TestTube
   - Base
   - Machine
+  - Mouse
+  - ball
   layers:
   - Default
   - TransparentFX
@@ -34,6 +36,8 @@ TagManager:
   - UI
   - 
   - 
+  - Player
+  - DynamicPose
   - 
   - 
   - 
@@ -44,10 +48,8 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Grabbable
+  - Hand
   - 
   - 
   - 
